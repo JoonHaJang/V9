@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import json,glob; files=sorted\\(glob.glob\\(''stress_test_*_MIP_*.json''\\)\\); [print\\(f, json.load\\(open\\(f\\)\\)[''solver_performance''][''avg_time_sec'']\\) for f in files[:3]]\")",
+      "Read(//c/Users/USER/Desktop/V9/{sum+=$1; count++} END {printf \"\"\"\"\"\"\"\"Avg Vars: %.0f, Count: %d/n\"\"\"\"\"\"\"\", sum/**)",
+      "Read(//c/Users/USER/Desktop/V9/{sum+=$1; count++} END {printf \"\"\"\"\"\"\"\"Avg Constraints: %.0f, Count: %d/n\"\"\"\"\"\"\"\", sum/**)"
+    ]
+  }
+}

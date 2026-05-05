@@ -1,0 +1,211 @@
+{
+  "scenario": "DWTA_BALANCED",
+  "timestamp": "2026-03-16T21:03:39.404135",
+  "elapsed_time_sec": 50.326722621917725,
+  "solver_performance": {
+    "avg_time_sec": 0.5231155289543999,
+    "max_time_sec": 10.130407094955444,
+    "min_time_sec": 0.06423449516296387,
+    "total_optimizations": 63,
+    "timeout_count": 2,
+    "timeout_rate_pct": 3.1746031746031744,
+    "warmstart_count": 62,
+    "warmstart_rate_pct": 98.4126984126984
+  },
+  "problem_scale": {
+    "avg_variables": 103.4920634920635,
+    "max_variables": 165,
+    "avg_constraints": 266.4761904761905,
+    "max_constraints": 429
+  },
+  "memory_usage": {
+    "peak_mb": 181.57421875,
+    "avg_mb": 180.12437996031747
+  },
+  "simulation_result": {
+    "total_threats": 10,
+    "intercepted": 10,
+    "missed": 0,
+    "deviated": 0,
+    "intercept_rate_pct": 100.0,
+    "upper_layer_intercepts": 4,
+    "lower_layer_intercepts": 6,
+    "threat_type_breakdown": {
+      "UNKNOWN": 10
+    }
+  },
+  "asset_protection": {
+    "total_assets": 10,
+    "protected": 10,
+    "damaged": 0,
+    "protection_rate_pct": 100.0
+  },
+  "missile_efficiency": {
+    "fired": 20,
+    "available": 130,
+    "efficiency_pct": 50.0,
+    "missiles_per_intercept": 2.0
+  },
+  "scalability": {
+    "time_per_threat": 3.2956278324127197,
+    "time_per_optimization": 0.5231155289543999,
+    "threats_per_second": 0.3034323202896071
+  },
+  "algorithm": "MIP",
+  "solution_stability": {
+    "objective_variance": 0.8339971179102038,
+    "objective_std": 0.9132344265905682,
+    "objective_mean": 2.889965714285715,
+    "coefficient_of_variation": 31.600182039401236
+  },
+  "resource_utilization": {
+    "total_battery_usage": 0,
+    "num_batteries_used": 0,
+    "battery_usage_balance": 0.0,
+    "battery_usage_detail": {}
+  },
+  "robustness": {
+    "success_rate_pct": 100.0,
+    "infeasible_count": 0,
+    "infeasible_rate_pct": 0.0,
+    "timeout_recovery_rate": 96.82539682539682
+  },
+  "computational_efficiency": {
+    "memory_per_threat_mb": 18.157421875,
+    "time_complexity_observed": 0.10421690270667883,
+    "throughput_threats_per_sec": 0.3034323202896071
+  },
+  "performance_grade": "A (양호)",
+  "detailed_records": [
+    {
+      "timestep": 270,
+      "solver_time": 0.23318791389465332,
+      "num_variables": 60,
+      "num_constraints": 153,
+      "num_threats": 4,
+      "warmstart_applied": true,
+      "warmstart_count": 12,
+      "timeout": false,
+      "feasible": true,
+      "objective_value": 2.39904,
+      "gap": null
+    },
+    {
+      "timestep": 275,
+      "solver_time": 0.13034534454345703,
+      "num_variables": 60,
+      "num_constraints": 153,
+      "num_threats": 4,
+      "warmstart_applied": true,
+      "warmstart_count": 12,
+      "timeout": false,
+      "feasible": true,
+      "objective_value": 2.39904,
+      "gap": null
+    },
+    {
+      "timestep": 280,
+      "solver_time": 0.19349026679992676,
+      "num_variables": 60,
+      "num_constraints": 153,
+      "num_threats": 4,
+      "warmstart_applied": true,
+      "warmstart_count": 12,
+      "timeout": false,
+      "feasible": true,
+      "objective_value": 2.39904,
+      "gap": null
+    },
+    {
+      "timestep": 285,
+      "solver_time": 10.1243736743927,
+      "num_variables": 60,
+      "num_constraints": 153,
+      "num_threats": 4,
+      "warmstart_applied": true,
+      "warmstart_count": 12,
+      "timeout": true,
+      "feasible": true,
+      "objective_value": 2.39904,
+      "gap": null
+    },
+    {
+      "timestep": 290,
+      "solver_time": 0.14667057991027832,
+      "num_variables": 60,
+      "num_constraints": 153,
+      "num_threats": 4,
+      "warmstart_applied": true,
+      "warmstart_count": 12,
+      "timeout": false,
+      "feasible": true,
+      "objective_value": 2.39904,
+      "gap": null
+    },
+    {
+      "timestep": 295,
+      "solver_time": 0.2006208896636963,
+      "num_variables": 45,
+      "num_constraints": 117,
+      "num_threats": 3,
+      "warmstart_applied": true,
+      "warmstart_count": 9,
+      "timeout": false,
+      "feasible": true,
+      "objective_value": 1.79928,
+      "gap": null
+    },
+    {
+      "timestep": 300,
+      "solver_time": 0.15084004402160645,
+      "num_variables": 30,
+      "num_constraints": 81,
+      "num_threats": 2,
+      "warmstart_applied": true,
+      "warmstart_count": 6,
+      "timeout": false,
+      "feasible": true,
+      "objective_value": 1.19952,
+      "gap": null
+    },
+    {
+      "timestep": 305,
+      "solver_time": 0.08574485778808594,
+      "num_variables": 30,
+      "num_constraints": 81,
+      "num_threats": 2,
+      "warmstart_applied": true,
+      "warmstart_count": 6,
+      "timeout": false,
+      "feasible": true,
+      "objective_value": 1.19952,
+      "gap": null
+    },
+    {
+      "timestep": 310,
+      "solver_time": 0.16756868362426758,
+      "num_variables": 15,
+      "num_constraints": 45,
+      "num_threats": 1,
+      "warmstart_applied": true,
+      "warmstart_count": 3,
+      "timeout": false,
+      "feasible": true,
+      "objective_value": 0.59976,
+      "gap": null
+    },
+    {
+      "timestep": 315,
+      "solver_time": 0.06423449516296387,
+      "num_variables": 15,
+      "num_constraints": 45,
+      "num_threats": 1,
+      "warmstart_applied": true,
+      "warmstart_count": 3,
+      "timeout": false,
+      "feasible": true,
+      "objective_value": 0.59976,
+      "gap": null
+    }
+  ]
+}

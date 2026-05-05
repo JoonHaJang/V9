@@ -1,0 +1,852 @@
+[20:15:55] 시나리오 변경: 스트레스 100발 + 15포대 (기준, BAT15)
+[20:15:55] 위협 미사일 수: 100발
+[20:15:56] 시뮬레이션 시작 - Minimize Expected Damage (Value-based)
+[20:15:56] 시나리오: STRESS_100, 배속: 1.0x
+[20:15:56] [INFO] === SIMULATION START (T=0) ===
+[20:15:56] [INFO] Scenario: Korean_Defense_Scenario_STRESS_100
+[20:15:56] [INFO] Batteries: 6, Assets: 20
+[20:15:56] [INFO] Total Threats: 100 registered
+[20:15:56] [INFO] LAUNCH: T01 → A01
+[20:15:56] [INFO] LAUNCH: T02 → A02
+[20:15:56] [INFO] LAUNCH: T03 → A03
+[20:15:56] 3개 새로운 위협 발견
+[20:15:56] [INFO] [T=5] Optimization: Obj=-3190.7, Time=0.186s, Vars=42, Constraints=111
+[20:15:56] [INFO] [T=5] Optimization: 3 assignments, 0 invalid, Obj=-3190.72, Time=0.19s
+[20:15:56] [INFO] [T=5] 할당 가능: 3개 신규 할당 (총 3/36, 포대: 2/6, 8.3%)
+[20:15:56] [INFO] LAUNCH: T04 → A04
+[20:15:56] [INFO] LAUNCH: T05 → A05
+[20:15:56] [INFO] LAUNCH: T06 → A06
+[20:15:56] 3개 새로운 위협 발견
+[20:15:56] [INFO] [T=10] Optimization: Obj=-5545.8, Time=0.193s, Vars=84, Constraints=213
+[20:15:56] [INFO] [T=10] Optimization: 6 assignments, 0 invalid, Obj=-5545.78, Time=0.19s
+[20:15:56] [INFO] [T=10] 할당 가능: 6개 신규 할당 (총 6/36, 포대: 2/6, 16.7%)
+[20:15:56] [INFO] LAUNCH: T07 → A07
+[20:15:56] [INFO] LAUNCH: T08 → A08
+[20:15:57] 2개 새로운 위협 발견
+[20:15:57] [INFO] [T=15] Optimization: Obj=-6686.5, Time=0.147s, Vars=112, Constraints=281
+[20:15:57] [INFO] [T=15] Optimization: 8 assignments, 0 invalid, Obj=-6686.47, Time=0.15s
+[20:15:57] [INFO] [T=15] 할당 가능: 8개 신규 할당 (총 8/36, 포대: 3/6, 22.2%)
+[20:15:57] [INFO] LAUNCH: T09 → A09
+[20:15:57] [INFO] LAUNCH: T10 → A10
+[20:15:57] [INFO] LAUNCH: T11 → A11
+[20:15:57] 3개 새로운 위협 발견
+[20:15:57] [INFO] [T=20] Optimization: Obj=-8508.1, Time=0.202s, Vars=154, Constraints=380
+[20:15:57] [INFO] [T=20] Optimization: 11 assignments, 0 invalid, Obj=-8508.11, Time=0.20s
+[20:15:57] [INFO] [T=20] 할당 가능: 11개 신규 할당 (총 11/36, 포대: 3/6, 30.6%)
+[20:15:57] [INFO] LAUNCH: T12 → A12
+[20:15:57] [INFO] LAUNCH: T13 → A13
+[20:15:57] 2개 새로운 위협 발견
+[20:15:58] [INFO] [T=25] Optimization: Obj=-10354.3, Time=0.279s, Vars=182, Constraints=442
+[20:15:58] [INFO] [T=25] Optimization: 13 assignments, 0 invalid, Obj=-10354.25, Time=0.28s
+[20:15:58] [INFO] [T=25] 할당 가능: 13개 신규 할당 (총 13/36, 포대: 3/6, 36.1%)
+[20:15:58] [INFO] LAUNCH: T14 → A14
+[20:15:58] [INFO] LAUNCH: T15 → A15
+[20:15:58] [INFO] LAUNCH: T16 → A16
+[20:15:58] 3개 새로운 위협 발견
+[20:15:58] [INFO] [T=30] Optimization: Obj=-12706.9, Time=0.270s, Vars=224, Constraints=535
+[20:15:58] [INFO] [T=30] Optimization: 16 assignments, 0 invalid, Obj=-12706.89, Time=0.27s
+[20:15:58] [INFO] [T=30] 할당 가능: 16개 신규 할당 (총 16/36, 포대: 3/6, 44.4%)
+[20:15:58] [INFO] LAUNCH: T17 → A17
+[20:15:58] [INFO] LAUNCH: T18 → A18
+[20:15:58] 2개 새로운 위협 발견
+[20:15:59] [INFO] [T=35] Optimization: Obj=-14059.0, Time=0.278s, Vars=252, Constraints=597
+[20:15:59] [INFO] [T=35] Optimization: 18 assignments, 0 invalid, Obj=-14059.01, Time=0.28s
+[20:15:59] [INFO] [T=35] 할당 가능: 18개 신규 할당 (총 18/36, 포대: 3/6, 50.0%)
+[20:15:59] [INFO] LAUNCH: T19 → A19
+[20:15:59] [INFO] LAUNCH: T20 → A20
+[20:15:59] [INFO] LAUNCH: T21 → A01
+[20:15:59] [INFO] LAUNCH: T41 → A01
+[20:15:59] 4개 새로운 위협 발견
+[20:15:59] [INFO] [T=40] Optimization: Obj=-16448.9, Time=0.321s, Vars=315, Constraints=751
+[20:15:59] [INFO] [T=40] Optimization: 19 assignments, 0 invalid, Obj=-16448.85, Time=0.32s
+[20:15:59] [INFO] [T=40] 할당 가능: 19개 신규 할당 (총 22/36, 포대: 4/6, 61.1%)
+[20:15:59] [INFO] LAUNCH: T22 → A02
+[20:15:59] [INFO] LAUNCH: T23 → A03
+[20:15:59] [INFO] LAUNCH: T42 → A02
+[20:15:59] [INFO] LAUNCH: T43 → A03
+[20:16:00] [INFO] LAUNCH: T44 → A04
+[20:16:00] 5개 새로운 위협 발견
+[20:16:00] [INFO] [T=45] Optimization: Obj=-21141.0, Time=0.390s, Vars=405, Constraints=980
+[20:16:00] [INFO] [T=45] Optimization: 22 assignments, 0 invalid, Obj=-21141.03, Time=0.39s
+[20:16:00] [INFO] [T=45] 할당 가능: 22개 신규 할당 (총 27/36, 포대: 4/6, 75.0%)
+[20:16:01] [INFO] LAUNCH: T24 → A04
+[20:16:01] [INFO] LAUNCH: T25 → A05
+[20:16:01] [INFO] LAUNCH: T26 → A06
+[20:16:01] [INFO] LAUNCH: T45 → A05
+[20:16:01] [INFO] LAUNCH: T46 → A06
+[20:16:01] [INFO] LAUNCH: T47 → A07
+[20:16:01] 6개 새로운 위협 발견
+[20:16:01] [INFO] [T=50] Optimization: Obj=-24143.2, Time=0.363s, Vars=505, Constraints=1235
+[20:16:01] [INFO] [T=50] Optimization: 25 assignments, 0 invalid, Obj=-24143.22, Time=0.36s
+[20:16:02] [INFO] [T=50] 할당 가능: 25개 신규 할당 (총 33/36, 포대: 5/6, 91.7%)
+[20:16:02] [INFO] LAUNCH: T27 → A07
+[20:16:02] [INFO] LAUNCH: T28 → A08
+[20:16:02] [INFO] LAUNCH: T48 → A08
+[20:16:02] [INFO] LAUNCH: T49 → A09
+[20:16:02] [INFO] LAUNCH: T50 → A10
+[20:16:02] [INFO] LAUNCH: T51 → A11
+[20:16:02] 6개 새로운 위협 발견
+[20:16:02] [INFO] [T=55] Optimization: Obj=-26862.4, Time=0.550s, Vars=605, Constraints=1489
+[20:16:02] [INFO] [T=55] Optimization: 29 assignments, 0 invalid, Obj=-26862.37, Time=0.55s
+[20:16:03] [WARN] [T=55] 용량 포화: 37/36개 할당 (포대: 5/6, 102.8%)
+[20:16:03] [INFO] LAUNCH: T29 → A09
+[20:16:03] [INFO] LAUNCH: T30 → A10
+[20:16:03] [INFO] LAUNCH: T31 → A11
+[20:16:03] [INFO] LAUNCH: T52 → A12
+[20:16:03] [INFO] LAUNCH: T53 → A13
+[20:16:03] [INFO] LAUNCH: T54 → A14
+[20:16:03] 6개 새로운 위협 발견
+[20:16:03] [INFO] [T=60] Optimization: Obj=-29889.8, Time=0.538s, Vars=710, Constraints=1744
+[20:16:03] [INFO] [T=60] Optimization: 32 assignments, 0 invalid, Obj=-29889.79, Time=0.54s
+[20:16:03] [WARN] [T=60] 용량 포화: 41/36개 할당 (포대: 6/6, 113.9%)
+[20:16:03] [INFO] LAUNCH: T32 → A12
+[20:16:03] [INFO] LAUNCH: T33 → A13
+[20:16:03] [INFO] LAUNCH: T55 → A15
+[20:16:03] [INFO] LAUNCH: T56 → A16
+[20:16:03] [INFO] LAUNCH: T57 → A17
+[20:16:04] 5개 새로운 위협 발견
+[20:16:04] [INFO] [T=65] Optimization: Obj=-32484.8, Time=0.558s, Vars=800, Constraints=1958
+[20:16:04] [INFO] [T=65] Optimization: 35 assignments, 0 invalid, Obj=-32484.81, Time=0.56s
+[20:16:04] [WARN] [T=65] 용량 포화: 46/36개 할당 (포대: 6/6, 127.8%)
+[20:16:04] [INFO] LAUNCH: T34 → A14
+[20:16:05] [INFO] LAUNCH: T35 → A15
+[20:16:05] [INFO] LAUNCH: T36 → A16
+[20:16:05] [INFO] LAUNCH: T58 → A18
+[20:16:05] [INFO] LAUNCH: T59 → A19
+[20:16:05] [INFO] LAUNCH: T60 → A20
+[20:16:05] [INFO] LAUNCH: T61 → A01
+[20:16:05] 7개 새로운 위협 발견
+[20:16:06] [INFO] [T=70] Optimization: Obj=-34195.5, Time=0.647s, Vars=925, Constraints=2258
+[20:16:06] [INFO] [T=70] Optimization: 36 assignments, 0 invalid, Obj=-34195.48, Time=0.65s
+[20:16:06] [WARN] [T=70] 용량 포화: 51/36개 할당 (포대: 6/6, 141.7%)
+[20:16:06] [INFO] LAUNCH: T37 → A17
+[20:16:06] [INFO] LAUNCH: T38 → A18
+[20:16:06] [INFO] LAUNCH: T62 → A02
+[20:16:06] [INFO] LAUNCH: T63 → A03
+[20:16:06] [INFO] LAUNCH: T64 → A04
+[20:16:06] 5개 새로운 위협 발견
+[20:16:07] [INFO] [T=75] Optimization: Obj=-36065.0, Time=0.765s, Vars=1015, Constraints=2481
+[20:16:07] [INFO] [T=75] Optimization: 36 assignments, 0 invalid, Obj=-36064.97, Time=0.76s
+[20:16:07] [WARN] [T=75] 용량 포화: 54/36개 할당 (포대: 6/6, 150.0%)
+[20:16:08] [INFO] LAUNCH: T39 → A19
+[20:16:08] [INFO] LAUNCH: T40 → A20
+[20:16:08] [INFO] LAUNCH: T65 → A05
+[20:16:08] [INFO] LAUNCH: T66 → A06
+[20:16:08] [INFO] LAUNCH: T67 → A07
+[20:16:08] 5개 새로운 위협 발견
+[20:16:09] [INFO] [T=80] Optimization: Obj=-36480.3, Time=0.837s, Vars=1100, Constraints=2692
+[20:16:09] [INFO] [T=80] Optimization: 36 assignments, 0 invalid, Obj=-36480.28, Time=0.84s
+[20:16:09] [WARN] [T=80] 용량 포화: 57/36개 할당 (포대: 6/6, 158.3%)
+[20:16:09] [INFO] LAUNCH: T68 → A08
+[20:16:09] [INFO] LAUNCH: T69 → A09
+[20:16:09] [INFO] LAUNCH: T70 → A10
+[20:16:09] [INFO] LAUNCH: T71 → A11
+[20:16:09] 4개 새로운 위협 발견
+[20:16:10] [INFO] [T=85] Optimization: Obj=-36622.9, Time=0.774s, Vars=1170, Constraints=2870
+[20:16:10] [INFO] [T=85] Optimization: 36 assignments, 0 invalid, Obj=-36622.88, Time=0.77s
+[20:16:10] [WARN] [T=85] 용량 포화: 58/36개 할당 (포대: 6/6, 161.1%)
+[20:16:11] [INFO] LAUNCH: T72 → A12
+[20:16:11] [INFO] LAUNCH: T73 → A13
+[20:16:11] [INFO] LAUNCH: T74 → A14
+[20:16:11] 3개 새로운 위협 발견
+[20:16:12] [INFO] [T=90] Optimization: Obj=-36971.3, Time=0.790s, Vars=1230, Constraints=3014
+[20:16:12] [INFO] [T=90] Optimization: 36 assignments, 0 invalid, Obj=-36971.33, Time=0.79s
+[20:16:12] [WARN] [T=90] 용량 포화: 61/36개 할당 (포대: 6/6, 169.4%)
+[20:16:12] [INFO] LAUNCH: T75 → A15
+[20:16:12] [INFO] LAUNCH: T76 → A16
+[20:16:12] [INFO] LAUNCH: T77 → A17
+[20:16:13] 3개 새로운 위협 발견
+[20:16:13] [INFO] [T=95] Optimization: Obj=-36391.8, Time=0.783s, Vars=1290, Constraints=3158
+[20:16:14] [INFO] [T=95] Optimization: 36 assignments, 0 invalid, Obj=-36391.83, Time=0.78s
+[20:16:14] [WARN] [T=95] 용량 포화: 61/36개 할당 (포대: 6/6, 169.4%)
+[20:16:14] [INFO] LAUNCH: T78 → A18
+[20:16:14] [INFO] LAUNCH: T79 → A19
+[20:16:14] [INFO] LAUNCH: T80 → A20
+[20:16:14] [INFO] LAUNCH: T81 → A01
+[20:16:14] 4개 새로운 위협 발견
+[20:16:15] [INFO] [T=100] Optimization: Obj=-37468.0, Time=0.976s, Vars=1370, Constraints=3353
+[20:16:15] [INFO] [T=100] Optimization: 36 assignments, 0 invalid, Obj=-37468.01, Time=0.98s
+[20:16:15] [WARN] [T=100] 용량 포화: 62/36개 할당 (포대: 6/6, 172.2%)
+[20:16:15] [INFO] LAUNCH: T82 → A02
+[20:16:15] [INFO] LAUNCH: T83 → A03
+[20:16:15] [INFO] LAUNCH: T84 → A04
+[20:16:16] 3개 새로운 위협 발견
+[20:16:17] [INFO] [T=105] Optimization: Obj=-38502.9, Time=1.134s, Vars=1430, Constraints=3506
+[20:16:17] [INFO] [T=105] Optimization: 36 assignments, 0 invalid, Obj=-38502.91, Time=1.13s
+[20:16:17] [WARN] [T=105] 용량 포화: 65/36개 할당 (포대: 6/6, 180.6%)
+[20:16:18] [INFO] LAUNCH: T85 → A05
+[20:16:18] [INFO] LAUNCH: T86 → A06
+[20:16:18] [INFO] LAUNCH: T87 → A07
+[20:16:18] 3개 새로운 위협 발견
+[20:16:19] [INFO] [T=110] Optimization: Obj=-38591.5, Time=0.990s, Vars=1485, Constraints=3647
+[20:16:19] [INFO] [T=110] Optimization: 36 assignments, 0 invalid, Obj=-38591.49, Time=0.99s
+[20:16:19] [WARN] [T=110] 용량 포화: 66/36개 할당 (포대: 6/6, 183.3%)
+[20:16:19] [INFO] LAUNCH: T88 → A08
+[20:16:19] [INFO] LAUNCH: T89 → A09
+[20:16:19] [INFO] LAUNCH: T90 → A10
+[20:16:19] [INFO] LAUNCH: T91 → A11
+[20:16:19] 4개 새로운 위협 발견
+[20:16:20] [INFO] [T=115] Optimization: Obj=-38649.7, Time=0.933s, Vars=1510, Constraints=3707
+[20:16:20] [INFO] [T=115] Optimization: 36 assignments, 0 invalid, Obj=-38649.68, Time=0.93s
+[20:16:20] [WARN] [T=115] 용량 포화: 67/36개 할당 (포대: 6/6, 186.1%)
+[20:16:20] [INFO] LAUNCH: T92 → A12
+[20:16:20] [INFO] LAUNCH: T93 → A13
+[20:16:20] [INFO] LAUNCH: T94 → A14
+[20:16:21] 3개 새로운 위협 발견
+[20:16:22] [INFO] [T=120] Optimization: Obj=-38319.5, Time=1.101s, Vars=1555, Constraints=3811
+[20:16:22] [INFO] [T=120] Optimization: 36 assignments, 0 invalid, Obj=-38319.51, Time=1.10s
+[20:16:22] [WARN] [T=120] 용량 포화: 68/36개 할당 (포대: 6/6, 188.9%)
+[20:16:22] [INFO] LAUNCH: T95 → A15
+[20:16:22] [INFO] LAUNCH: T96 → A16
+[20:16:22] [INFO] LAUNCH: T97 → A17
+[20:16:22] 3개 새로운 위협 발견
+[20:16:24] [INFO] [T=125] Optimization: Obj=-38337.0, Time=1.315s, Vars=1580, Constraints=3859
+[20:16:24] [INFO] [T=125] Optimization: 36 assignments, 0 invalid, Obj=-38337.01, Time=1.32s
+[20:16:24] [WARN] [T=125] 용량 포화: 68/36개 할당 (포대: 6/6, 188.9%)
+[20:16:24] [INFO] LAUNCH: T98 → A18
+[20:16:24] [INFO] LAUNCH: T99 → A19
+[20:16:24] [INFO] LAUNCH: T100 → A20
+[20:16:25] 3개 새로운 위협 발견
+[20:16:26] [INFO] [T=130] Optimization: Obj=-38586.4, Time=1.052s, Vars=1620, Constraints=3951
+[20:16:26] [INFO] [T=130] Optimization: 36 assignments, 0 invalid, Obj=-38586.42, Time=1.05s
+[20:16:26] [WARN] [T=130] 용량 포화: 68/36개 할당 (포대: 6/6, 188.9%)
+[20:16:27] [INFO] [T=135] Optimization: Obj=-38713.7, Time=1.121s, Vars=1600, Constraints=3896
+[20:16:28] [INFO] [T=135] Optimization: 36 assignments, 0 invalid, Obj=-38713.70, Time=1.12s
+[20:16:28] [WARN] [T=135] 용량 포화: 68/36개 할당 (포대: 6/6, 188.9%)
+[20:16:30] [INFO] [T=140] Optimization: Obj=-38557.0, Time=1.353s, Vars=1560, Constraints=3789
+[20:16:31] [INFO] [T=140] Optimization: 36 assignments, 0 invalid, Obj=-38557.00, Time=1.35s
+[20:16:31] [WARN] [T=140] 용량 포화: 68/36개 할당 (포대: 6/6, 188.9%)
+[20:16:33] [INFO] [T=145] Optimization: Obj=-38478.4, Time=1.009s, Vars=1545, Constraints=3749
+[20:16:33] [INFO] [T=145] Optimization: 36 assignments, 0 invalid, Obj=-38478.45, Time=1.01s
+[20:16:34] [WARN] [T=145] 용량 포화: 68/36개 할당 (포대: 6/6, 188.9%)
+[20:16:36] [INFO] [T=150] Optimization: Obj=-38718.3, Time=1.135s, Vars=1525, Constraints=3697
+[20:16:36] [INFO] [T=150] Optimization: 36 assignments, 0 invalid, Obj=-38718.29, Time=1.14s
+[20:16:36] [WARN] [T=150] 용량 포화: 68/36개 할당 (포대: 6/6, 188.9%)
+[20:16:37] [INFO] [T=155] Optimization: Obj=-38525.2, Time=1.018s, Vars=1515, Constraints=3671
+[20:16:37] [INFO] [T=155] Optimization: 36 assignments, 0 invalid, Obj=-38525.25, Time=1.02s
+[20:16:37] [WARN] [T=155] 용량 포화: 68/36개 할당 (포대: 6/6, 188.9%)
+[20:16:38] [INFO] [T=160] Optimization: Obj=-38525.5, Time=0.928s, Vars=1490, Constraints=3602
+[20:16:38] [INFO] [T=160] Optimization: 36 assignments, 0 invalid, Obj=-38525.48, Time=0.93s
+[20:16:39] [WARN] [T=160] 용량 포화: 68/36개 할당 (포대: 6/6, 188.9%)
+[20:16:40] [INFO] [T=165] Optimization: Obj=-38257.7, Time=0.932s, Vars=1485, Constraints=3588
+[20:16:41] [INFO] [T=165] Optimization: 36 assignments, 0 invalid, Obj=-38257.75, Time=0.93s
+[20:16:41] [WARN] [T=165] 용량 포화: 68/36개 할당 (포대: 6/6, 188.9%)
+[20:16:42] [INFO] [T=170] Optimization: Obj=-38690.7, Time=0.827s, Vars=1480, Constraints=3575
+[20:16:42] [INFO] [T=170] Optimization: 36 assignments, 0 invalid, Obj=-38690.66, Time=0.83s
+[20:16:42] [WARN] [T=170] 용량 포화: 68/36개 할당 (포대: 6/6, 188.9%)
+[20:16:42] [WARN] [T=175] ABANDON: Battery MSAM_01 abandons T65 (trajectory deviation)
+[20:16:42] [INFO] [T=175] TRAJECTORY DEVIATION: T65 veered off from A05 to empty area
+[20:16:42] [INFO] LAUNCH: T65 → EMPTY_AREA
+[20:16:43] [INFO] [T=175] Optimization: Obj=-38448.8, Time=0.929s, Vars=1450, Constraints=3497
+[20:16:43] [INFO] [T=175] Optimization: 36 assignments, 0 invalid, Obj=-38448.81, Time=0.93s
+[20:16:43] [WARN] [T=175] 용량 포화: 67/36개 할당 (포대: 6/6, 186.1%)
+[20:16:45] [INFO] [T=180] Optimization: Obj=-38581.8, Time=1.015s, Vars=1450, Constraints=3497
+[20:16:45] [INFO] [T=180] Optimization: 36 assignments, 0 invalid, Obj=-38581.85, Time=1.02s
+[20:16:45] [WARN] [T=180] 용량 포화: 67/36개 할당 (포대: 6/6, 186.1%)
+[20:16:46] [INFO] [T=185] Optimization: Obj=-38661.4, Time=1.033s, Vars=1445, Constraints=3484
+[20:16:46] [INFO] [T=185] Optimization: 36 assignments, 0 invalid, Obj=-38661.36, Time=1.03s
+[20:16:46] [WARN] [T=185] 용량 포화: 67/36개 할당 (포대: 6/6, 186.1%)
+[20:16:48] [INFO] [T=190] Optimization: Obj=-38518.8, Time=0.927s, Vars=1445, Constraints=3484
+[20:16:48] [INFO] [T=190] Optimization: 36 assignments, 0 invalid, Obj=-38518.82, Time=0.93s
+[20:16:48] [WARN] [T=190] 용량 포화: 67/36개 할당 (포대: 6/6, 186.1%)
+[20:16:49] [INFO] [T=195] Optimization: Obj=-38732.3, Time=1.175s, Vars=1440, Constraints=3470
+[20:16:49] [INFO] [T=195] Optimization: 36 assignments, 0 invalid, Obj=-38732.25, Time=1.18s
+[20:16:49] [WARN] [T=195] 용량 포화: 67/36개 할당 (포대: 6/6, 186.1%)
+[20:16:51] [INFO] [T=200] Optimization: Obj=-38662.2, Time=0.887s, Vars=1425, Constraints=3428
+[20:16:51] [INFO] [T=200] Optimization: 36 assignments, 0 invalid, Obj=-38662.15, Time=0.89s
+[20:16:51] [WARN] [T=200] 용량 포화: 67/36개 할당 (포대: 6/6, 186.1%)
+[20:16:52] [INFO] [T=205] Optimization: Obj=-38253.1, Time=1.036s, Vars=1425, Constraints=3428
+[20:16:52] [INFO] [T=205] Optimization: 36 assignments, 0 invalid, Obj=-38253.13, Time=1.04s
+[20:16:53] [WARN] [T=205] 용량 포화: 67/36개 할당 (포대: 6/6, 186.1%)
+[20:16:53] [WARN] [T=210] ABANDON: Battery LSAM_01 abandons T02 (trajectory deviation)
+[20:16:53] [INFO] [T=210] TRAJECTORY DEVIATION: T02 veered off from A02 to empty area
+[20:16:53] [INFO] LAUNCH: T02 → EMPTY_AREA
+[20:16:55] [INFO] [T=210] Optimization: Obj=-38086.8, Time=1.082s, Vars=1410, Constraints=3391
+[20:16:56] [INFO] [T=210] Optimization: 36 assignments, 0 invalid, Obj=-38086.83, Time=1.08s
+[20:16:56] [WARN] [T=210] 용량 포화: 66/36개 할당 (포대: 6/6, 183.3%)
+[20:16:58] [INFO] [T=215] Optimization: Obj=-38218.8, Time=1.200s, Vars=1410, Constraints=3391
+[20:16:58] [INFO] [T=215] Optimization: 36 assignments, 0 invalid, Obj=-38218.80, Time=1.20s
+[20:16:58] [WARN] [T=215] 용량 포화: 66/36개 할당 (포대: 6/6, 183.3%)
+[20:16:59] [INFO] UPPER LAYER MISS: T41 (Pk=0.0000) → Engaging LOWER LAYER
+[20:16:59] [CRIT] INTERCEPT SUCCESS: T41 by MSAM_03 [하층(MSAM) 요격 성공] (Pk=0.9978, Batteries=1, Missiles=2)
+[20:16:59] [INFO] [T=220] 용량 확보: 1개 배터리 해제 (현재 65/36개 할당)
+[20:17:00] [INFO] [T=220] 미할당 위협 34개에 대해 재할당 플래그 설정
+[20:17:00] 요격 성공!
+[20:17:02] [INFO] [T=220] Optimization: Obj=-37939.3, Time=1.102s, Vars=1390, Constraints=3340
+[20:17:02] [INFO] [T=220] Optimization: 36 assignments, 0 invalid, Obj=-37939.30, Time=1.10s
+[20:17:02] [WARN] [T=220] 용량 포화: 65/36개 할당 (포대: 6/6, 180.6%)
+[20:17:03] [INFO] [T=220] capacity_freed flag cleared after successful optimization
+[20:17:03] [INFO] [T=225] TRAJECTORY DEVIATION: T30 veered off from A10 to empty area
+[20:17:03] [INFO] LAUNCH: T30 → EMPTY_AREA
+[20:17:03] [INFO] UPPER LAYER MISS: T42 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:04] [CRIT] INTERCEPT SUCCESS: T42 by MSAM_03 [하층(MSAM) 요격 성공] (Pk=0.9949, Batteries=1, Missiles=2)
+[20:17:04] [INFO] [T=225] 용량 확보: 1개 배터리 해제 (현재 64/36개 할당)
+[20:17:04] [INFO] [T=225] 미할당 위협 34개에 대해 재할당 플래그 설정
+[20:17:04] [INFO] UPPER LAYER MISS: T43 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:04] [CRIT] INTERCEPT SUCCESS: T43 by MSAM_03 [하층(MSAM) 요격 성공] (Pk=0.9814, Batteries=1, Missiles=2)
+[20:17:05] [INFO] [T=225] 용량 확보: 1개 배터리 해제 (현재 63/36개 할당)
+[20:17:05] [INFO] [T=225] 미할당 위협 34개에 대해 재할당 플래그 설정
+[20:17:05] [INFO] UPPER LAYER MISS: T44 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:05] [CRIT] INTERCEPT SUCCESS: T44 by MSAM_01 [하층(MSAM) 요격 성공] (Pk=0.9970, Batteries=1, Missiles=2)
+[20:17:05] [INFO] [T=225] 용량 확보: 1개 배터리 해제 (현재 62/36개 할당)
+[20:17:06] [INFO] [T=225] 미할당 위협 34개에 대해 재할당 플래그 설정
+[20:17:06] 요격 성공!
+[20:17:08] [INFO] [T=225] Optimization: Obj=-36798.3, Time=0.987s, Vars=1330, Constraints=3192
+[20:17:08] [INFO] [T=225] Optimization: 36 assignments, 0 invalid, Obj=-36798.32, Time=0.99s
+[20:17:08] [WARN] [T=225] 용량 포화: 63/36개 할당 (포대: 6/6, 175.0%)
+[20:17:08] [INFO] [T=225] capacity_freed flag cleared after successful optimization
+[20:17:08] [INFO] UPPER LAYER MISS: T45 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:08] [CRIT] INTERCEPT SUCCESS: T45 by MSAM_03 [하층(MSAM) 요격 성공] (Pk=0.9916, Batteries=1, Missiles=2)
+[20:17:09] [INFO] [T=230] 용량 확보: 1개 배터리 해제 (현재 62/36개 할당)
+[20:17:09] [INFO] [T=230] 미할당 위협 33개에 대해 재할당 플래그 설정
+[20:17:09] [INFO] UPPER LAYER MISS: T46 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:09] [CRIT] INTERCEPT SUCCESS: T46 by MSAM_01 [하층(MSAM) 요격 성공] (Pk=0.9990, Batteries=1, Missiles=2)
+[20:17:09] [INFO] [T=230] 용량 확보: 1개 배터리 해제 (현재 61/36개 할당)
+[20:17:10] [INFO] [T=230] 미할당 위협 33개에 대해 재할당 플래그 설정
+[20:17:10] [INFO] UPPER LAYER MISS: T47 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:10] [CRIT] INTERCEPT SUCCESS: T47 by MSAM_02 [하층(MSAM) 요격 성공] (Pk=0.9936, Batteries=1, Missiles=2)
+[20:17:10] [INFO] [T=230] 용량 확보: 1개 배터리 해제 (현재 60/36개 할당)
+[20:17:10] [INFO] [T=230] 미할당 위협 33개에 대해 재할당 플래그 설정
+[20:17:11] 요격 성공!
+[20:17:13] [INFO] [T=230] Optimization: Obj=-36581.9, Time=1.132s, Vars=1285, Constraints=3079
+[20:17:13] [INFO] [T=230] Optimization: 36 assignments, 0 invalid, Obj=-36581.86, Time=1.13s
+[20:17:13] [WARN] [T=230] 용량 포화: 60/36개 할당 (포대: 6/6, 166.7%)
+[20:17:13] [INFO] [T=230] capacity_freed flag cleared after successful optimization
+[20:17:13] [INFO] UPPER LAYER MISS: T48 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:14] [CRIT] INTERCEPT SUCCESS: T48 by MSAM_02 [하층(MSAM) 요격 성공] (Pk=0.9986, Batteries=1, Missiles=2)
+[20:17:14] [INFO] [T=235] 용량 확보: 1개 배터리 해제 (현재 59/36개 할당)
+[20:17:14] [INFO] [T=235] 미할당 위협 33개에 대해 재할당 플래그 설정
+[20:17:14] [INFO] UPPER LAYER MISS: T49 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:14] [CRIT] INTERCEPT SUCCESS: T49 by MSAM_02 [하층(MSAM) 요격 성공] (Pk=0.9135, Batteries=1, Missiles=2)
+[20:17:14] [INFO] [T=235] 용량 확보: 1개 배터리 해제 (현재 58/36개 할당)
+[20:17:14] [INFO] [T=235] 미할당 위협 33개에 대해 재할당 플래그 설정
+[20:17:14] [INFO] UPPER LAYER MISS: T50 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:14] [CRIT] INTERCEPT SUCCESS: T50 by MSAM_02 [하층(MSAM) 요격 성공] (Pk=0.9990, Batteries=1, Missiles=2)
+[20:17:14] [INFO] [T=235] 용량 확보: 1개 배터리 해제 (현재 57/36개 할당)
+[20:17:14] [INFO] [T=235] 미할당 위협 33개에 대해 재할당 플래그 설정
+[20:17:14] [INFO] UPPER LAYER MISS: T51 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:14] [CRIT] INTERCEPT SUCCESS: T51 by MSAM_01 [하층(MSAM) 요격 성공] (Pk=0.9963, Batteries=1, Missiles=2)
+[20:17:14] [INFO] [T=235] 용량 확보: 1개 배터리 해제 (현재 56/36개 할당)
+[20:17:14] [INFO] [T=235] 미할당 위협 33개에 대해 재할당 플래그 설정
+[20:17:14] 요격 성공!
+[20:17:15] [INFO] [T=235] Optimization: Obj=-36293.8, Time=0.722s, Vars=1235, Constraints=2956
+[20:17:15] [INFO] [T=235] Optimization: 36 assignments, 0 invalid, Obj=-36293.79, Time=0.72s
+[20:17:15] [WARN] [T=235] 용량 포화: 57/36개 할당 (포대: 6/6, 158.3%)
+[20:17:15] [INFO] [T=235] capacity_freed flag cleared after successful optimization
+[20:17:15] [INFO] UPPER LAYER MISS: T52 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:15] [CRIT] INTERCEPT SUCCESS: T52 by MSAM_02 [하층(MSAM) 요격 성공] (Pk=0.9955, Batteries=1, Missiles=2)
+[20:17:15] [INFO] [T=240] 용량 확보: 1개 배터리 해제 (현재 56/36개 할당)
+[20:17:15] [INFO] [T=240] 미할당 위협 32개에 대해 재할당 플래그 설정
+[20:17:15] [INFO] UPPER LAYER MISS: T53 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:15] [CRIT] INTERCEPT SUCCESS: T53 by MSAM_02 [하층(MSAM) 요격 성공] (Pk=0.9434, Batteries=1, Missiles=2)
+[20:17:15] [INFO] [T=240] 용량 확보: 1개 배터리 해제 (현재 55/36개 할당)
+[20:17:15] [INFO] [T=240] 미할당 위협 32개에 대해 재할당 플래그 설정
+[20:17:15] [INFO] UPPER LAYER MISS: T54 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:15] [CRIT] INTERCEPT SUCCESS: T54 by MSAM_02 [하층(MSAM) 요격 성공] (Pk=0.9815, Batteries=1, Missiles=2)
+[20:17:15] [INFO] [T=240] 용량 확보: 1개 배터리 해제 (현재 54/36개 할당)
+[20:17:15] [INFO] [T=240] 미할당 위협 32개에 대해 재할당 플래그 설정
+[20:17:16] 요격 성공!
+[20:17:16] [INFO] [T=240] Optimization: Obj=-36475.0, Time=0.729s, Vars=1190, Constraints=2851
+[20:17:17] [INFO] [T=240] Optimization: 36 assignments, 0 invalid, Obj=-36475.02, Time=0.73s
+[20:17:17] [WARN] [T=240] 용량 포화: 55/36개 할당 (포대: 6/6, 152.8%)
+[20:17:17] [INFO] [T=240] capacity_freed flag cleared after successful optimization
+[20:17:17] [WARN] [T=245] ABANDON: Battery LSAM_01 abandons T19 (trajectory deviation)
+[20:17:17] [INFO] [T=245] TRAJECTORY DEVIATION: T19 veered off from A19 to empty area
+[20:17:17] [INFO] LAUNCH: T19 → EMPTY_AREA
+[20:17:17] [INFO] UPPER LAYER MISS: T55 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:17] [CRIT] INTERCEPT SUCCESS: T55 by MSAM_02 [하층(MSAM) 요격 성공] (Pk=0.9759, Batteries=1, Missiles=2)
+[20:17:17] [INFO] [T=245] 용량 확보: 1개 배터리 해제 (현재 53/36개 할당)
+[20:17:17] [INFO] [T=245] 미할당 위협 32개에 대해 재할당 플래그 설정
+[20:17:17] [INFO] UPPER LAYER MISS: T56 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:17] [CRIT] INTERCEPT SUCCESS: T56 by MSAM_02 [하층(MSAM) 요격 성공] (Pk=0.9982, Batteries=1, Missiles=2)
+[20:17:17] [INFO] [T=245] 용량 확보: 1개 배터리 해제 (현재 52/36개 할당)
+[20:17:17] [INFO] [T=245] 미할당 위협 32개에 대해 재할당 플래그 설정
+[20:17:17] [INFO] UPPER LAYER MISS: T57 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:17] [CRIT] INTERCEPT SUCCESS: T57 by MSAM_02 [하층(MSAM) 요격 성공] (Pk=0.9986, Batteries=1, Missiles=2)
+[20:17:17] [INFO] [T=245] 용량 확보: 1개 배터리 해제 (현재 51/36개 할당)
+[20:17:17] [INFO] [T=245] 미할당 위협 32개에 대해 재할당 플래그 설정
+[20:17:17] 요격 성공!
+[20:17:18] [INFO] [T=245] Optimization: Obj=-35660.9, Time=0.867s, Vars=1130, Constraints=2712
+[20:17:18] [INFO] [T=245] Optimization: 35 assignments, 0 invalid, Obj=-35660.93, Time=0.87s
+[20:17:18] [WARN] [T=245] 용량 포화: 51/36개 할당 (포대: 6/6, 141.7%)
+[20:17:18] [INFO] [T=245] capacity_freed flag cleared after successful optimization
+[20:17:18] [INFO] UPPER LAYER MISS: T58 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:18] [CRIT] INTERCEPT SUCCESS: T58 by MSAM_01 [하층(MSAM) 요격 성공] (Pk=0.9909, Batteries=1, Missiles=2)
+[20:17:18] [INFO] [T=250] 용량 확보: 1개 배터리 해제 (현재 50/36개 할당)
+[20:17:18] [INFO] [T=250] 미할당 위협 32개에 대해 재할당 플래그 설정
+[20:17:18] [INFO] UPPER LAYER MISS: T59 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:18] [CRIT] INTERCEPT SUCCESS: T59 by MSAM_01 [하층(MSAM) 요격 성공] (Pk=0.9905, Batteries=1, Missiles=2)
+[20:17:18] [INFO] [T=250] 용량 확보: 1개 배터리 해제 (현재 49/36개 할당)
+[20:17:18] [INFO] [T=250] 미할당 위협 32개에 대해 재할당 플래그 설정
+[20:17:18] [INFO] UPPER LAYER MISS: T61 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:18] [CRIT] INTERCEPT SUCCESS: T61 by MSAM_03 [하층(MSAM) 요격 성공] (Pk=0.9950, Batteries=1, Missiles=2)
+[20:17:18] [INFO] [T=250] 용량 확보: 1개 배터리 해제 (현재 48/36개 할당)
+[20:17:18] [INFO] [T=250] 미할당 위협 32개에 대해 재할당 플래그 설정
+[20:17:18] 요격 성공!
+[20:17:19] [INFO] [T=250] Optimization: Obj=-34757.1, Time=0.768s, Vars=1085, Constraints=2605
+[20:17:19] [INFO] [T=250] Optimization: 35 assignments, 0 invalid, Obj=-34757.06, Time=0.77s
+[20:17:19] [WARN] [T=250] 용량 포화: 48/36개 할당 (포대: 6/6, 133.3%)
+[20:17:19] [INFO] [T=250] capacity_freed flag cleared after successful optimization
+[20:17:19] [INFO] [T=255] TRAJECTORY DEVIATION: T80 veered off from A20 to empty area
+[20:17:19] [INFO] UPPER LAYER MISS: T62 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:19] [CRIT] INTERCEPT SUCCESS: T62 by MSAM_03 [하층(MSAM) 요격 성공] (Pk=0.9940, Batteries=1, Missiles=2)
+[20:17:19] [INFO] [T=255] 용량 확보: 1개 배터리 해제 (현재 47/36개 할당)
+[20:17:19] [INFO] [T=255] 미할당 위협 31개에 대해 재할당 플래그 설정
+[20:17:19] [INFO] UPPER LAYER MISS: T63 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:19] [CRIT] INTERCEPT SUCCESS: T63 by MSAM_03 [하층(MSAM) 요격 성공] (Pk=0.9696, Batteries=1, Missiles=2)
+[20:17:19] [INFO] [T=255] 용량 확보: 1개 배터리 해제 (현재 46/36개 할당)
+[20:17:19] [INFO] [T=255] 미할당 위협 31개에 대해 재할당 플래그 설정
+[20:17:19] [INFO] UPPER LAYER MISS: T64 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:19] [CRIT] INTERCEPT SUCCESS: T64 by MSAM_03 [하층(MSAM) 요격 성공] (Pk=0.9780, Batteries=1, Missiles=2)
+[20:17:19] [INFO] [T=255] 용량 확보: 1개 배터리 해제 (현재 45/36개 할당)
+[20:17:19] [INFO] [T=255] 미할당 위협 31개에 대해 재할당 플래그 설정
+[20:17:19] [INFO] LAUNCH: T80 → EMPTY_AREA
+[20:17:19] 요격 성공!
+[20:17:20] [INFO] [T=255] Optimization: Obj=-33765.3, Time=0.685s, Vars=1025, Constraints=2460
+[20:17:20] [INFO] [T=255] Optimization: 35 assignments, 0 invalid, Obj=-33765.34, Time=0.69s
+[20:17:20] [WARN] [T=255] 용량 포화: 46/36개 할당 (포대: 6/6, 127.8%)
+[20:17:20] [INFO] [T=255] capacity_freed flag cleared after successful optimization
+[20:17:20] [INFO] UPPER LAYER MISS: T66 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:20] [CRIT] INTERCEPT SUCCESS: T66 by MSAM_03 [하층(MSAM) 요격 성공] (Pk=0.9947, Batteries=1, Missiles=2)
+[20:17:20] [INFO] [T=260] 용량 확보: 1개 배터리 해제 (현재 45/36개 할당)
+[20:17:20] [INFO] [T=260] 미할당 위협 31개에 대해 재할당 플래그 설정
+[20:17:20] [INFO] UPPER LAYER MISS: T67 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:20] [CRIT] INTERCEPT SUCCESS: T67 by MSAM_02 [하층(MSAM) 요격 성공] (Pk=0.9978, Batteries=1, Missiles=2)
+[20:17:20] [INFO] [T=260] 용량 확보: 1개 배터리 해제 (현재 44/36개 할당)
+[20:17:20] [INFO] [T=260] 미할당 위협 31개에 대해 재할당 플래그 설정
+[20:17:20] 요격 성공!
+[20:17:21] [INFO] [T=260] Optimization: Obj=-32812.9, Time=0.808s, Vars=1000, Constraints=2398
+[20:17:21] [INFO] [T=260] Optimization: 34 assignments, 0 invalid, Obj=-32812.88, Time=0.81s
+[20:17:21] [WARN] [T=260] 용량 포화: 45/36개 할당 (포대: 6/6, 125.0%)
+[20:17:21] [INFO] [T=260] capacity_freed flag cleared after successful optimization
+[20:17:21] [INFO] UPPER LAYER MISS: T71 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:21] [CRIT] INTERCEPT SUCCESS: T71 by MSAM_01 [하층(MSAM) 요격 성공] (Pk=0.9990, Batteries=1, Missiles=2)
+[20:17:21] [INFO] [T=265] 용량 확보: 1개 배터리 해제 (현재 44/36개 할당)
+[20:17:21] [INFO] [T=265] 미할당 위협 30개에 대해 재할당 플래그 설정
+[20:17:21] 요격 성공!
+[20:17:22] [INFO] [T=265] Optimization: Obj=-32542.8, Time=0.842s, Vars=985, Constraints=2363
+[20:17:22] [INFO] [T=265] Optimization: 34 assignments, 0 invalid, Obj=-32542.82, Time=0.84s
+[20:17:23] [WARN] [T=265] 용량 포화: 45/36개 할당 (포대: 6/6, 125.0%)
+[20:17:23] [INFO] [T=265] capacity_freed flag cleared after successful optimization
+[20:17:23] [INFO] UPPER LAYER MISS: T72 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:23] [CRIT] INTERCEPT SUCCESS: T72 by MSAM_01 [하층(MSAM) 요격 성공] (Pk=0.9988, Batteries=1, Missiles=2)
+[20:17:23] [INFO] [T=270] 용량 확보: 1개 배터리 해제 (현재 44/36개 할당)
+[20:17:23] [INFO] [T=270] 미할당 위협 29개에 대해 재할당 플래그 설정
+[20:17:23] [INFO] UPPER LAYER MISS: T73 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:23] [CRIT] INTERCEPT SUCCESS: T73 by MSAM_01 [하층(MSAM) 요격 성공] (Pk=0.9962, Batteries=1, Missiles=2)
+[20:17:24] [INFO] [T=270] 용량 확보: 1개 배터리 해제 (현재 43/36개 할당)
+[20:17:24] [INFO] [T=270] 미할당 위협 29개에 대해 재할당 플래그 설정
+[20:17:24] [INFO] UPPER LAYER MISS: T74 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:24] [CRIT] INTERCEPT SUCCESS: T74 by MSAM_01 [하층(MSAM) 요격 성공] (Pk=0.9591, Batteries=1, Missiles=2)
+[20:17:24] [INFO] [T=270] 용량 확보: 1개 배터리 해제 (현재 42/36개 할당)
+[20:17:24] [INFO] [T=270] 미할당 위협 29개에 대해 재할당 플래그 설정
+[20:17:24] 요격 성공!
+[20:17:25] [INFO] [T=270] Optimization: Obj=-32090.0, Time=0.676s, Vars=940, Constraints=2258
+[20:17:25] [INFO] [T=270] Optimization: 34 assignments, 0 invalid, Obj=-32089.99, Time=0.68s
+[20:17:25] [WARN] [T=270] 용량 포화: 45/36개 할당 (포대: 6/6, 125.0%)
+[20:17:25] [INFO] [T=270] capacity_freed flag cleared after successful optimization
+[20:17:25] [WARN] [T=275] ABANDON: Battery LSAM_03 abandons T31 (trajectory deviation)
+[20:17:25] [INFO] [T=275] TRAJECTORY DEVIATION: T31 veered off from A11 to empty area
+[20:17:25] [INFO] LAUNCH: T31 → EMPTY_AREA
+[20:17:25] [INFO] UPPER LAYER MISS: T75 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:25] [CRIT] INTERCEPT SUCCESS: T75 by MSAM_02 [하층(MSAM) 요격 성공] (Pk=0.9990, Batteries=1, Missiles=2)
+[20:17:25] [INFO] [T=275] 용량 확보: 1개 배터리 해제 (현재 43/36개 할당)
+[20:17:25] [INFO] [T=275] 미할당 위협 27개에 대해 재할당 플래그 설정
+[20:17:25] [INFO] UPPER LAYER MISS: T76 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:25] [CRIT] INTERCEPT SUCCESS: T76 by MSAM_01 [하층(MSAM) 요격 성공] (Pk=0.9951, Batteries=1, Missiles=2)
+[20:17:25] [INFO] [T=275] 용량 확보: 1개 배터리 해제 (현재 42/36개 할당)
+[20:17:25] [INFO] [T=275] 미할당 위협 27개에 대해 재할당 플래그 설정
+[20:17:25] 요격 성공!
+[20:17:26] [INFO] [T=275] Optimization: Obj=-30418.0, Time=0.725s, Vars=895, Constraints=2154
+[20:17:26] [INFO] [T=275] Optimization: 32 assignments, 0 invalid, Obj=-30417.99, Time=0.72s
+[20:17:26] [WARN] [T=275] 용량 포화: 42/36개 할당 (포대: 6/6, 116.7%)
+[20:17:27] [INFO] [T=275] capacity_freed flag cleared after successful optimization
+[20:17:27] [WARN] [T=280] ABANDON: Battery LSAM_02 abandons T33 (trajectory deviation)
+[20:17:27] [INFO] [T=280] TRAJECTORY DEVIATION: T33 veered off from A13 to empty area
+[20:17:27] [INFO] LAUNCH: T33 → EMPTY_AREA
+[20:17:27] [INFO] UPPER LAYER MISS: T81 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:27] [CRIT] INTERCEPT SUCCESS: T81 by MSAM_03 [하층(MSAM) 요격 성공] (Pk=0.9971, Batteries=1, Missiles=2)
+[20:17:28] [INFO] [T=280] 용량 확보: 1개 배터리 해제 (현재 40/36개 할당)
+[20:17:28] [INFO] [T=280] 미할당 위협 28개에 대해 재할당 플래그 설정
+[20:17:29] 요격 성공!
+[20:17:30] [INFO] [T=280] Optimization: Obj=-28616.0, Time=0.781s, Vars=865, Constraints=2083
+[20:17:30] [INFO] [T=280] Optimization: 31 assignments, 0 invalid, Obj=-28615.96, Time=0.78s
+[20:17:30] [WARN] [T=280] 용량 포화: 42/36개 할당 (포대: 6/6, 116.7%)
+[20:17:30] [INFO] [T=280] capacity_freed flag cleared after successful optimization
+[20:17:31] [INFO] UPPER LAYER MISS: T82 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:31] [CRIT] INTERCEPT SUCCESS: T82 by MSAM_03 [하층(MSAM) 요격 성공] (Pk=0.9990, Batteries=1, Missiles=2)
+[20:17:31] [INFO] [T=285] 용량 확보: 1개 배터리 해제 (현재 41/36개 할당)
+[20:17:31] [INFO] [T=285] 미할당 위협 26개에 대해 재할당 플래그 설정
+[20:17:31] [INFO] UPPER LAYER MISS: T83 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:31] [CRIT] INTERCEPT SUCCESS: T83 by MSAM_03 [하층(MSAM) 요격 성공] (Pk=0.9987, Batteries=1, Missiles=2)
+[20:17:31] [INFO] [T=285] 용량 확보: 1개 배터리 해제 (현재 40/36개 할당)
+[20:17:32] [INFO] [T=285] 미할당 위협 26개에 대해 재할당 플래그 설정
+[20:17:32] [INFO] UPPER LAYER MISS: T84 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:32] [CRIT] INTERCEPT SUCCESS: T84 by MSAM_03 [하층(MSAM) 요격 성공] (Pk=0.9602, Batteries=1, Missiles=2)
+[20:17:32] [INFO] [T=285] 용량 확보: 1개 배터리 해제 (현재 39/36개 할당)
+[20:17:33] [INFO] [T=285] 미할당 위협 26개에 대해 재할당 플래그 설정
+[20:17:33] 요격 성공!
+[20:17:34] [INFO] [T=285] Optimization: Obj=-24680.0, Time=0.789s, Vars=820, Constraints=1972
+[20:17:35] [INFO] [T=285] Optimization: 28 assignments, 0 invalid, Obj=-24680.01, Time=0.79s
+[20:17:35] [WARN] [T=285] 용량 포화: 39/36개 할당 (포대: 6/6, 108.3%)
+[20:17:35] [INFO] [T=285] capacity_freed flag cleared after successful optimization
+[20:17:35] [INFO] UPPER LAYER MISS: T85 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:35] [CRIT] INTERCEPT SUCCESS: T85 by MSAM_03 [하층(MSAM) 요격 성공] (Pk=0.9986, Batteries=1, Missiles=2)
+[20:17:36] [INFO] [T=290] 용량 확보: 1개 배터리 해제 (현재 38/36개 할당)
+[20:17:36] [INFO] [T=290] 미할당 위협 26개에 대해 재할당 플래그 설정
+[20:17:36] [INFO] UPPER LAYER MISS: T86 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:37] [CRIT] INTERCEPT SUCCESS: T86 by MSAM_03 [하층(MSAM) 요격 성공] (Pk=0.9938, Batteries=1, Missiles=2)
+[20:17:37] [INFO] [T=290] 용량 확보: 1개 배터리 해제 (현재 37/36개 할당)
+[20:17:37] [INFO] [T=290] 미할당 위협 26개에 대해 재할당 플래그 설정
+[20:17:37] [INFO] UPPER LAYER MISS: T87 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:37] [CRIT] INTERCEPT SUCCESS: T87 by MSAM_02 [하층(MSAM) 요격 성공] (Pk=0.9990, Batteries=1, Missiles=2)
+[20:17:37] [INFO] [T=290] 용량 확보: 1개 배터리 해제 (현재 36/36개 할당)
+[20:17:37] [INFO] [T=290] 미할당 위협 26개에 대해 재할당 플래그 설정
+[20:17:37] 요격 성공!
+[20:17:38] [INFO] [T=290] Optimization: Obj=-22032.3, Time=0.443s, Vars=700, Constraints=1694
+[20:17:38] [INFO] [T=290] Optimization: 25 assignments, 0 invalid, Obj=-22032.32, Time=0.44s
+[20:17:38] [WARN] [T=290] 용량 포화: 37/36개 할당 (포대: 5/6, 102.8%)
+[20:17:38] [INFO] [T=290] capacity_freed flag cleared after successful optimization
+[20:17:38] [INFO] UPPER LAYER SUCCESS: T01 (Pk=0.9943)
+[20:17:38] [CRIT] INTERCEPT SUCCESS: T01 by LSAM_02 [상층(LSAM) 요격 성공] (Pk=0.9943, Batteries=1, Missiles=2)
+[20:17:38] [INFO] [T=295] 용량 확보: 1개 배터리 해제 (현재 36/36개 할당)
+[20:17:38] [INFO] [T=295] 미할당 위협 25개에 대해 재할당 플래그 설정
+[20:17:38] [INFO] UPPER LAYER SUCCESS: T03 (Pk=0.9963)
+[20:17:38] [CRIT] INTERCEPT SUCCESS: T03 by LSAM_01 [상층(LSAM) 요격 성공] (Pk=0.9963, Batteries=1, Missiles=2)
+[20:17:38] [INFO] [T=295] 용량 확보: 1개 배터리 해제 (현재 35/36개 할당)
+[20:17:38] [INFO] [T=295] 미할당 위협 25개에 대해 재할당 플래그 설정
+[20:17:38] [ALERT] 1 slots available, 25 unassigned threats - optimization should trigger!
+[20:17:38] [INFO] UPPER LAYER SUCCESS: T04 (Pk=0.9777)
+[20:17:38] [CRIT] INTERCEPT SUCCESS: T04 by LSAM_01 [상층(LSAM) 요격 성공] (Pk=0.9777, Batteries=1, Missiles=2)
+[20:17:38] [INFO] [T=295] 용량 확보: 1개 배터리 해제 (현재 34/36개 할당)
+[20:17:38] [INFO] [T=295] 미할당 위협 25개에 대해 재할당 플래그 설정
+[20:17:38] [ALERT] 2 slots available, 25 unassigned threats - optimization should trigger!
+[20:17:38] [INFO] UPPER LAYER MISS: T77 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:38] [CRIT] INTERCEPT SUCCESS: T77 by MSAM_02 [하층(MSAM) 요격 성공] (Pk=0.9524, Batteries=1, Missiles=2)
+[20:17:38] [INFO] [T=295] 용량 확보: 1개 배터리 해제 (현재 33/36개 할당)
+[20:17:38] [INFO] [T=295] 미할당 위협 25개에 대해 재할당 플래그 설정
+[20:17:38] [ALERT] 3 slots available, 25 unassigned threats - optimization should trigger!
+[20:17:39] [INFO] UPPER LAYER MISS: T88 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:39] [CRIT] INTERCEPT SUCCESS: T88 by MSAM_01 [하층(MSAM) 요격 성공] (Pk=0.9929, Batteries=1, Missiles=2)
+[20:17:39] [INFO] [T=295] 용량 확보: 1개 배터리 해제 (현재 32/36개 할당)
+[20:17:39] [INFO] [T=295] 미할당 위협 25개에 대해 재할당 플래그 설정
+[20:17:39] [ALERT] 4 slots available, 25 unassigned threats - optimization should trigger!
+[20:17:39] [INFO] UPPER LAYER MISS: T91 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:39] [CRIT] INTERCEPT SUCCESS: T91 by MSAM_01 [하층(MSAM) 요격 성공] (Pk=0.9990, Batteries=1, Missiles=2)
+[20:17:39] [INFO] [T=295] 용량 확보: 1개 배터리 해제 (현재 31/36개 할당)
+[20:17:39] [INFO] [T=295] 미할당 위협 25개에 대해 재할당 플래그 설정
+[20:17:39] [ALERT] 5 slots available, 25 unassigned threats - optimization should trigger!
+[20:17:39] 요격 성공!
+[20:17:40] [INFO] [T=295] Optimization: Obj=-19041.5, Time=0.510s, Vars=625, Constraints=1507
+[20:17:40] [INFO] [T=295] Optimization: 22 assignments, 0 invalid, Obj=-19041.53, Time=0.51s
+[20:17:40] [INFO] [T=295] 할당 가능: 22개 신규 할당 (총 32/36, 포대: 5/6, 88.9%)
+[20:17:40] [INFO] [T=295] capacity_freed flag cleared after successful optimization
+[20:17:40] [INFO] UPPER LAYER SUCCESS: T05 (Pk=0.9706)
+[20:17:40] [CRIT] INTERCEPT SUCCESS: T05 by LSAM_02 [상층(LSAM) 요격 성공] (Pk=0.9706, Batteries=1, Missiles=2)
+[20:17:40] [INFO] [T=300] 용량 확보: 1개 배터리 해제 (현재 31/36개 할당)
+[20:17:40] [INFO] [T=300] 미할당 위협 24개에 대해 재할당 플래그 설정
+[20:17:40] [ALERT] 5 slots available, 24 unassigned threats - optimization should trigger!
+[20:17:40] [INFO] UPPER LAYER SUCCESS: T06 (Pk=0.9998)
+[20:17:40] [CRIT] INTERCEPT SUCCESS: T06 by LSAM_02 [상층(LSAM) 요격 성공] (Pk=0.9990, Batteries=1, Missiles=2)
+[20:17:40] [INFO] [T=300] 용량 확보: 1개 배터리 해제 (현재 30/36개 할당)
+[20:17:40] [INFO] [T=300] 미할당 위협 24개에 대해 재할당 플래그 설정
+[20:17:40] [ALERT] 6 slots available, 24 unassigned threats - optimization should trigger!
+[20:17:40] [INFO] UPPER LAYER SUCCESS: T07 (Pk=0.9987)
+[20:17:40] [CRIT] INTERCEPT SUCCESS: T07 by LSAM_02 [상층(LSAM) 요격 성공] (Pk=0.9987, Batteries=1, Missiles=2)
+[20:17:40] [INFO] [T=300] 용량 확보: 1개 배터리 해제 (현재 29/36개 할당)
+[20:17:40] [INFO] [T=300] 미할당 위협 24개에 대해 재할당 플래그 설정
+[20:17:40] [ALERT] 7 slots available, 24 unassigned threats - optimization should trigger!
+[20:17:40] [INFO] UPPER LAYER MISS: T92 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:40] [CRIT] INTERCEPT SUCCESS: T92 by MSAM_01 [하층(MSAM) 요격 성공] (Pk=0.9990, Batteries=1, Missiles=2)
+[20:17:40] [INFO] [T=300] 용량 확보: 1개 배터리 해제 (현재 28/36개 할당)
+[20:17:40] [INFO] [T=300] 미할당 위협 24개에 대해 재할당 플래그 설정
+[20:17:40] [ALERT] 8 slots available, 24 unassigned threats - optimization should trigger!
+[20:17:40] [INFO] UPPER LAYER MISS: T93 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:40] [CRIT] INTERCEPT SUCCESS: T93 by MSAM_01 [하층(MSAM) 요격 성공] (Pk=0.9497, Batteries=1, Missiles=2)
+[20:17:40] [INFO] [T=300] 용량 확보: 1개 배터리 해제 (현재 27/36개 할당)
+[20:17:40] [INFO] [T=300] 미할당 위협 24개에 대해 재할당 플래그 설정
+[20:17:40] [ALERT] 9 slots available, 24 unassigned threats - optimization should trigger!
+[20:17:40] [INFO] UPPER LAYER MISS: T94 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:40] [CRIT] INTERCEPT SUCCESS: T94 by MSAM_02 [하층(MSAM) 요격 성공] (Pk=0.9917, Batteries=1, Missiles=2)
+[20:17:40] [INFO] [T=300] 용량 확보: 1개 배터리 해제 (현재 26/36개 할당)
+[20:17:40] [INFO] [T=300] 미할당 위협 24개에 대해 재할당 플래그 설정
+[20:17:40] [ALERT] 10 slots available, 24 unassigned threats - optimization should trigger!
+[20:17:40] 요격 성공!
+[20:17:41] [INFO] [T=300] Optimization: Obj=-16283.7, Time=0.440s, Vars=480, Constraints=1163
+[20:17:41] [INFO] [T=300] Optimization: 19 assignments, 0 invalid, Obj=-16283.73, Time=0.44s
+[20:17:41] [INFO] [T=300] 할당 가능: 19개 신규 할당 (총 26/36, 포대: 4/6, 72.2%)
+[20:17:41] [INFO] [T=300] capacity_freed flag cleared after successful optimization
+[20:17:41] [INFO] UPPER LAYER SUCCESS: T08 (Pk=0.9821)
+[20:17:41] [CRIT] INTERCEPT SUCCESS: T08 by LSAM_01 [상층(LSAM) 요격 성공] (Pk=0.9821, Batteries=1, Missiles=2)
+[20:17:41] [INFO] [T=305] 용량 확보: 1개 배터리 해제 (현재 25/36개 할당)
+[20:17:41] [INFO] [T=305] 미할당 위협 24개에 대해 재할당 플래그 설정
+[20:17:41] [ALERT] 11 slots available, 24 unassigned threats - optimization should trigger!
+[20:17:41] [INFO] UPPER LAYER SUCCESS: T09 (Pk=0.9808)
+[20:17:41] [CRIT] INTERCEPT SUCCESS: T09 by LSAM_02 [상층(LSAM) 요격 성공] (Pk=0.9808, Batteries=1, Missiles=2)
+[20:17:41] [INFO] [T=305] 용량 확보: 1개 배터리 해제 (현재 24/36개 할당)
+[20:17:41] [INFO] [T=305] 미할당 위협 24개에 대해 재할당 플래그 설정
+[20:17:41] [ALERT] 12 slots available, 24 unassigned threats - optimization should trigger!
+[20:17:41] [INFO] UPPER LAYER MISS: T95 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:41] [CRIT] INTERCEPT SUCCESS: T95 by MSAM_01 [하층(MSAM) 요격 성공] (Pk=0.9895, Batteries=1, Missiles=2)
+[20:17:41] [INFO] [T=305] 용량 확보: 1개 배터리 해제 (현재 23/36개 할당)
+[20:17:41] [INFO] [T=305] 미할당 위협 24개에 대해 재할당 플래그 설정
+[20:17:41] [ALERT] 13 slots available, 24 unassigned threats - optimization should trigger!
+[20:17:41] [INFO] UPPER LAYER MISS: T96 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:41] [INFO] UPPER LAYER MISS: T97 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:41] 요격 성공!
+[20:17:41] [INFO] [T=305] Optimization: Obj=-14668.3, Time=0.276s, Vars=385, Constraints=924
+[20:17:41] [INFO] [T=305] Optimization: 17 assignments, 0 invalid, Obj=-14668.28, Time=0.28s
+[20:17:41] [INFO] [T=305] 할당 가능: 17개 신규 할당 (총 23/36, 포대: 4/6, 63.9%)
+[20:17:42] [INFO] [T=305] capacity_freed flag cleared after successful optimization
+[20:17:42] [INFO] UPPER LAYER SUCCESS: T10 (Pk=0.9999)
+[20:17:42] [CRIT] INTERCEPT SUCCESS: T10 by LSAM_03 [상층(LSAM) 요격 성공] (Pk=0.9990, Batteries=1, Missiles=2)
+[20:17:42] [INFO] [T=310] 용량 확보: 1개 배터리 해제 (현재 22/36개 할당)
+[20:17:42] [INFO] [T=310] 미할당 위협 24개에 대해 재할당 플래그 설정
+[20:17:42] [ALERT] 14 slots available, 24 unassigned threats - optimization should trigger!
+[20:17:42] [INFO] UPPER LAYER SUCCESS: T11 (Pk=0.9895)
+[20:17:42] [CRIT] INTERCEPT SUCCESS: T11 by LSAM_01 [상층(LSAM) 요격 성공] (Pk=0.9895, Batteries=1, Missiles=2)
+[20:17:42] [INFO] [T=310] 용량 확보: 1개 배터리 해제 (현재 21/36개 할당)
+[20:17:42] [INFO] [T=310] 미할당 위협 24개에 대해 재할당 플래그 설정
+[20:17:42] [ALERT] 15 slots available, 24 unassigned threats - optimization should trigger!
+[20:17:42] [INFO] UPPER LAYER SUCCESS: T12 (Pk=0.9784)
+[20:17:43] [CRIT] INTERCEPT SUCCESS: T12 by LSAM_01 [상층(LSAM) 요격 성공] (Pk=0.9784, Batteries=1, Missiles=2)
+[20:17:43] [INFO] [T=310] 용량 확보: 1개 배터리 해제 (현재 20/36개 할당)
+[20:17:43] [INFO] [T=310] 미할당 위협 24개에 대해 재할당 플래그 설정
+[20:17:43] [ALERT] 16 slots available, 24 unassigned threats - optimization should trigger!
+[20:17:43] [CRIT] INTERCEPT FAILED: T60 → A20 - No assignment
+[20:17:43] [INFO] UPPER LAYER MISS: T96 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:43] [INFO] UPPER LAYER MISS: T97 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:43] 요격 성공!
+[20:17:43] 요격 실패
+[20:17:43] [INFO] [T=310] Optimization: Obj=-13413.5, Time=0.239s, Vars=343, Constraints=824
+[20:17:43] [INFO] [T=310] Optimization: 16 assignments, 0 invalid, Obj=-13413.48, Time=0.24s
+[20:17:43] [INFO] [T=310] 할당 가능: 16개 신규 할당 (총 20/36, 포대: 4/6, 55.6%)
+[20:17:43] [INFO] [T=310] capacity_freed flag cleared after successful optimization
+[20:17:43] INFO: T60 reassignment completed - flag cleared
+[20:17:43] [INFO] UPPER LAYER SUCCESS: T13 (Pk=0.9847)
+[20:17:44] [CRIT] INTERCEPT SUCCESS: T13 by LSAM_02 [상층(LSAM) 요격 성공] (Pk=0.9847, Batteries=1, Missiles=2)
+[20:17:44] [INFO] [T=315] 용량 확보: 1개 배터리 해제 (현재 19/36개 할당)
+[20:17:44] [INFO] [T=315] 미할당 위협 23개에 대해 재할당 플래그 설정
+[20:17:44] [ALERT] 17 slots available, 23 unassigned threats - optimization should trigger!
+[20:17:44] [INFO] UPPER LAYER SUCCESS: T14 (Pk=0.9976)
+[20:17:44] [CRIT] INTERCEPT SUCCESS: T14 by LSAM_03 [상층(LSAM) 요격 성공] (Pk=0.9976, Batteries=1, Missiles=2)
+[20:17:44] [INFO] [T=315] 용량 확보: 1개 배터리 해제 (현재 18/36개 할당)
+[20:17:44] [INFO] [T=315] 미할당 위협 23개에 대해 재할당 플래그 설정
+[20:17:44] [ALERT] 18 slots available, 23 unassigned threats - optimization should trigger!
+[20:17:44] [INFO] UPPER LAYER MISS: T96 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:44] [INFO] UPPER LAYER MISS: T97 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:44] 요격 성공!
+[20:17:44] [INFO] [T=315] Optimization: Obj=-12398.8, Time=0.218s, Vars=314, Constraints=758
+[20:17:44] [INFO] [T=315] Optimization: 15 assignments, 0 invalid, Obj=-12398.76, Time=0.22s
+[20:17:45] [INFO] [T=315] 할당 가능: 15개 신규 할당 (총 18/36, 포대: 4/6, 50.0%)
+[20:17:45] [INFO] [T=315] capacity_freed flag cleared after successful optimization
+[20:17:45] [INFO] UPPER LAYER SUCCESS: T15 (Pk=0.9993)
+[20:17:45] [CRIT] INTERCEPT SUCCESS: T15 by LSAM_03 [상층(LSAM) 요격 성공] (Pk=0.9990, Batteries=1, Missiles=2)
+[20:17:45] [INFO] [T=320] 용량 확보: 1개 배터리 해제 (현재 17/36개 할당)
+[20:17:45] [INFO] [T=320] 미할당 위협 23개에 대해 재할당 플래그 설정
+[20:17:45] [ALERT] 19 slots available, 23 unassigned threats - optimization should trigger!
+[20:17:45] [INFO] UPPER LAYER SUCCESS: T16 (Pk=0.9683)
+[20:17:45] [CRIT] INTERCEPT SUCCESS: T16 by LSAM_02 [상층(LSAM) 요격 성공] (Pk=0.9683, Batteries=1, Missiles=2)
+[20:17:45] [INFO] [T=320] 용량 확보: 1개 배터리 해제 (현재 16/36개 할당)
+[20:17:45] [INFO] [T=320] 미할당 위협 23개에 대해 재할당 플래그 설정
+[20:17:45] [ALERT] 20 slots available, 23 unassigned threats - optimization should trigger!
+[20:17:45] [INFO] UPPER LAYER SUCCESS: T17 (Pk=0.9977)
+[20:17:45] [CRIT] INTERCEPT SUCCESS: T17 by LSAM_03 [상층(LSAM) 요격 성공] (Pk=0.9977, Batteries=1, Missiles=2)
+[20:17:45] [INFO] [T=320] 용량 확보: 1개 배터리 해제 (현재 15/36개 할당)
+[20:17:45] [INFO] [T=320] 미할당 위협 23개에 대해 재할당 플래그 설정
+[20:17:45] [ALERT] 21 slots available, 23 unassigned threats - optimization should trigger!
+[20:17:45] [INFO] TRAJECTORY DEVIATION: T65 → EMPTY_AREA (intentional)
+[20:17:45] [INFO] UPPER LAYER MISS: T96 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:45] [INFO] UPPER LAYER MISS: T97 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:45] 요격 성공!
+[20:17:46] [INFO] [T=320] Optimization: Obj=-11384.2, Time=0.369s, Vars=269, Constraints=652
+[20:17:46] [INFO] [T=320] Optimization: 14 assignments, 0 invalid, Obj=-11384.25, Time=0.37s
+[20:17:46] [INFO] [T=320] 할당 가능: 14개 신규 할당 (총 17/36, 포대: 4/6, 47.2%)
+[20:17:46] [INFO] [T=320] capacity_freed flag cleared after successful optimization
+[20:17:46] INFO: T65 reassignment completed - flag cleared
+[20:17:47] [INFO] UPPER LAYER SUCCESS: T18 (Pk=0.9989)
+[20:17:47] [CRIT] INTERCEPT SUCCESS: T18 by LSAM_01 [상층(LSAM) 요격 성공] (Pk=0.9989, Batteries=1, Missiles=2)
+[20:17:47] [INFO] [T=325] 용량 확보: 1개 배터리 해제 (현재 16/36개 할당)
+[20:17:47] [INFO] [T=325] 미할당 위협 20개에 대해 재할당 플래그 설정
+[20:17:47] [ALERT] 20 slots available, 20 unassigned threats - optimization should trigger!
+[20:17:47] [CRIT] INTERCEPT FAILED: T68 → A08 - No assignment
+[20:17:47] [CRIT] INTERCEPT FAILED: T69 → A09 - No assignment
+[20:17:47] [CRIT] INTERCEPT FAILED: T70 → A10 - No assignment
+[20:17:47] [INFO] UPPER LAYER MISS: T96 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:47] [INFO] UPPER LAYER MISS: T97 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:48] 요격 성공!
+[20:17:48] 요격 실패
+[20:17:48] [INFO] [T=325] Optimization: Obj=-10806.6, Time=0.266s, Vars=254, Constraints=614
+[20:17:48] [INFO] [T=325] Optimization: 13 assignments, 0 invalid, Obj=-10806.56, Time=0.27s
+[20:17:49] [INFO] [T=325] 할당 가능: 13개 신규 할당 (총 16/36, 포대: 4/6, 44.4%)
+[20:17:49] [INFO] [T=325] capacity_freed flag cleared after successful optimization
+[20:17:49] INFO: T68 reassignment completed - flag cleared
+[20:17:49] INFO: T69 reassignment completed - flag cleared
+[20:17:49] INFO: T70 reassignment completed - flag cleared
+[20:17:49] [WARN] [T=330] ABANDON: Battery LSAM_03 abandons T38 (trajectory deviation)
+[20:17:49] [INFO] [T=330] TRAJECTORY DEVIATION: T38 veered off from A18 to empty area
+[20:17:49] [INFO] UPPER LAYER SUCCESS: T20 (Pk=0.9825)
+[20:17:49] [CRIT] INTERCEPT SUCCESS: T20 by LSAM_03 [상층(LSAM) 요격 성공] (Pk=0.9825, Batteries=1, Missiles=2)
+[20:17:49] [INFO] [T=330] 용량 확보: 1개 배터리 해제 (현재 14/36개 할당)
+[20:17:49] [INFO] [T=330] 미할당 위협 17개에 대해 재할당 플래그 설정
+[20:17:50] [ALERT] 22 slots available, 17 unassigned threats - optimization should trigger!
+[20:17:50] [INFO] UPPER LAYER SUCCESS: T21 (Pk=0.9957)
+[20:17:50] [CRIT] INTERCEPT SUCCESS: T21 by LSAM_01 [상층(LSAM) 요격 성공] (Pk=0.9957, Batteries=1, Missiles=2)
+[20:17:50] [INFO] [T=330] 용량 확보: 1개 배터리 해제 (현재 13/36개 할당)
+[20:17:50] [INFO] [T=330] 미할당 위협 17개에 대해 재할당 플래그 설정
+[20:17:50] [ALERT] 23 slots available, 17 unassigned threats - optimization should trigger!
+[20:17:50] [INFO] UPPER LAYER SUCCESS: T22 (Pk=0.9987)
+[20:17:50] [CRIT] INTERCEPT SUCCESS: T22 by LSAM_02 [상층(LSAM) 요격 성공] (Pk=0.9987, Batteries=1, Missiles=2)
+[20:17:50] [INFO] [T=330] 용량 확보: 1개 배터리 해제 (현재 12/36개 할당)
+[20:17:50] [INFO] [T=330] 미할당 위협 17개에 대해 재할당 플래그 설정
+[20:17:50] [ALERT] 24 slots available, 17 unassigned threats - optimization should trigger!
+[20:17:50] [INFO] LAUNCH: T38 → EMPTY_AREA
+[20:17:50] [INFO] UPPER LAYER MISS: T96 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:50] [INFO] UPPER LAYER MISS: T97 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:50] 요격 성공!
+[20:17:50] [INFO] [T=330] Optimization: Obj=-7820.5, Time=0.227s, Vars=198, Constraints=482
+[20:17:50] [INFO] [T=330] Optimization: 10 assignments, 0 invalid, Obj=-7820.55, Time=0.23s
+[20:17:50] [INFO] [T=330] 할당 가능: 10개 신규 할당 (총 12/36, 포대: 4/6, 33.3%)
+[20:17:50] [INFO] [T=330] capacity_freed flag cleared after successful optimization
+[20:17:50] [INFO] UPPER LAYER SUCCESS: T23 (Pk=0.9962)
+[20:17:50] [CRIT] INTERCEPT SUCCESS: T23 by LSAM_03 [상층(LSAM) 요격 성공] (Pk=0.9962, Batteries=1, Missiles=2)
+[20:17:50] [INFO] [T=335] 용량 확보: 1개 배터리 해제 (현재 11/36개 할당)
+[20:17:50] [INFO] [T=335] 미할당 위협 18개에 대해 재할당 플래그 설정
+[20:17:50] [ALERT] 25 slots available, 18 unassigned threats - optimization should trigger!
+[20:17:50] [INFO] UPPER LAYER SUCCESS: T24 (Pk=0.9977)
+[20:17:50] [CRIT] INTERCEPT SUCCESS: T24 by LSAM_01 [상층(LSAM) 요격 성공] (Pk=0.9977, Batteries=1, Missiles=2)
+[20:17:50] [INFO] [T=335] 용량 확보: 1개 배터리 해제 (현재 10/36개 할당)
+[20:17:50] [INFO] [T=335] 미할당 위협 18개에 대해 재할당 플래그 설정
+[20:17:50] [ALERT] 26 slots available, 18 unassigned threats - optimization should trigger!
+[20:17:50] [INFO] UPPER LAYER MISS: T96 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:50] [INFO] UPPER LAYER MISS: T97 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:51] 요격 성공!
+[20:17:51] [INFO] [T=335] Optimization: Obj=-5933.9, Time=0.154s, Vars=170, Constraints=414
+[20:17:51] [INFO] [T=335] Optimization: 8 assignments, 0 invalid, Obj=-5933.85, Time=0.15s
+[20:17:51] [INFO] [T=335] 할당 가능: 8개 신규 할당 (총 10/36, 포대: 4/6, 27.8%)
+[20:17:51] [INFO] [T=335] capacity_freed flag cleared after successful optimization
+[20:17:51] [INFO] UPPER LAYER SUCCESS: T25 (Pk=0.9929)
+[20:17:51] [CRIT] INTERCEPT SUCCESS: T25 by LSAM_02 [상층(LSAM) 요격 성공] (Pk=0.9929, Batteries=1, Missiles=2)
+[20:17:51] [INFO] [T=340] 용량 확보: 1개 배터리 해제 (현재 9/36개 할당)
+[20:17:51] [INFO] [T=340] 미할당 위협 18개에 대해 재할당 플래그 설정
+[20:17:51] [ALERT] 27 slots available, 18 unassigned threats - optimization should trigger!
+[20:17:51] [INFO] UPPER LAYER SUCCESS: T26 (Pk=0.9888)
+[20:17:51] [CRIT] INTERCEPT SUCCESS: T26 by LSAM_03 [상층(LSAM) 요격 성공] (Pk=0.9888, Batteries=1, Missiles=2)
+[20:17:51] [INFO] [T=340] 용량 확보: 1개 배터리 해제 (현재 8/36개 할당)
+[20:17:51] [INFO] [T=340] 미할당 위협 18개에 대해 재할당 플래그 설정
+[20:17:51] [ALERT] 28 slots available, 18 unassigned threats - optimization should trigger!
+[20:17:51] [INFO] UPPER LAYER SUCCESS: T27 (Pk=0.9999)
+[20:17:51] [CRIT] INTERCEPT SUCCESS: T27 by LSAM_01 [상층(LSAM) 요격 성공] (Pk=0.9990, Batteries=1, Missiles=2)
+[20:17:51] [INFO] [T=340] 용량 확보: 1개 배터리 해제 (현재 7/36개 할당)
+[20:17:51] [INFO] [T=340] 미할당 위협 18개에 대해 재할당 플래그 설정
+[20:17:51] [ALERT] 29 slots available, 18 unassigned threats - optimization should trigger!
+[20:17:51] [CRIT] INTERCEPT FAILED: T78 → A18 - No assignment
+[20:17:51] [CRIT] INTERCEPT FAILED: T79 → A19 - No assignment
+[20:17:51] [INFO] TRAJECTORY DEVIATION: T80 → EMPTY_AREA (intentional)
+[20:17:51] [INFO] UPPER LAYER MISS: T96 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:51] [INFO] UPPER LAYER MISS: T97 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:51] 요격 성공!
+[20:17:52] 요격 실패
+[20:17:52] [INFO] [T=340] Optimization: Obj=-3948.6, Time=0.138s, Vars=128, Constraints=309
+[20:17:52] [INFO] [T=340] Optimization: 5 assignments, 0 invalid, Obj=-3948.61, Time=0.14s
+[20:17:52] [INFO] [T=340] 할당 가능: 5개 신규 할당 (총 7/36, 포대: 4/6, 19.4%)
+[20:17:52] [INFO] [T=340] capacity_freed flag cleared after successful optimization
+[20:17:52] INFO: T78 reassignment completed - flag cleared
+[20:17:52] INFO: T79 reassignment completed - flag cleared
+[20:17:52] INFO: T80 reassignment completed - flag cleared
+[20:17:52] [INFO] UPPER LAYER MISS: T96 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:52] [INFO] UPPER LAYER MISS: T97 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:52] [INFO] [T=345] Optimization: Obj=-4006.2, Time=0.131s, Vars=128, Constraints=309
+[20:17:52] [INFO] [T=345] Optimization: 5 assignments, 0 invalid, Obj=-4006.23, Time=0.13s
+[20:17:52] [INFO] [T=345] 할당 가능: 5개 신규 할당 (총 7/36, 포대: 4/6, 19.4%)
+[20:17:52] [INFO] UPPER LAYER SUCCESS: T32 (Pk=0.9975)
+[20:17:52] [CRIT] INTERCEPT SUCCESS: T32 by LSAM_02 [상층(LSAM) 요격 성공] (Pk=0.9975, Batteries=1, Missiles=2)
+[20:17:52] [INFO] [T=350] 용량 확보: 1개 배터리 해제 (현재 6/36개 할당)
+[20:17:52] [INFO] [T=350] 미할당 위협 15개에 대해 재할당 플래그 설정
+[20:17:53] [ALERT] 30 slots available, 15 unassigned threats - optimization should trigger!
+[20:17:53] [INFO] UPPER LAYER MISS: T96 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:53] [INFO] UPPER LAYER MISS: T97 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:53] 요격 성공!
+[20:17:53] [INFO] [T=350] Optimization: Obj=-3046.9, Time=0.096s, Vars=74, Constraints=187
+[20:17:53] [INFO] [T=350] Optimization: 4 assignments, 0 invalid, Obj=-3046.87, Time=0.10s
+[20:17:53] [INFO] [T=350] 할당 가능: 4개 신규 할당 (총 6/36, 포대: 3/6, 16.7%)
+[20:17:53] [INFO] [T=350] capacity_freed flag cleared after successful optimization
+[20:17:53] [INFO] UPPER LAYER SUCCESS: T34 (Pk=0.9982)
+[20:17:53] [CRIT] INTERCEPT SUCCESS: T34 by LSAM_01 [상층(LSAM) 요격 성공] (Pk=0.9982, Batteries=1, Missiles=2)
+[20:17:53] [INFO] [T=355] 용량 확보: 1개 배터리 해제 (현재 5/36개 할당)
+[20:17:53] [INFO] [T=355] 미할당 위협 15개에 대해 재할당 플래그 설정
+[20:17:53] [ALERT] 31 slots available, 15 unassigned threats - optimization should trigger!
+[20:17:53] [CRIT] INTERCEPT FAILED: T89 → A09 - No assignment
+[20:17:53] [CRIT] INTERCEPT FAILED: T90 → A10 - No assignment
+[20:17:53] [INFO] UPPER LAYER MISS: T96 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:53] [INFO] UPPER LAYER MISS: T97 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:53] 요격 성공!
+[20:17:54] 요격 실패
+[20:17:54] [INFO] [T=355] Optimization: Obj=-2031.1, Time=0.162s, Vars=29, Constraints=84
+[20:17:54] [INFO] [T=355] Optimization: 3 assignments, 0 invalid, Obj=-2031.11, Time=0.16s
+[20:17:54] [INFO] [T=355] 할당 가능: 3개 신규 할당 (총 5/36, 포대: 2/6, 13.9%)
+[20:17:54] [INFO] [T=355] capacity_freed flag cleared after successful optimization
+[20:17:54] INFO: T89 reassignment completed - flag cleared
+[20:17:54] INFO: T90 reassignment completed - flag cleared
+[20:17:54] [INFO] UPPER LAYER SUCCESS: T35 (Pk=0.9896)
+[20:17:54] [CRIT] INTERCEPT SUCCESS: T35 by LSAM_03 [상층(LSAM) 요격 성공] (Pk=0.9896, Batteries=1, Missiles=2)
+[20:17:54] [INFO] [T=360] 용량 확보: 1개 배터리 해제 (현재 4/36개 할당)
+[20:17:54] [INFO] [T=360] 미할당 위협 13개에 대해 재할당 플래그 설정
+[20:17:54] [ALERT] 32 slots available, 13 unassigned threats - optimization should trigger!
+[20:17:54] [INFO] UPPER LAYER SUCCESS: T36 (Pk=0.9607)
+[20:17:54] [CRIT] INTERCEPT SUCCESS: T36 by LSAM_03 [상층(LSAM) 요격 성공] (Pk=0.9607, Batteries=1, Missiles=2)
+[20:17:54] [INFO] [T=360] 용량 확보: 1개 배터리 해제 (현재 3/36개 할당)
+[20:17:54] [INFO] [T=360] 미할당 위협 13개에 대해 재할당 플래그 설정
+[20:17:54] [ALERT] 33 slots available, 13 unassigned threats - optimization should trigger!
+[20:17:54] [INFO] UPPER LAYER SUCCESS: T37 (Pk=0.9624)
+[20:17:54] [CRIT] INTERCEPT SUCCESS: T37 by LSAM_03 [상층(LSAM) 요격 성공] (Pk=0.9624, Batteries=1, Missiles=2)
+[20:17:54] [INFO] [T=360] 용량 확보: 1개 배터리 해제 (현재 2/36개 할당)
+[20:17:54] [INFO] [T=360] 미할당 위협 13개에 대해 재할당 플래그 설정
+[20:17:54] [ALERT] 34 slots available, 13 unassigned threats - optimization should trigger!
+[20:17:54] [INFO] UPPER LAYER MISS: T96 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:54] [INFO] UPPER LAYER MISS: T97 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:54] 요격 성공!
+[20:17:54] [WARN] [T=360] No operational systems (Total ammo: 0)
+[20:17:55] [INFO] UPPER LAYER MISS: T96 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:55] [CRIT] INTERCEPT FAILED: T96 → A16 - No assignment
+[20:17:55] [INFO] UPPER LAYER MISS: T97 (Pk=0.0000) → Engaging LOWER LAYER
+[20:17:55] [CRIT] INTERCEPT FAILED: T97 → A17 - No assignment
+[20:17:55] 요격 실패
+[20:17:55] [WARN] [T=365] No operational systems (Total ammo: 0)
+[20:17:55] [CRIT] INTERCEPT FAILED: T98 → A18 - No assignment
+[20:17:55] [CRIT] INTERCEPT FAILED: T99 → A19 - No assignment
+[20:17:55] [CRIT] INTERCEPT FAILED: T100 → A20 - No assignment
+[20:17:55] 요격 실패
+[20:17:55] [WARN] [T=370] No operational systems (Total ammo: 0)
+[20:17:55] [WARN] [T=375] No operational systems (Total ammo: 0)
+[20:17:55] [WARN] [T=380] No operational systems (Total ammo: 0)
+[20:17:56] [WARN] [T=385] No operational systems (Total ammo: 0)
+[20:17:56] [INFO] TRAJECTORY DEVIATION: T02 → EMPTY_AREA (intentional)
+[20:17:56] [WARN] [T=390] No operational systems (Total ammo: 0)
+[20:17:56] [WARN] [T=395] No operational systems (Total ammo: 0)
+[20:17:56] [WARN] [T=400] No operational systems (Total ammo: 0)
+[20:17:56] [WARN] [T=405] No operational systems (Total ammo: 0)
+[20:17:56] [WARN] [T=410] No operational systems (Total ammo: 0)
+[20:17:57] [WARN] [T=415] No operational systems (Total ammo: 0)
+[20:17:57] [INFO] TRAJECTORY DEVIATION: T19 → EMPTY_AREA (intentional)
+[20:17:57] [WARN] [T=420] No operational systems (Total ammo: 0)
+[20:17:57] [WARN] [T=425] No operational systems (Total ammo: 0)
+[20:17:57] [WARN] [T=430] No operational systems (Total ammo: 0)
+[20:17:57] [WARN] [T=435] No operational systems (Total ammo: 0)
+[20:17:57] [CRIT] INTERCEPT FAILED: T28 → A08 - No assignment
+[20:17:57] [CRIT] INTERCEPT FAILED: T29 → A09 - No assignment
+[20:17:57] 요격 실패
+[20:17:57] [WARN] [T=440] No operational systems (Total ammo: 0)
+[20:17:58] [INFO] TRAJECTORY DEVIATION: T30 → EMPTY_AREA (intentional)
+[20:17:58] [INFO] TRAJECTORY DEVIATION: T31 → EMPTY_AREA (intentional)
+[20:17:58] [WARN] [T=445] No operational systems (Total ammo: 0)
+[20:17:58] [INFO] TRAJECTORY DEVIATION: T33 → EMPTY_AREA (intentional)
+[20:17:58] [WARN] [T=450] No operational systems (Total ammo: 0)
+[20:17:58] [WARN] [T=455] No operational systems (Total ammo: 0)
+[20:17:58] [INFO] TRAJECTORY DEVIATION: T38 → EMPTY_AREA (intentional)
+[20:17:58] [CRIT] INTERCEPT FAILED: T39 → A19 - No assignment
+[20:17:58] 요격 실패
+[20:17:58] [WARN] [T=460] No operational systems (Total ammo: 0)
+[20:17:58] [CRIT] INTERCEPT FAILED: T40 → A20 - No assignment
+[20:17:58] 요격 실패
+

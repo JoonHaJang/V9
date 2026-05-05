@@ -1,0 +1,2 @@
+timestamp,scenario,algorithm,total_threats,actual_threats,deviated,intercepted,missed,intercept_rate,avg_solve_time,std_solve_time,min_solve_time,max_solve_time,final_objective,avg_objective,std_objective,min_objective,max_objective,missiles_used,missile_efficiency,asset_survival_rate,assets_survived,assets_lost,total_optimizations,simulation_time
+2026-03-16 21:25:22,DWTA_BALANCED,MIP,20,20,0,0,20,0.0,0.10286941528320312,0.02986070561056339,0.07871556282043457,0.1563091278076172,1.79928,1.319472,0.44881928685830785,0.59976,1.79928,0,0,60.0,6,4,5,30

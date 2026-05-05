@@ -1,0 +1,2 @@
+scenario,algorithm,iteration,total_threats,intercepted,missed,intercept_rate,avg_solve_time,max_solve_time,min_solve_time,final_objective,avg_objective,total_time,num_optimizations,missiles_used,resource_efficiency,upper_intercepts,lower_intercepts,assets_protected,missiles_fired
+MEDIUM_10,MIP,1,10,10,0,100.0,0.08294394016265869,0.11769223213195801,0.028743743896484375,0.59976,2.8389743999999997,8.319451808929443,50,20,50.0,4,6,10,-46

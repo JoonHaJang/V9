@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DWTA 문제 정의 - 다층 방어 체계</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --slide-width: 1280px;
+            --slide-height: 720px;
+            --primary: #1e40af;
+            --secondary: #3b82f6;
+            --danger: #dc2626;
+            --warning: #f59e0b;
+            --success: #10b981;
+            --accent: #8b5cf6;
+            --dark: #0f172a;
+            --gray: #64748b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            margin: 0;
+            padding: 20px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        .slide-container {
+            width: var(--slide-width);
+            height: var(--slide-height);
+            background: #ffffff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 40px 25px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .slide-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            z-index: 10;
+        }
+
+        .slide-title {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            line-height: 1;
+        }
+
+        .slide-title i {
+            font-size: 24px;
+            color: var(--secondary);
+        }
+
+        .slide-subtitle {
+            font-size: 13px;
+            color: var(--gray);
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-style: italic;
+            line-height: 1;
+        }
+
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 12px;
+            flex: 1;
+        }
+
+        .section-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 10px;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .section-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--secondary);
+            border-radius: 10px 0 0 10px;
+        }
+
+        .section-card.danger::before { background: var(--danger); }
+        .section-card.success::before { background: var(--success); }
+        .section-card.accent::before { background: var(--accent); }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            line-height: 1;
+        }
+
+        .section-title i {
+            font-size: 14px;
+            color: var(--secondary);
+        }
+
+        p {
+            font-size: 10px;
+            line-height: 1.4;
+            color: #334155;
+            margin-bottom: 4px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 4px 0;
+        }
+
+        li {
+            font-size: 9px;
+            line-height: 1.5;
+            color: #334155;
+            margin-bottom: 3px;
+            padding-left: 12px;
+            position: relative;
+        }
+
+        li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .defense-diagram {
+            position: relative;
+            height: 180px;
+            background: linear-gradient(to top, #e0f2fe 0%, #f0f9ff 50%, #fef3c7 100%);
+            border-radius: 10px;
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            overflow: hidden;
+        }
+
+        .asset-base {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .asset-icon {
+            font-size: 22px;
+            color: var(--success);
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .asset-label {
+            font-size: 8px;
+            font-weight: 700;
+            color: var(--success);
+            margin-top: 2px;
+        }
+
+        .defense-layer {
+            position: absolute;
+            left: 10%;
+            right: 10%;
+            height: 28px;
+            border: 2px solid;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 9px;
+            backdrop-filter: blur(3px);
+        }
+
+        .upper-layer {
+            top: 22px;
+            border-color: var(--primary);
+            background: rgba(30, 64, 175, 0.12);
+            color: var(--primary);
+        }
+
+        .lower-layer {
+            top: 85px;
+            border-color: var(--secondary);
+            background: rgba(59, 130, 246, 0.12);
+            color: var(--secondary);
+        }
+
+        .threat-path {
+            position: absolute;
+            top: 8px;
+            left: 25%;
+            width: 2px;
+            height: 155px;
+            background: linear-gradient(to bottom, var(--danger) 0%, #ef4444 100%);
+            transform: rotate(20deg);
+            transform-origin: top;
+            opacity: 0.6;
+        }
+
+        .threat-missile {
+            position: absolute;
+            top: 6px;
+            left: 25%;
+            font-size: 18px;
+            color: var(--danger);
+            transform: rotate(160deg);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: rotate(160deg) scale(1); }
+            50% { opacity: 0.6; transform: rotate(160deg) scale(1.1); }
+        }
+
+        .intercept-point {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--warning);
+            border: 2px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.7);
+        }
+
+        .intercept-1 { top: 33px; left: 32%; }
+        .intercept-2 { top: 96px; left: 38%; }
+
+        .complexity-card {
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            border-left: 3px solid;
+            text-align: center;
+        }
+
+        .complexity-card.layer { border-color: var(--primary); }
+        .complexity-card.time { border-color: var(--warning); }
+        .complexity-card.prob { border-color: var(--accent); }
+
+        .complexity-icon {
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+
+        .complexity-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .complexity-desc {
+            font-size: 9px;
+            color: var(--gray);
+            line-height: 1.3;
+        }
+
+        .alert-box {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 6px;
+            padding: 8px;
+            margin-top: 6px;
+        }
+
+        .alert-box .alert-title {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .formula-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 6px;
+            padding: 8px;
+            margin: 6px 0;
+        }
+
+        .formula-label {
+            font-size: 8px;
+            font-weight: 700;
+            color: var(--gray);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 6px;
+            font-size: 9px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 4px 3px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .comparison-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
+            font-size: 9px;
+        }
+
+        .comparison-table td {
+            background: white;
+        }
+
+        .comparison-table tr.highlight-row td {
+            background: #d1fae5 !important;
+            font-weight: 700;
+        }
+
+        .check-icon { color: var(--success); font-size: 12px; }
+        .cross-icon { color: var(--danger); font-size: 12px; }
+        .partial-icon { color: var(--warning); font-size: 12px; }
+
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            left: 40px;
+            right: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 6px;
+            font-size: 10px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 10px;
+            margin-right: 4px;
+        }
+
+        .key-points {
+            list-style: none;
+            padding: 0;
+            margin: 6px 0;
+        }
+
+        .key-points li {
+            padding: 6px 8px;
+            background: white;
+            border-radius: 5px;
+            margin-bottom: 4px;
+            border-left: 2px solid var(--secondary);
+            padding-left: 20px;
+            font-size: 9px;
+        }
+
+        .key-points li::before {
+            content: "✓";
+            left: 6px;
+            color: var(--success);
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- SLIDE 1 -->
+<div class="slide-container">
+    <h2 class="slide-title">
+        <i class="fas fa-shield-alt"></i>
+        다층 방어 미사일 체계
+    </h2>
+    <p class="slide-subtitle">탄도 미사일 위협에 대응하는 계층적 방어 구조</p>
+    
+    <div class="content-area">
+        <div class="grid-2">
+            <div>
+                <div class="section-card">
+                    <div class="section-title">
+                        <i class="fas fa-info-circle"></i>
+                        다층 방어 체계란?
+                    </div>
+                    <p style="margin-bottom: 8px;">
+                        <span class="highlight">고도별 2단계 요격 체계</span>로, 다중 기회를 제공하여 방어 확률을 극대화하는 시스템
+                    </p>
+                    
+                    <div style="background: #f0f9ff; padding: 8px; border-radius: 5px; margin-bottom: 8px;">
+                        <div style="font-weight: 700; color: var(--primary); margin-bottom: 4px; font-size: 10px;">
+                            <i class="fas fa-layer-group"></i> 방어 계층
+                        </div>
+                        <ul style="margin: 0;">
+                            <li><span class="highlight">상층(LSAM)</span>: 고고도 40-60km, 사거리 100-150km, 확률 97.75%</li>
+                            <li style="margin-top: 4px;"><span class="highlight">하층(MSAM)</span>: 저고도 10-20km, 사거리 40-80km, 확률 95.16%</li>
+                        </ul>
+                    </div>
+
+                    <div class="alert-box" style="background: #fef3c7; border-color: #fde047;">
+                        <div class="alert-title" style="color: #a16207; font-size: 9px;">
+                            <i class="fas fa-lightbulb"></i>
+                            핵심 전술
+                        </div>
+                        <p style="font-size: 9px; color: #713f12; margin: 0;">
+                            상층 1차 요격 → 실패 시 하층 2차 기회 → 레이어드 방어로 생존 확률 극대화
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="defense-diagram">
+                    <div class="threat-missile">🚀</div>
+                    <div class="threat-path"></div>
+                    
+                    <div class="defense-layer upper-layer">
+                        <i class="fas fa-crosshairs" style="margin-right: 4px;"></i>
+                        상층 (LSAM)
+                    </div>
+                    
+                    <div class="intercept-point intercept-1"></div>
+                    
+                    <div class="defense-layer lower-layer">
+                        <i class="fas fa-bullseye" style="margin-right: 4px;"></i>
+                        하층 (MSAM)
+                    </div>
+                    
+                    <div class="intercept-point intercept-2"></div>
+                    
+                    <div class="asset-base">
+                        <div class="asset-icon">🏛️</div>
+                        <div class="asset-label">보호 자산</div>
+                    </div>
+                </div>
+
+                <div class="section-card danger" style="margin-top: 10px;">
+                    <div class="section-title" style="color: var(--danger);">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        핵심 문제
+                    </div>
+                    <p style="font-size: 12px; font-weight: 700; color: var(--danger); margin-bottom: 6px;">
+                        "어느 위협을 언제, 어느 층에서 요격할 것인가?"
+                    </p>
+                    <ul style="font-size: 9px;">
+                        <li>다수 위협 동시 출현 시 우선순위 결정</li>
+                        <li>제한된 자원 하 최적 배정</li>
+                        <li>시간 변화 교전 조건의 동적 할당</li>
+                        <li>확률적 결과 반영 기대 피해 최소화</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <span><i class="fas fa-university"></i> 공군사관학교</span>
+        <span>01</span>
+    </div>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="slide-container">
+    <h2 class="slide-title">
+        <i class="fas fa-project-diagram"></i>
+        DWTA 문제의 복잡성
+    </h2>
+    <p class="slide-subtitle">다층·시간·확률이 복합적으로 얽힌 작전 최적화 문제</p>
+    
+    <div class="content-area">
+        <div class="grid-3">
+            <div class="complexity-card layer">
+                <div class="complexity-icon" style="color: var(--primary);">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <div class="complexity-title">1️⃣ 다층 구조</div>
+                <div class="complexity-desc">
+                    상층 실패→하층 재교전<br>
+                    의사결정 연쇄 발생<br>
+                    레이어 간 의존성
+                </div>
+                <div style="margin-top: 8px; padding: 4px; background: #eff6ff; border-radius: 4px; font-size: 8px; color: var(--primary); font-weight: 600;">
+                    🔗 상호 의존적
+                </div>
+            </div>
+
+            <div class="complexity-card time">
+                <div class="complexity-icon" style="color: var(--warning);">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="complexity-title">2️⃣ 시간 의존성</div>
+                <div class="complexity-desc">
+                    교전 창 품질 k(t) 변화<br>
+                    거리 d(t) 동적 변화<br>
+                    자원 대기 시 성능 저하
+                </div>
+                <div style="margin-top: 8px; padding: 4px; background: #fffbeb; border-radius: 4px; font-size: 8px; color: #a16207; font-weight: 600;">
+                    ⏱️ 동적 제약
+                </div>
+            </div>
+
+            <div class="complexity-card prob">
+                <div class="complexity-icon" style="color: var(--accent);">
+                    <i class="fas fa-dice"></i>
+                </div>
+                <div class="complexity-title">3️⃣ 확률적 불확실성</div>
+                <div class="complexity-desc">
+                    요격률 85%/78%<br>
+                    확률적 결과 고려<br>
+                    Monte Carlo 필요
+                </div>
+                <div style="margin-top: 8px; padding: 4px; background: #faf5ff; border-radius: 4px; font-size: 8px; color: var(--accent); font-weight: 600;">
+                    🎲 확률 모델링
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-2" style="margin-top: 12px; flex: 1;">
+            <div class="section-card">
+                <div class="section-title">
+                    <i class="fas fa-network-wired"></i>
+                    복잡성의 실제 영향
+                </div>
+                <div style="background: white; padding: 8px; border-radius: 5px; margin-top: 4px;">
+                    <div style="margin-bottom: 6px;">
+                        <span class="badge">1</span>
+                        <strong style="font-size: 9px;">다층 구조</strong>
+                        <p style="margin-left: 22px; margin-top: 2px; font-size: 8px; color: var(--gray);">
+                            T1 상층 → T2 하층 → 전체 통합 최적화
+                        </p>
+                    </div>
+                    <div style="margin-bottom: 6px;">
+                        <span class="badge" style="background: var(--warning);">2</span>
+                        <strong style="font-size: 9px;">시간 의존성</strong>
+                        <p style="margin-left: 22px; margin-top: 2px; font-size: 8px; color: var(--gray);">
+                            C=3 초과 대기 → k: 1.0→0.6 급락(40% 저하)
+                        </p>
+                    </div>
+                    <div>
+                        <span class="badge" style="background: var(--accent);">3</span>
+                        <strong style="font-size: 9px;">확률적 불확실성</strong>
+                        <p style="margin-left: 22px; margin-top: 2px; font-size: 8px; color: var(--gray);">
+                            85% ≠ 확정 → 기댓값 기반 의사결정
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card accent">
+                <div class="section-title" style="color: var(--accent);">
+                    <i class="fas fa-chart-line"></i>
+                    복잡도 증가
+                </div>
+                <div style="background: white; padding: 8px; border-radius: 5px; margin-top: 4px;">
+                    <table style="width: 100%; font-size: 8px;">
+                        <tr style="background: #faf5ff;">
+                            <td style="padding: 4px; font-weight: 700; border: 1px solid #e9d5ff;">위협</td>
+                            <td style="padding: 4px; font-weight: 700; border: 1px solid #e9d5ff;">시스템</td>
+                            <td style="padding: 4px; font-weight: 700; border: 1px solid #e9d5ff;">탐색 공간</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 4px; border: 1px solid #e2e8f0; text-align: center;">10</td>
+                            <td style="padding: 4px; border: 1px solid #e2e8f0; text-align: center;">8</td>
+                            <td style="padding: 4px; border: 1px solid #e2e8f0; text-align: center; color: var(--warning); font-weight: 700;">2<sup>80</sup></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 4px; border: 1px solid #e2e8f0; text-align: center;">30</td>
+                            <td style="padding: 4px; border: 1px solid #e2e8f0; text-align: center;">12</td>
+                            <td style="padding: 4px; border: 1px solid #e2e8f0; text-align: center; color: var(--danger); font-weight: 700;">2<sup>360</sup></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="alert-box" style="margin-top: 8px;">
+                    <div class="alert-title" style="font-size: 9px;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        NP-hard 복잡도
+                    </div>
+                    <p style="font-size: 8px; color: #7f1d1d; margin: 0;">
+                        비선형 목적함수 + 정수 제약 + 시간 동적 제약 → 전역 최적해 보장 불가
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <span><i class="fas fa-university"></i> 공군사관학교</span>
+        <span>02</span>
+    </div>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="slide-container">
+    <h2 class="slide-title">
+        <i class="fas fa-exclamation-triangle"></i>
+        문제의 중요도 및 난이도
+    </h2>
+    <p class="slide-subtitle">군사 작전의 성패를 좌우하는 실시간 최적화 문제</p>
+    
+    <div class="content-area">
+        <div class="grid-2">
+            <div class="section-card danger">
+                <div class="section-title" style="color: var(--danger); font-size: 14px;">
+                    <i class="fas fa-fire"></i>
+                    ⚠️ 왜 중요한가?
+                </div>
+                
+                <div style="background: white; padding: 10px; border-radius: 6px; margin-top: 6px;">
+                    <div style="margin-bottom: 8px;">
+                        <div style="font-size: 11px; font-weight: 700; color: var(--danger); margin-bottom: 4px;">
+                            <i class="fas fa-bomb"></i> 잘못된 배정의 결과
+                        </div>
+                        <ul class="key-points" style="margin-top: 4px;">
+                            <li style="border-color: var(--danger); font-size: 8px; padding: 4px 6px;">
+                                <strong>고가치 자산 손실</strong>: 지휘소, 공항 피격 → 전술적 패배
+                            </li>
+                            <li style="border-color: var(--danger); font-size: 8px; padding: 4px 6px;">
+                                <strong>자원 고갈</strong>: 저가치 표적 과다 할당 → 후속 대응 불가
+                            </li>
+                            <li style="border-color: var(--danger); font-size: 8px; padding: 4px 6px;">
+                                <strong>연쇄 실패</strong>: 상층 오배정 → 하층 과부하 → 시스템 마비
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #fef2f2; padding: 8px; border-radius: 5px; border-left: 2px solid var(--danger);">
+                        <div style="font-weight: 700; color: var(--danger); margin-bottom: 3px; font-size: 9px;">
+                            <i class="fas fa-clock"></i> 실시간 결정 압박
+                        </div>
+                        <p style="font-size: 8px; color: #7f1d1d; margin: 0;">
+                            미사일 비행: 5-10분, 의사결정: 5-10초 → 인간 판단 한계
+                        </p>
+                    </div>
+                </div>
+
+                <div style="background: #fffbeb; padding: 8px; border-radius: 6px; margin-top: 8px; border: 2px solid #fde047;">
+                    <div style="font-size: 10px; font-weight: 700; color: #a16207; margin-bottom: 4px; text-align: center;">
+                        <i class="fas fa-chart-line"></i> 최적화 효과
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; text-align: center;">
+                        <div style="background: white; padding: 6px; border-radius: 4px;">
+                            <div style="font-size: 18px; font-weight: 700; color: var(--success);">-18%</div>
+                            <div style="font-size: 8px; color: var(--gray);">자산 피해 감소</div>
+                        </div>
+                        <div style="background: white; padding: 6px; border-radius: 4px;">
+                            <div style="font-size: 18px; font-weight: 700; color: var(--success);">87%</div>
+                            <div style="font-size: 8px; color: var(--gray);">요격 성공률</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card accent">
+                <div class="section-title" style="color: var(--accent); font-size: 14px;">
+                    <i class="fas fa-brain"></i>
+                    🔥 왜 어려운가?
+                </div>
+
+                <div style="background: white; padding: 10px; border-radius: 6px; margin-top: 6px;">
+                    <div style="margin-bottom: 8px;">
+                        <div style="display: flex; align-items: center; gap: 4px; margin-bottom: 3px;">
+                            <span class="badge">1</span>
+                            <strong style="font-size: 10px;">조합 폭발</strong>
+                        </div>
+                        <div style="background: #faf5ff; padding: 6px; border-radius: 4px; margin-left: 22px;">
+                            <p style="font-size: 8px; margin: 0; color: #6b21a8;">
+                                2<sup>N×M</sup>, N=30,M=12 → 2<sup>360</sup> → 전수 탐색 불가
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 8px;">
+                        <div style="display: flex; align-items: center; gap: 4px; margin-bottom: 3px;">
+                            <span class="badge">2</span>
+                            <strong style="font-size: 10px;">비선형 목적함수</strong>
+                        </div>
+                        <div style="background: #faf5ff; padding: 6px; border-radius: 4px; margin-left: 22px;">
+                            <p style="font-size: 8px; margin: 0; color: #6b21a8;">
+                                ∏(1-x·k·P) → LP 직접 불가 → McCormick 필요
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 8px;">
+                        <div style="display: flex; align-items: center; gap: 4px; margin-bottom: 3px;">
+                            <span class="badge">3</span>
+                            <strong style="font-size: 10px;">NP-hard</strong>
+                        </div>
+                        <div style="background: #faf5ff; padding: 6px; border-radius: 4px; margin-left: 22px;">
+                            <p style="font-size: 8px; margin: 0; color: #6b21a8;">
+                                정수 제약 + 비선형 + 동적 → 다항 시간 없음
+                            </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 4px; margin-bottom: 3px;">
+                            <span class="badge">4</span>
+                            <strong style="font-size: 10px;">실시간 제약</strong>
+                        </div>
+                        <div style="background: #faf5ff; padding: 6px; border-radius: 4px; margin-left: 22px;">
+                            <p style="font-size: 8px; margin: 0; color: #6b21a8;">
+                                5-10초 허용, Greedy: 빠르나 지역해, GA: 느림
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert-box" style="margin-top: 8px;">
+                    <div class="alert-title" style="font-size: 9px;">
+                        <i class="fas fa-radiation"></i>
+                        핵심 도전 과제
+                    </div>
+                    <p style="font-size: 9px; color: #7f1d1d; margin: 0; font-weight: 600;">
+                        "전역 최적해를 실시간에 보장"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <span><i class="fas fa-university"></i> 공군사관학교</span>
+        <span>03</span>
+    </div>
+</div>
+
+<!-- SLIDE 4 -->
+<div class="slide-container">
+    <h2 class="slide-title">
+        <i class="fas fa-rocket"></i>
+        본 연구의 접근 방법론
+    </h2>
+    <p class="slide-subtitle">NP-hard 문제를 실시간 최적화 가능하도록 만드는 4가지 핵심 기술</p>
+    
+    <div class="content-area">
+        <div class="grid-4">
+            <div class="section-card success">
+                <div class="section-title" style="color: var(--success); font-size: 13px;">
+                    <i class="fas fa-ruler"></i>
+                    1️⃣ K-factor
+                </div>
+                <p style="font-size: 9px; font-weight: 600; color: var(--dark); margin-bottom: 6px;">
+                    교전 창 품질 수치화
+                </p>
+                <div style="background: white; padding: 6px; border-radius: 5px; margin-bottom: 6px;">
+                    <div style="background: #f0fdfa; padding: 4px; border-radius: 3px; text-align: center; font-family: 'Roboto', monospace; font-size: 9px;">
+                        k(t)=0.6+0.4(1-d/R)
+                    </div>
+                </div>
+                <ul style="font-size: 8px;">
+                    <li>d→0: k→1.0 (최적)</li>
+                    <li>d→R: k→0.6 (제한)</li>
+                    <li>자원 대기 시 품질 저하</li>
+                </ul>
+                <div style="background: #d1fae5; padding: 4px; border-radius: 3px; margin-top: 4px; text-align: center; font-size: 8px; color: #065f46; font-weight: 600;">
+                    ✓ 물리적 현실
+                </div>
+            </div>
+
+            <div class="section-card" style="border-left-color: var(--primary);">
+                <div class="section-title" style="font-size: 13px;">
+                    <i class="fas fa-project-diagram"></i>
+                    2️⃣ McCormick
+                </div>
+                <p style="font-size: 9px; font-weight: 600; color: var(--dark); margin-bottom: 6px;">
+                    비선형→선형
+                </p>
+                <div style="background: white; padding: 6px; border-radius: 5px; margin-bottom: 6px;">
+                    <div style="background: #eff6ff; padding: 4px; border-radius: 3px; font-size: 8px; line-height: 1.4;">
+                        w=x·k·P<br>
+                        ↓ McCormick<br>
+                        4개 선형 제약식
+                    </div>
+                </div>
+                <ul style="font-size: 8px;">
+                    <li>NLIP→MILP</li>
+                    <li>전역 최적해 보장</li>
+                    <li>CBC 솔버 적용</li>
+                </ul>
+                <div style="background: #dbeafe; padding: 4px; border-radius: 3px; margin-top: 4px; text-align: center; font-size: 8px; color: #1e40af; font-weight: 600;">
+                    ✓ Exact Solution
+                </div>
+            </div>
+
+            <div class="section-card" style="border-left-color: var(--warning);">
+                <div class="section-title" style="color: #a16207; font-size: 13px;">
+                    <i class="fas fa-sitemap"></i>
+                    3️⃣ Binary Tree
+                </div>
+                <p style="font-size: 9px; font-weight: 600; color: var(--dark); margin-bottom: 6px;">
+                    생존 확률 최적화
+                </p>
+                <div style="background: white; padding: 6px; border-radius: 5px; margin-bottom: 6px;">
+                    <div style="background: #fffbeb; padding: 4px; border-radius: 3px; font-size: 8px; line-height: 1.4; text-align: center;">
+                        ∏(1-w₁)···(1-wₙ)<br>
+                        ↓ Binary Tree<br>
+                        O(N) 변수+제약
+                    </div>
+                </div>
+                <ul style="font-size: 8px;">
+                    <li>O(N²)→O(N)</li>
+                    <li>변수 개수 감소</li>
+                    <li>메모리 효율성</li>
+                </ul>
+                <div style="background: #fef3c7; padding: 4px; border-radius: 3px; margin-top: 4px; text-align: center; font-size: 8px; color: #a16207; font-weight: 600;">
+                    ✓ 계산 효율성
+                </div>
+            </div>
+
+            <div class="section-card accent">
+                <div class="section-title" style="color: var(--accent); font-size: 13px;">
+                    <i class="fas fa-bolt"></i>
+                    4️⃣ Warm-start
+                </div>
+                <p style="font-size: 9px; font-weight: 600; color: var(--dark); margin-bottom: 6px;">
+                    이전 해 재사용
+                </p>
+                <div style="background: white; padding: 6px; border-radius: 5px; margin-bottom: 6px;">
+                    <div style="background: #faf5ff; padding: 4px; border-radius: 3px; font-size: 8px; line-height: 1.4;">
+                        x<sub>t</sub>←x<sub>t-1</sub><br>
+                        k<sub>t</sub>←k<sub>t-1</sub><br>
+                        (변경분만 재계산)
+                    </div>
+                </div>
+                <ul style="font-size: 8px;">
+                    <li>수렴 5-10배 향상</li>
+                    <li>동적 재최적화</li>
+                    <li>실시간성 확보</li>
+                </ul>
+                <div style="background: #ede9fe; padding: 4px; border-radius: 3px; margin-top: 4px; text-align: center; font-size: 8px; color: var(--accent); font-weight: 600;">
+                    ✓ 실시간 최적화
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card" style="margin-top: 12px; border-left-color: var(--success); background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
+            <div class="section-title" style="color: var(--success); font-size: 14px;">
+                <i class="fas fa-trophy"></i>
+                ✨ 핵심 성과
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 8px;">
+                <div style="background: white; padding: 10px; border-radius: 6px; text-align: center;">
+                    <div style="font-size: 20px; font-weight: 700; color: var(--success);">✓</div>
+                    <div style="font-size: 9px; font-weight: 700; color: var(--dark);">전역 최적해</div>
+                    <div style="font-size: 7px; color: var(--gray);">Exact Solution</div>
+                </div>
+                <div style="background: white; padding: 10px; border-radius: 6px; text-align: center;">
+                    <div style="font-size: 20px; font-weight: 700; color: var(--primary);">&lt;5s</div>
+                    <div style="font-size: 9px; font-weight: 700; color: var(--dark);">실시간 처리</div>
+                    <div style="font-size: 7px; color: var(--gray);">100개 5초</div>
+                </div>
+                <div style="background: white; padding: 10px; border-radius: 6px; text-align: center;">
+                    <div style="font-size: 20px; font-weight: 700; color: var(--danger);">-18%</div>
+                    <div style="font-size: 9px; font-weight: 700; color: var(--dark);">피해 감소</div>
+                    <div style="font-size: 7px; color: var(--gray);">Baseline 대비</div>
+                </div>
+                <div style="background: white; padding: 10px; border-radius: 6px; text-align: center;">
+                    <div style="font-size: 20px; font-weight: 700; color: var(--accent);">87%</div>
+                    <div style="font-size: 9px; font-weight: 700; color: var(--dark);">요격률</div>
+                    <div style="font-size: 7px; color: var(--gray);">MC 50회</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <span><i class="fas fa-university"></i> 공군사관학교</span>
+        <span>04</span>
+    </div>
+</div>
+
+<!-- SLIDE 5 -->
+<div class="slide-container">
+    <h2 class="slide-title">
+        <i class="fas fa-square-root-alt"></i>
+        DWTA 수학적 정식화 및 Exact Solution 정당성
+    </h2>
+    <p class="slide-subtitle">Mixed-Integer Linear Programming (MILP) 기반 전역 최적화</p>
+    
+    <div class="content-area">
+        <div class="grid-2">
+            <div class="section-card">
+                <div class="section-title" style="font-size: 14px;">
+                    <i class="fas fa-calculator"></i>
+                    DWTA 문제 정의
+                </div>
+                
+                <div class="formula-box" style="margin-top: 6px;">
+                    <div class="formula-label">목적함수</div>
+                    <div style="font-size: 9px; text-align: center; padding: 4px; font-family: 'Roboto', monospace; line-height: 1.4;">
+                        min Z=Σ<sub>i</sub>B<sub>i</sub>·∏<sub>t</sub>[∏<sub>u</sub>(1-x<sub>iu</sub>k<sub>iu</sub>P<sub>u</sub>)·∏<sub>l</sub>(1-x<sub>il</sub>k<sub>il</sub>P<sub>l</sub>)]
+                    </div>
+                    <div style="font-size: 7px; color: var(--gray); margin-top: 2px; font-style: italic;">
+                        기대 자산 피해 최소화
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 8px; border-radius: 5px; margin-top: 6px;">
+                    <div style="font-weight: 700; color: var(--primary); margin-bottom: 4px; font-size: 10px;">
+                        <i class="fas fa-list"></i> 주요 변수
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; font-size: 8px;">
+                        <div style="background: #f8fafc; padding: 4px; border-radius: 3px;">
+                            <strong>x<sub>ij</sub>∈{0,1}</strong><br>
+                            <span style="font-size: 7px; color: var(--gray);">할당 결정</span>
+                        </div>
+                        <div style="background: #f8fafc; padding: 4px; border-radius: 3px;">
+                            <strong>k<sub>ij</sub>∈[0.6,1.0]</strong><br>
+                            <span style="font-size: 7px; color: var(--gray);">교전 창</span>
+                        </div>
+                        <div style="background: #f8fafc; padding: 4px; border-radius: 3px;">
+                            <strong>P<sub>u</sub>=0.9775</strong><br>
+                            <span style="font-size: 7px; color: var(--gray);">LSAM</span>
+                        </div>
+                        <div style="background: #f8fafc; padding: 4px; border-radius: 3px;">
+                            <strong>P<sub>l</sub>=0.9516</strong><br>
+                            <span style="font-size: 7px; color: var(--gray);">MSAM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 8px; border-radius: 5px; margin-top: 6px;">
+                    <div style="font-weight: 700; color: var(--primary); margin-bottom: 4px; font-size: 10px;">
+                        <i class="fas fa-lock"></i> 핵심 제약
+                    </div>
+                    <ul style="font-size: 8px; line-height: 1.5;">
+                        <li>표적당 1개: Σx<sub>iu</sub>+Σx<sub>il</sub>≤1</li>
+                        <li>동시 교전: Σx<sub>iu</sub>≤C=3</li>
+                        <li>탄약: Σ2·x<sub>iu</sub>≤M<sub>u</sub></li>
+                        <li>교전 가능: x<sub>ij</sub>=0 if d>R</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <div class="section-card success">
+                    <div class="section-title" style="color: var(--success); font-size: 14px;">
+                        <i class="fas fa-check-double"></i>
+                        ✅ Exact Solution
+                    </div>
+                    
+                    <div style="background: white; padding: 8px; border-radius: 5px; margin-top: 6px;">
+                        <div style="margin-bottom: 6px;">
+                            <div style="font-weight: 700; color: var(--dark); margin-bottom: 3px; display: flex; align-items: center; gap: 3px; font-size: 9px;">
+                                <span class="badge" style="background: var(--danger);">1</span>
+                                군사적 요구
+                            </div>
+                            <ul style="font-size: 8px; margin-left: 22px;">
+                                <li>자산 피해 최소화 보장</li>
+                                <li>확률적 안전 마진</li>
+                                <li>"충분" ✗ → "최선" ✓</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-bottom: 6px;">
+                            <div style="font-weight: 700; color: var(--dark); margin-bottom: 3px; display: flex; align-items: center; gap: 3px; font-size: 9px;">
+                                <span class="badge" style="background: var(--warning);">2</span>
+                                기존 방법 한계
+                            </div>
+                            <table class="comparison-table" style="margin-left: 22px; width: calc(100% - 22px);">
+                                <tr>
+                                    <th>방법</th>
+                                    <th>최적성</th>
+                                    <th>속도</th>
+                                    <th>실전</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>Greedy</strong></td>
+                                    <td><i class="fas fa-times cross-icon"></i></td>
+                                    <td><i class="fas fa-check check-icon"></i></td>
+                                    <td style="color: var(--danger); font-size: 7px;">지역해</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>GA</strong></td>
+                                    <td><i class="fas fa-minus partial-icon"></i></td>
+                                    <td><i class="fas fa-minus partial-icon"></i></td>
+                                    <td style="color: var(--warning); font-size: 7px;">느림</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>MIP(기존)</strong></td>
+                                    <td><i class="fas fa-check check-icon"></i></td>
+                                    <td><i class="fas fa-times cross-icon"></i></td>
+                                    <td style="color: var(--danger); font-size: 7px;">비실시간</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td><strong>본연구</strong></td>
+                                    <td><i class="fas fa-check check-icon"></i></td>
+                                    <td><i class="fas fa-check check-icon"></i></td>
+                                    <td style="color: var(--success); font-size: 7px;">실시간최적</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div>
+                            <div style="font-weight: 700; color: var(--dark); margin-bottom: 3px; display: flex; align-items: center; gap: 3px; font-size: 9px;">
+                                <span class="badge" style="background: var(--accent);">3</span>
+                                차별점
+                            </div>
+                            <ul style="font-size: 8px; margin-left: 22px;">
+                                <li>McCormick→전역 최적</li>
+                                <li>Binary Tree→O(N)</li>
+                                <li>Warm-start→5-10배</li>
+                                <li><strong>최적성+실시간 달성</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card accent" style="margin-top: 10px;">
+                    <div class="section-title" style="color: var(--accent); font-size: 13px;">
+                        <i class="fas fa-chart-bar"></i>
+                        📊 검증 성능
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 6px;">
+                        <div style="background: white; padding: 8px; border-radius: 5px; text-align: center;">
+                            <div style="font-size: 18px; font-weight: 700; color: var(--success);">-18%</div>
+                            <div style="font-size: 7px; color: var(--gray);">자산 손실</div>
+                        </div>
+                        <div style="background: white; padding: 8px; border-radius: 5px; text-align: center;">
+                            <div style="font-size: 18px; font-weight: 700; color: var(--primary);">87%</div>
+                            <div style="font-size: 7px; color: var(--gray);">요격률</div>
+                        </div>
+                        <div style="background: white; padding: 8px; border-radius: 5px; text-align: center;">
+                            <div style="font-size: 18px; font-weight: 700; color: var(--accent);">50회</div>
+                            <div style="font-size: 7px; color: var(--gray);">MC</div>
+                        </div>
+                    </div>
+                    <div style="background: white; padding: 6px; border-radius: 5px; margin-top: 6px;">
+                        <div style="font-size: 8px; color: var(--dark); font-weight: 600; margin-bottom: 3px;">
+                            실험 환경
+                        </div>
+                        <ul style="font-size: 7px; color: var(--gray);">
+                            <li>Baseline: 15개, 0.5초</li>
+                            <li>Large: 30개, 2초</li>
+                            <li>Stress: 100개, 5초</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <span><i class="fas fa-university"></i> 공군사관학교</span>
+        <span>05</span>
+    </div>
+</div>
+
+</body>
+</html>

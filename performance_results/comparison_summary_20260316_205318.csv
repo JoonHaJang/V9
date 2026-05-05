@@ -1,0 +1,2 @@
+scenario,algorithm,iterations,intercept_rate_mean,intercept_rate_std,intercept_rate_min,intercept_rate_max,solve_time_mean,solve_time_std,objective_mean,objective_std,total_time_mean,total_time_std,upper_intercepts_mean,lower_intercepts_mean,assets_protected_mean,missiles_fired_mean
+MEDIUM_10,MIP,1,100.0,0.0,100.0,100.0,0.23600815591358004,0.0,0.59976,0.0,18.094147205352783,0.0,4.0,6.0,10.0,-46.0

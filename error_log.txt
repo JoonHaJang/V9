@@ -1,0 +1,1543 @@
+﻿Configuration values validated successfully.
+자산 가치 분포: 평균=990, 총합=9900, 범위=500~1500
+방어 자원: 총 6개 포대, 150발 미사일
+자산 가치 분포: 평균=990, 총합=9900, 범위=500~1500
+위협 분배: 총 20발, 자산당 2발
+표적 분포: {'A01': 2, 'A02': 3, 'A03': 2, 'A04': 2, 'A05': 3, 'A06': 1, 'A07': 2, 'A08': 1, 'A09': 2, 'A10': 2}
+자산 가치 분포: 평균=990, 총합=9900, 범위=500~1500
+방어 자원: 총 6개 포대, 150발 미사일
+자산 가치 분포: 평균=990, 총합=9900, 범위=500~1500
+위협 분배: 총 20발, 자산당 2발
+표적 분포: {'A01': 2, 'A02': 3, 'A03': 2, 'A04': 2, 'A05': 3, 'A06': 1, 'A07': 2, 'A08': 1, 'A09': 2, 'A10': 2}
+자산 가치 분포: 평균=990, 총합=9900, 범위=500~1500
+방어 자원: 총 6개 포대, 150발 미사일
+자산 가치 분포: 평균=990, 총합=9900, 범위=500~1500
+위협 분배: 총 20발, 자산당 2발
+표적 분포: {'A01': 2, 'A02': 3, 'A03': 2, 'A04': 2, 'A05': 3, 'A06': 1, 'A07': 2, 'A08': 1, 'A09': 2, 'A10': 2}
+
+Calculating trajectory-based engagement zones...
+Trajectory-based engagement analysis complete:
+  Total battery-threat pairs: 150
+  Feasible engagements: 57 (38.0%)
+  LSAM engagements: 7
+  MSAM engagements: 50
+
+LSAM Engagement Debug:
+
+LSAM_01 analysis:
+  [NO] T01: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T02: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T03: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T04: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T05: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T06: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T07: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T08: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T09: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T10: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T11: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T12: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T13: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T14: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T15: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+
+LSAM_02 analysis:
+  [NO] T01: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T02: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T03: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T04: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T05: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T06: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T07: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T08: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T09: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T10: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T11: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T12: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T13: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T14: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T15: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+
+LSAM_03 analysis:
+  [NO] T01: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T02: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T03: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T04: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T05: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T06: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T07: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T08: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T09: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T10: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T11: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T12: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T13: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T14: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T15: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+
+LSAM_04 analysis:
+  [NO] T01: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T02: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T03: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T04: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T05: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T06: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T07: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T08: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [NO] T09: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T10: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T11: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T12: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T13: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T14: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T15: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+
+LSAM_05 analysis:
+  [OK] T01: CAN ENGAGE
+  [OK] T02: CAN ENGAGE
+  [OK] T03: CAN ENGAGE
+  [OK] T04: CAN ENGAGE
+  [NO] T05: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: NODONG
+     - Max altitude: 80km
+  [OK] T06: CAN ENGAGE
+  [OK] T07: CAN ENGAGE
+  [OK] T08: CAN ENGAGE
+  [NO] T09: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T10: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T11: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T12: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T13: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+  [NO] T14: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+C:/Python313/python.exe : QObject::connect: Cannot queue arguments of type 'QTextCursor'
+위치 줄:1 문자:1
++ C:/Python313/python.exe c:/Users/USER/Desktop/V9/multi_missile_tracke ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (QObject::connec...e 'QTextCursor':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+(Make sure 'QTextCursor' is registered using qRegisterMetaType().)
+  [NO] T15: CANNOT ENGAGE
+     - Windows: 0
+     - Threat type: SCUD_B
+     - Max altitude: 40km
+
+================================================================================
+최적화 사전 계산 시작...
+================================================================================
+============================================================
+사전 계산 시작: Engagement Matrix
+============================================================
+[OK] 총 조합: 120
+[OK] 교전 가능: 57 (47.5%)
+[OK] 교전 불가: 63
+[DEBUG precompute] MSAM_01 CAN engage T11
+[DEBUG precompute] MSAM_01 CAN engage T12
+[DEBUG precompute] MSAM_01 CAN engage T13
+[DEBUG precompute] MSAM_02 CAN engage T11
+[DEBUG precompute] MSAM_02 CAN engage T12
+[DEBUG precompute] MSAM_02 CAN engage T13
+[DEBUG precompute] MSAM_03 CAN engage T11
+[DEBUG precompute] MSAM_03 CAN engage T12
+[DEBUG precompute] MSAM_03 CAN engage T13
+============================================================
+K-factor 캐시 생성 완료
+[OK] 사전 계산 완료
+================================================================================
+
+Scenario Loaded: Korean_Defense_Scenario_DWTA_BALANCED. Objective: Minimize Expected Damage (Value-based)
+[OK] PerformanceLogger 초기화 완료: performance_results
+[OK] 불확실성 모델링 초기화 완료 (Beta 분포: α=9, β=1)
+[INFO] Initializing PyQtGraph GUI...
+[OK] PyQtGraph visualization + Qt control panel initialized
+   - Visualization: 60+ FPS
+   - Control Panel: Qt (Tkinter removed)
+
+============================================================
+GUI가 열렸습니다. START 버튼을 클릭하여 시뮬레이션을 시작하세요.
+============================================================
+
+
+Starting scenario simulation...
+[OK] Warm-start engine enabled
+[OK] Warm-start engine enabled
+Optimizer: Set custom intercept probabilities for 1 threats
+[OK] Enhanced Engagement Matrix 사용
+Model setup: 10 assets, 3 upper, 3 lower systems, 1 threats
+Batteries: 6, Engagement matrix: 3 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 3 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Objective function: 1 terms (equal weight for all assets)
+
+=== LSAM VARIABLE VALUES ===
+LSAM Variable: LSAM_01 -> T01 (Asset: A01) = 1.0
+  *** LSAM SELECTED: LSAM_01 assigned to T01 ***
+LSAM Variable: LSAM_02 -> T01 (Asset: A01) = 0.0
+LSAM Variable: LSAM_03 -> T01 (Asset: A01) = 0.0
+LSAM Summary: 3 variables created, 1 selected
+Upper assignments extracted: 1
+Lower assignments extracted: 0
+Combined assignments (with layer prefixes): 1 - {'upper_A01_T01': 'LSAM_01'}
+Optimizer: Set custom intercept probabilities for 2 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 2 threats
+Batteries: 6, Engagement matrix: 6 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 6 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Objective function: 2 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 2 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 2 threats
+Batteries: 6, Engagement matrix: 6 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 6 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Objective function: 2 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 3 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 3 threats
+Batteries: 6, Engagement matrix: 9 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 9 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Objective function: 3 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 3 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 3 threats
+Batteries: 6, Engagement matrix: 9 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 9 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Objective function: 3 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 4 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 4 threats
+Batteries: 6, Engagement matrix: 12 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 12 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Objective function: 4 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 4 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 4 threats
+Batteries: 6, Engagement matrix: 12 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 12 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Objective function: 4 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 5 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 5 threats
+Batteries: 6, Engagement matrix: 15 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 15 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Objective function: 5 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 5 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 5 threats
+Batteries: 6, Engagement matrix: 15 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 15 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Objective function: 5 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 6 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 6 threats
+Batteries: 6, Engagement matrix: 18 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 18 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Objective function: 6 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 6 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 6 threats
+Batteries: 6, Engagement matrix: 18 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 18 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Objective function: 6 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 7 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 7 threats
+Batteries: 6, Engagement matrix: 21 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 21 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Objective function: 7 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 7 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 7 threats
+Batteries: 6, Engagement matrix: 21 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 21 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Objective function: 7 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 8 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 8 threats
+Batteries: 6, Engagement matrix: 24 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 24 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Objective function: 8 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 8 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 8 threats
+Batteries: 6, Engagement matrix: 24 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 24 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Objective function: 8 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 9 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 9 threats
+Batteries: 6, Engagement matrix: 27 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 27 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Objective function: 9 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 9 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 9 threats
+Batteries: 6, Engagement matrix: 27 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 27 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Objective function: 9 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 10 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 10 threats
+Batteries: 6, Engagement matrix: 30 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 30 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 10 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 10 threats
+Batteries: 6, Engagement matrix: 30 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 30 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 10 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 10 threats
+Batteries: 6, Engagement matrix: 30 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 30 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 10 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 10 threats
+Batteries: 6, Engagement matrix: 30 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 30 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 10 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 10 threats
+Batteries: 6, Engagement matrix: 30 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 30 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 10 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 10 threats
+Batteries: 6, Engagement matrix: 30 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 30 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 10 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 10 threats
+Batteries: 6, Engagement matrix: 30 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 30 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 10 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 10 threats
+Batteries: 6, Engagement matrix: 30 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 30 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 10 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 10 threats
+Batteries: 6, Engagement matrix: 30 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 30 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 10 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 10 threats
+Batteries: 6, Engagement matrix: 30 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 30 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 11 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 11 threats
+Batteries: 6, Engagement matrix: 35 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 35 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 11 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 11 threats
+Batteries: 6, Engagement matrix: 35 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 35 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 12 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 12 threats
+Batteries: 6, Engagement matrix: 39 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 39 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 12 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 12 threats
+Batteries: 6, Engagement matrix: 39 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 39 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 13 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 13 threats
+Batteries: 6, Engagement matrix: 43 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 43 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 13 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 13 threats
+Batteries: 6, Engagement matrix: 43 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 43 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 14 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 14 threats
+Batteries: 6, Engagement matrix: 45 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 45 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 14 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 14 threats
+Batteries: 6, Engagement matrix: 45 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 45 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 15 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 15 threats
+Batteries: 6, Engagement matrix: 45 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 45 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 9 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 15 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 15 threats
+Batteries: 6, Engagement matrix: 45 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 45 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 9 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 16 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 16 threats
+Batteries: 6, Engagement matrix: 48 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 48 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 9 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 16 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 16 threats
+Batteries: 6, Engagement matrix: 48 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 48 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 9 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 17 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 17 threats
+Batteries: 6, Engagement matrix: 52 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 52 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 9 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 17 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 17 threats
+Batteries: 6, Engagement matrix: 52 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 52 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 9 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 18 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 18 threats
+Batteries: 6, Engagement matrix: 56 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 56 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 9 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 18 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 18 threats
+Batteries: 6, Engagement matrix: 56 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 56 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 9 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 19 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 19 threats
+Batteries: 6, Engagement matrix: 60 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 60 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 19 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 19 threats
+Batteries: 6, Engagement matrix: 59 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 59 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 62 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 62 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 62 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 62 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 57 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 57 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 57 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 57 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 56 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 56 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 53 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 53 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 53 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 53 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 53 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 53 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 53 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 53 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 53 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 53 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 52 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 52 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 52 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 52 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 52 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 52 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 52 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 52 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 52 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 52 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 52 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 52 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 52 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 52 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 52 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 52 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 52 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 52 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 51 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 51 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 51 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 51 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 51 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 51 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 51 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 51 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 51 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 51 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+Asset A02: original_value=1400, scaled_weight=1.000
+Asset A03: original_value=1300, scaled_weight=1.000
+Asset A04: original_value=1200, scaled_weight=1.000
+Asset A05: original_value=1000, scaled_weight=1.000
+Asset A06: original_value=900, scaled_weight=1.000
+Asset A07: original_value=800, scaled_weight=1.000
+Asset A08: original_value=700, scaled_weight=1.000
+Asset A09: original_value=600, scaled_weight=1.000
+Asset A10: original_value=500, scaled_weight=1.000
+Objective function: 10 terms (equal weight for all assets)
+Optimizer: Set custom intercept probabilities for 20 threats
+Model setup: 10 assets, 3 upper, 3 lower systems, 20 threats
+Batteries: 6, Engagement matrix: 51 feasible pairs (cache-based)
+Added all basic constraints
+Added k-value constraints: 51 k variables constrained
+Added all original and realistic operational constraints
+Asset value analysis: min=500, max=1500, range=1000, ratio=3.00
+Asset A01: original_value=1500, scaled_weight=1.000
+QObject::startTimer: Timers cannot be started from another thread
+QObject::startTimer: Timers cannot be started from another thread
+QObject::startTimer: Timers cannot be started from another thread
+QObject::startTimer: Timers cannot be started from another thread
+QObject::startTimer: Timers cannot be started from another thread
+QObject::startTimer: Timers cannot be started from another thread
+QObject: Cannot create children for a parent that is in a different thread.
+(Parent is QTextDocument(0x187dc612360), parent's thread is QThread(0x187da7b5560), current thread is QThread(0x187d9f414a0)
+Asset A02: original_value=1400, scaled_weight=1.000
