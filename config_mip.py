@@ -1904,8 +1904,55 @@ class KFactorCache:
             elapsed_ratio = (current_time - window_start) / window_duration
             k_timing = max(0.7, 1.0 - 0.3 * elapsed_ratio)
 
-        # 🔥 5단계: 최종 k-factor (곱셈 2회)
-        k_ij = k_distance * k_window * k_timing
+        # 🔥 5단계: k_kinematic - 표적 고도·속도 기반 운동학적 요소
+        # phase_events에서 추출 (dict/dataclass 양쪽 지원)
+        phase_events = {}
+        if hasattr(threat, 'get'):
+            phase_events = threat.get('phase_events', {})
+        if not phase_events and hasattr(threat, 'phase_events'):
+            phase_events = threat.phase_events or {}
+
+        specs = {}
+        if hasattr(threat, 'get'):
+            specs = threat.get('specs', {})
+        if not specs and hasattr(threat, 'specs'):
+            specs = threat.specs or {}
+
+        # 고도: phase_events 우선, fallback → specs['max_altitude_km']
+        critical_alt_km = (phase_events.get('critical_altitude_km')
+                           or specs.get('max_altitude_km', 30.0))
+
+        # 속도: phase_events terminal_velocity_ms 우선, fallback → Mach * 343 m/s
+        if phase_events.get('terminal_velocity_ms'):
+            terminal_vel_ms = phase_events['terminal_velocity_ms']
+        else:
+            mach = specs.get('speed_mach', 4.0)
+            terminal_vel_ms = mach * 343.0
+        missile_speed_kms = terminal_vel_ms / 1000.0
+
+        # 고도 인자: 최적 30km, 범위 [0.8, 1.0]
+        optimal_alt = 30.0
+        if critical_alt_km < 5.0:
+            altitude_factor = 0.8
+        elif critical_alt_km > 80.0:
+            altitude_factor = 0.9
+        else:
+            dev = abs(critical_alt_km - optimal_alt)
+            altitude_factor = max(0.8, 1.0 - 0.2 * (dev / optimal_alt))
+
+        # 속도 인자: 최적 2.0 km/s, 범위 [0.8, 1.0]
+        optimal_speed = 2.0
+        max_speed     = 5.0
+        if missile_speed_kms > max_speed:
+            speed_factor = 0.8
+        else:
+            ratio = missile_speed_kms / optimal_speed
+            speed_factor = max(0.8, 1.0 - 0.2 * max(0.0, ratio - 1.0))
+
+        k_kinematic = min(altitude_factor * speed_factor, 1.0)
+
+        # 🔥 6단계: 최종 k-factor (4요소 곱)
+        k_ij = k_distance * k_window * k_timing * k_kinematic
 
         return np.clip(k_ij, self.k_min, self.k_max)
 

@@ -105,6 +105,9 @@ class NonLinearMIPOptimizer:
         self.previous_solution = None
         self.previous_threats = set()
         self.previous_systems_capacity = {}
+
+        # Root Node Gap 측정 플래그 (논문 실험용, 기본 비활성화)
+        self.capture_root_gap = False
         
         # 로깅 설정 (디버그 출력 비활성화)
         self.logger = logging.getLogger(__name__)
@@ -1448,22 +1451,48 @@ class NonLinearMIPOptimizer:
         if self.use_warm_start and self.previous_solution:
             solver_options.append('mipstart on')
         
+        # Root Node Gap 측정: CBC 로그 파일 경로 설정 (capture_root_gap=True 시)
+        import os as _os, tempfile as _tempfile, re as _re
+        _log_path = None
+        if self.capture_root_gap:
+            _log_path = _tempfile.mktemp(suffix='_cbc.log')
+
         # 최적화된 단일 Solver 설정
         solver = pulp.PULP_CBC_CMD(
-            msg=0,                  # 항상 조용히 (verbose 무시)
-            timeLimit=5,            # 5초 고정 (빠른 응답)
-            gapRel=0.01,            # 1% 최적성 갭 (5% → 1%, 더 정확한 해)
-            threads=4,              # 4 스레드 고정
-            options=solver_options
+            msg=1 if self.capture_root_gap else 0,
+            timeLimit=5,
+            gapRel=0.01,
+            threads=4,
+            options=solver_options,
+            **({"logPath": _log_path} if _log_path else {})
         )
-        
+
         # 🆕 Warm-start 적용
         if self.use_warm_start and self.previous_solution:
             self._apply_warm_start()
-        
+
         # 솔버 실행
         self.model.solve(solver)
         solve_time = time.time() - start_time
+
+        # Root Node Gap 파싱 (CBC 로그: "Continuous objective value is X")
+        _z_lp_root = None
+        if _log_path and _os.path.exists(_log_path):
+            try:
+                with open(_log_path) as _f:
+                    for _line in _f:
+                        # CBC 형식: "Continuous objective value is X - ..."
+                        _m = _re.search(r'Continuous objective value is\s*([-\d.eE+]+)', _line)
+                        if _m:
+                            _z_lp_root = float(_m.group(1))
+                            break
+            except Exception:
+                pass
+            finally:
+                try:
+                    _os.remove(_log_path)
+                except Exception:
+                    pass
         
         # 결과 분석
         feasible = self.model.status == pulp.LpStatusOptimal
@@ -1506,13 +1535,20 @@ class NonLinearMIPOptimizer:
             warmstart_applied = self.warmstart_stats.get('applied', False)
             warmstart_count = self.warmstart_stats.get('count', 0)
         
+        # Root Node Gap 계산
+        _root_gap_pct = None
+        if _z_lp_root is not None and objective_value not in (float('inf'), None) and abs(objective_value) > 1e-9:
+            _root_gap_pct = abs(_z_lp_root - objective_value) / abs(objective_value) * 100.0
+
         result = {
             'feasible': feasible,
             'objective_value': objective_value,
             'solve_time': solve_time,
             'status': pulp.LpStatus[self.model.status],
-            'warmstart_applied': warmstart_applied,  # 🆕 GUI 표시용
-            'warmstart_count': warmstart_count,      # 🆕 GUI 표시용
+            'warmstart_applied': warmstart_applied,
+            'warmstart_count': warmstart_count,
+            'root_node_gap_pct': _root_gap_pct,   # Root Node Gap (%) — None이면 미측정
+            'z_lp_root': _z_lp_root,               # LP 완화 목적함수값
             'diagnosis': {
                 'solver_status': pulp.LpStatus[self.model.status],
                 'num_variables': len(self.model.variables()),
@@ -1522,7 +1558,7 @@ class NonLinearMIPOptimizer:
                 'total_missiles': total_missiles,
                 'time_limit_reached': solve_time >= time_limit_sec * 0.95,
                 'feasible_engagements': feasible_engagements,
-                'battery_assignments': battery_assignment_counts  # 🆕 포대별 할당 수
+                'battery_assignments': battery_assignment_counts
             }
         }
         
