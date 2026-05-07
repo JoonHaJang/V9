@@ -1539,13 +1539,168 @@ class NonLinearMIPOptimizer:
             result['lower_missiles'] = self._extract_missiles('k_lower')
         
         # print(f"Model solved in {solve_time:.3f}s | Feasible: {feasible} | Objective: {objective_value:.6f}")
-        
+
         # 🆕 Warm-start: 현재 해 저장 (다음 타임스텝용)
         if feasible and self.use_warm_start:
             self._save_solution_for_warmstart(result)
-        
+
         return result
-    
+
+    # ──────────────────────────────────────────────────────────────
+    # 논문 실험 전용: Root Node Gap 측정
+    # ──────────────────────────────────────────────────────────────
+    def solve_with_root_gap(self) -> Dict:
+        """CBC 로그를 캡처해 Root Node LP 완화값과 Root Node Gap(%)을 반환.
+
+        리뷰어 요구사항(McCormick 완화의 tight 여부)에 답하기 위한
+        논문 실험 전용 메서드. GUI 실시간 경로에서는 사용하지 않는다.
+
+        Returns (solve() 결과 + 추가 키):
+            root_lp_bound  : Root Node LP 완화 목적함수 값 (최소화 기준)
+            root_gap_pct   : (|정수해 - LP완화| / |LP완화|) × 100  [%]
+            cbc_log        : 캡처된 CBC 원본 로그 문자열
+        """
+        import io, os, re, tempfile
+
+        if not self.model:
+            raise ValueError("create_model() 을 먼저 호출하세요.")
+
+        # ── 1. CBC stdout 캡처 (C-level fd 리디렉션) ─────────────────
+        log_fd, log_path = tempfile.mkstemp(suffix='_cbc.log', prefix='dwta_rootgap_')
+        cbc_log = ''
+        fd_redirected = False
+        saved_fd = None
+
+        try:
+            # sys.stdout.fileno()가 유효한 경우에만 fd 리디렉션 시도
+            # (IDE 환경에서는 fileno()가 실패할 수 있음)
+            try:
+                real_fd = sys.stdout.fileno()
+                saved_fd = os.dup(real_fd)
+                os.dup2(log_fd, real_fd)
+                fd_redirected = True
+            except (io.UnsupportedOperation, AttributeError, OSError):
+                pass
+            os.close(log_fd)
+
+            solver = pulp.PULP_CBC_CMD(
+                msg=1 if fd_redirected else 0,
+                timeLimit=30,       # 논문 실험: 시간 여유 있게 (대규모 시나리오 대비)
+                gapRel=0.001,       # 0.1% — 진짜 최적에 가까운 정수해 확보용
+                                    # (gapRel=0.01이면 조기 종료로 Root Gap이 작게 편향됨)
+                threads=4,
+                options=[
+                    'presolve on',
+                    'cuts on',
+                    'heuristics on',
+                    'gomory on',
+                    'clique on',
+                    'printingOptions all',  # 상세 출력 활성화
+                ]
+            )
+
+            start_t = time.time()
+            self.model.solve(solver)
+            solve_time = time.time() - start_t
+
+        finally:
+            # stdout 복원
+            if fd_redirected and saved_fd is not None:
+                try:
+                    os.dup2(saved_fd, sys.stdout.fileno())
+                    os.close(saved_fd)
+                except OSError:
+                    pass
+
+            # 로그 파일 읽기
+            try:
+                with open(log_path, 'r', errors='replace') as f:
+                    cbc_log = f.read()
+            except Exception:
+                pass
+            try:
+                os.unlink(log_path)
+            except Exception:
+                pass
+
+        # ── 2. Root Node LP 완화값 파싱 ──────────────────────────────
+        # CBC 버전별 Root LP 출력 형식이 다름
+        #   CBC 2.10.3 : "Continuous objective value is X - Y seconds"
+        #   CBC 2.10.5+: "Root relaxation: objective X, N iterations"
+        ROOT_PATTERNS = [
+            r'Continuous objective value is\s*([-+]?[\d.e+]+)',   # CBC 2.10.3 (win)
+            r'Root relaxation:\s*objective\s*([-+]?[\d.e+]+)',    # CBC 2.10.5+
+            r'Optimal objective\s+([-+]?[\d.e+]+)\s*-\s*\d+ row',
+            r'Cbc0038I.*?objective\s+([-+]?[\d.e+]+)',
+        ]
+        root_lp_bound = None
+        for pat in ROOT_PATTERNS:
+            m = re.search(pat, cbc_log, re.IGNORECASE)
+            if m:
+                try:
+                    root_lp_bound = float(m.group(1))
+                    break
+                except ValueError:
+                    continue
+
+        # 정수 최적해 파싱 (PuLP model 값 우선, CBC 로그 보조)
+        # CBC 2.10.3: "Cbc0001I Search completed - best objective X"
+        INT_PATTERNS = [
+            r'Cbc0001I Search completed - best objective\s*([-+]?[\d.e+]+)',
+            r'Integer solution of\s*([-+]?[\d.e+]+)',
+            r'Cbc0012I\s+\S+\s+([-+]?[\d.e+]+)\s+found',
+        ]
+        log_integer_obj = None
+        for pat in INT_PATTERNS:
+            m = re.search(pat, cbc_log, re.IGNORECASE)
+            if m:
+                try:
+                    log_integer_obj = float(m.group(1))
+                    break
+                except ValueError:
+                    continue
+
+        # ── 3. Root Node Gap 계산 ────────────────────────────────────
+        feasible = self.model.status == pulp.LpStatusOptimal
+        obj = (self.model.objective.value()
+               if (feasible and self.model.objective) else None)
+        if obj is None:
+            # PuLP model 값 없으면 CBC 로그의 정수해 사용
+            obj = log_integer_obj if log_integer_obj is not None else float('inf')
+
+        root_gap_pct = None
+        if root_lp_bound is not None and obj not in (None, float('inf')):
+            denom = abs(root_lp_bound)
+            if denom > 1e-10:
+                root_gap_pct = abs(obj - root_lp_bound) / denom * 100.0
+
+        # ── 4. 결과 조립 (solve() 구조와 동일) ───────────────────────
+        result = {
+            'feasible': feasible,
+            'objective_value': obj,
+            'solve_time': solve_time,
+            'status': pulp.LpStatus[self.model.status],
+            'root_lp_bound': root_lp_bound,
+            'root_gap_pct': root_gap_pct,
+            'cbc_log': cbc_log,
+            'diagnosis': {
+                'num_variables': len(self.model.variables()),
+                'num_constraints': len(self.model.constraints),
+                'num_threats': len(self.threats),
+                'num_systems': len(self.upper_systems) + len(self.lower_systems),
+            }
+        }
+        if feasible:
+            result['upper_assignments'] = self._extract_assignments('x_upper')
+            result['lower_assignments'] = self._extract_assignments('x_lower')
+            result['upper_k_values'] = self._extract_k_values('k_upper')
+            result['lower_k_values'] = self._extract_k_values('k_lower')
+            result['asset_survival_probs'] = self._extract_survival_probabilities()
+            result['upper_missiles'] = self._extract_missiles('k_upper')
+            result['lower_missiles'] = self._extract_missiles('k_lower')
+
+        return result
+
     def _extract_assignments(self, var_type: str) -> Dict:
         """할당 결과 추출 with detailed LSAM tracking"""
         assignments = {}
