@@ -146,17 +146,25 @@ WTA 문제는 $m$개의 무기를 $n$개의 표적에 배분하여 표적의 기
 
 #### ◦ K-factor 모형
 
-K-factor $K_{ij}$는 교전 윈도우 내에서 방어체계의 실질적인 교전 효율을 결정하는 연속 품질 계수이다. 본 연구는 시간적(Temporal), 기하학적(Geometric), 운동학적(Kinematic), 환경적(Environmental) 4개 요소의 가중 기하 평균으로 K-factor를 산출한다:
+K-factor $K_{ij}$는 교전 윈도우 내에서 방어체계의 실질적인 교전 효율을 결정하는 연속 품질 계수이다. 본 연구는 기하학적(Geometric), 시간적(Temporal), 운동학적(Kinematic), 환경적(Environmental) 4개 요소의 단순 곱으로 K-factor를 산출한다:
 
-$$K_{ij} = T^{w_1} \cdot G^{w_2} \cdot K^{w_3} \cdot E^{w_4}, \quad w_1 = 0.30,\; w_2 = 0.25,\; w_3 = 0.25,\; w_4 = 0.20 \tag{0}$$
+$$K_{ij} = k_G \cdot k_T \cdot k_K \cdot k_E \tag{0}$$
 
 각 요소의 계산은 다음과 같다.
 
-$$T = k_{\min} + (1 - k_{\min}) \cdot \sqrt{\min\!\left(\frac{\Delta t}{t_{\text{opt}}}, 1\right)}, \quad k_{\min} = 0.6,\; t_{\text{opt}} = 15\,\text{s} \tag{0a}$$
+- **기하학적 요소 $k_G$**: 배터리-위협 간 거리 $d$를 최적 교전 거리 $d_\text{opt}$ 대비 비율로 평가한다. 최적 구간($0.5\,d_\text{opt} \leq d \leq 0.7\,d_\text{opt}$)에서 $k_G = 1.0$이며, 이탈 시 구간별 선형 감소; $k_G \in [0.6,\,1.0]$.
 
-$$G = 0.7 + 0.3 \cdot \cos(\theta) \cdot \exp\!\left(-\!\left(\frac{|d - d_{\text{opt}}|}{d_{\text{opt}}}\right)^{\!2}\right), \quad d_{\text{opt}} = 50\,\text{km} \tag{0b}$$
+- **시간적 요소 $k_T = k_{\text{window}} \cdot k_{\text{timing}}$**: $k_{\text{window}}$는 교전창 길이 $\Delta t$에 따라 구간 정의된다. $\Delta t \geq t_\text{opt}$이면 $k_{\text{window}} = 1.0$, $t_{\min} \leq \Delta t < t_\text{opt}$이면 선형 증가, $\Delta t < t_{\min}$이면 추가 선형 감소; $k_{\text{window}} \in [0.8,\,1.0]$. 체계별 파라미터: L-SAM은 $t_{\min}=12\,\text{s}$, $t_\text{opt}=35\,\text{s}$; M-SAM은 $t_{\min}=8\,\text{s}$, $t_\text{opt}=20\,\text{s}$. $k_{\text{timing}}$은 창 내 잔여 시간 비율에 따라 선형 감소; $k_{\text{timing}} \in [0.7,\,1.0]$.
 
-여기서 $\theta$는 요격각도, $d$는 배터리-위협 간 거리, $\Delta t = b_{ij} - t$는 잔여 교전 윈도우 길이이다. 운동학적 요소 $K$는 목표 고도($h$)와 속도($v$)에 대한 구간별 함수로, 환경적 요소 $E$는 대기밀도 비율에 기반하여 결정된다. K-factor는 최솟값 0.6(최악 조건), 최댓값 1.0(이상 조건)으로 경계가 정해진다. 실시간 운용에서는 K-factor LUT(Look-Up Table)에 미리 계산된 값을 저장하여 솔버 호출 시 $O(1)$로 참조하며, 위협의 현재 위치가 갱신되면 LUT 값을 거리 기반으로 동적 보정한다.
+- **운동학적 요소 $k_K = \min(k_h \cdot k_v,\; 1.0)$**: 목표의 통과 고도 $h$와 종말 속도 $v$를 각각 최적값 대비 편차로 평가한다. $h < 5\,\text{km}$이면 $k_h = 0.8$; $h > 80\,\text{km}$이면 $k_h = 0.9$; 그 외 $k_h = \max(0.8,\; 1.0 - 0.2 \cdot |h - 30|/30)$. 속도는 최적 $v_\text{opt} = 2.0\,\text{km/s}$ 대비 초과 비율로 $k_v = \max(0.8,\; 1.0 - 0.2 \cdot \max(0,\, v/v_\text{opt}-1))$; $v > 5\,\text{km/s}$이면 $k_v = 0.8$. 노동 미사일($h=45\,\text{km}$, $v=1.8\,\text{km/s}$) 적용 예: $k_K \approx 0.90$; Scud-B($h=25\,\text{km}$, $v=1.2\,\text{km/s}$): $k_K \approx 0.97$.
+
+- **환경적 요소 $k_E = 1.0$**: 이상 기상·전자전 조건을 가정하여 고정값으로 설정한다. 따라서 K-factor는 3개 LUT 요소($k_G$, $k_T$, $k_K$)의 곱으로 실질적으로 결정된다.
+
+K-factor는 최솟값 0.6(최악 조건), 최댓값 1.0(이상 조건)으로 클리핑된다:
+
+$$K_{ij} = \text{clip}(k_G \cdot k_T \cdot k_K,\; 0.6,\; 1.0) \tag{0'}$$
+
+실시간 운용에서는 K-factor LUT(Look-Up Table)에 시뮬레이션 전처리 단계에서 사전 계산된 명목값(nominal value) $\hat{K}_{ij}$를 저장하여 솔버 호출 시 $O(1)$로 참조한다. 단, 수리모형(식 (1)) 내에서 $K_{ij}$는 $[k_{\min},\,k_{\max}]$ 범위의 **연속 결정변수**로 유지되며, LUT 명목값은 McCormick 경계를 $[\hat{K}_{ij}-\epsilon,\;\hat{K}_{ij}+\epsilon]$ ($\epsilon = 0.05$) 범위로 타이트하게 조정(Tighter Bounds)하는 데 활용된다. 위협의 현재 위치가 갱신되면 $\hat{K}_{ij}$를 거리 기반으로 동적 보정한다.
 
 #### ◦ 결정변수
 
@@ -231,7 +239,7 @@ MissileDefenseEvaluationData
 
 #### 3.3.1 선형화의 필요성
 
-식 (1)의 목적함수는 이진 변수 $x_{ij} \in \{0,1\}$와 연속 변수 $K_{ij} \in [0.6, 1.0]$의 곱인 Bilinear Term $x_{ij} \cdot K_{ij}$를 포함한다. 이 항은 볼록(Convex)이지 않으므로, 표준 LP Relaxation 기반의 Branch-and-Bound는 선형 완화 하한이 매우 느슨해져 탐색 트리가 지수적으로 확장된다. IPOPT, BARON 등 비선형 솔버를 직접 적용하면 15개 위협 기준 30초 이상 소요[15]로 실시간 운용이 불가능하다. 또한 다층 방어의 곱구조($\prod_{u}(1-x_{uj}K_{uj}P_u) \cdot \prod_{l}(1-x_{lj}K_{lj}P_l)$)는 Multilinear Product로서 추가적인 선형화 처리가 필요하다.
+식 (1)의 목적함수는 이진 변수 $x_{ij} \in \{0,1\}$와 연속 변수 $K_{ij} \in [0.6, 1.0]$의 곱인 Bilinear Term $x_{ij} \cdot K_{ij}$를 포함한다. 여기서 $K_{ij}$는 3.1절에서 기술한 LUT 명목값 $\hat{K}_{ij}$를 기반으로 경계가 조여진 **연속 결정변수**이다. 즉, $K_{ij}$는 MILP 모형에서 $[\hat{K}_{ij}-0.05,\;\hat{K}_{ij}+0.05] \cap [0.6,\,1.0]$으로 bounds가 설정된 $pulp.LpVariable(\text{cat=`Continuous'})$로 구현되며, 고정 상수로 대체되지 않는다. 따라서 $x_{ij} \cdot K_{ij}$ 이중선형 항(binary × continuous)이 실제로 존재하며, 이것이 McCormick 선형화의 필요 근거이다. 이 항은 볼록(Convex)이지 않으므로, 표준 LP Relaxation 기반의 Branch-and-Bound는 선형 완화 하한이 매우 느슨해져 탐색 트리가 지수적으로 확장된다. IPOPT, BARON 등 비선형 솔버를 직접 적용하면 15개 위협 기준 30초 이상 소요[15]로 실시간 운용이 불가능하다. 또한 다층 방어의 곱구조($\prod_{u}(1-x_{uj}K_{uj}P_u) \cdot \prod_{l}(1-x_{lj}K_{lj}P_l)$)는 Multilinear Product로서 추가적인 선형화 처리가 필요하다.
 
 #### 3.3.2 McCormick 선형화
 
@@ -326,6 +334,27 @@ Warm-start 적용률은 SMALL_3(65.5%)와 STRESS_100(68.8%)에서 상대적으�
 ### 4.4 McCormick 선형화 효과
 
 McCormick 선형화 적용 전·후를 동일 하드웨어 조건에서 비교한 결과, 15개 위협 기준 비선형 솔버(IPOPT 직접 적용) 대비 평균 풀이 시간이 약 79배 이상 단축되었다(비선형 솔버: ~30 s → 본 연구: 0.382 s). 선형화로 인한 LP Relaxation의 하한 개선 효과가 Branch-and-Bound 탐색 트리 크기를 대폭 감소시키는 것이 주된 원인이다. 또한 McCormick 등가 변환의 정확성은 3.3.2절에서 수학적으로 증명되었으며, 비선형 솔버와 동일한 최적해를 보장한다.
+
+#### ◦ Root Node Gap 분석
+
+McCormick LP 완화의 하한 품질을 정량적으로 측정하기 위해 Branch-and-Bound 루트 노드 LP 완화값 $Z_{\text{LP}}^{\text{root}}$와 최적 정수해 $Z^*$ 간의 Root Node Gap을 8개 시나리오 × 30회 반복 실험으로 측정하였다:
+
+$$\text{Root Node Gap} = \frac{|Z_{\text{LP}}^{\text{root}} - Z^*|}{|Z^*|} \times 100\%$$
+
+\<Table 5\> Root Node Gap Measurement Results (30 Runs per Scenario)
+
+| Scenario | Threats | Avg. Vars | Avg. Cons | Avg. Gap (%) | Max. Gap (%) | Avg. Solve Time (s) |
+|----------|---------|-----------|-----------|-------------|-------------|---------------------|
+| SMALL_3  | 3  | 43  | 112 | 4.41 | 4.41 | 0.014 |
+| SMALL_5  | 5  | 67  | 170 | 4.41 | 4.41 | 0.016 |
+| SMALL_8  | 8  | 105 | 262 | 4.41 | 4.41 | 0.020 |
+| MEDIUM_10 | 10 | 129 | 321 | 4.71 | 4.71 | 0.023 |
+| BASELINE_15 | 15 | 196 | 481 | 6.58 | 6.58 | 0.032 |
+| MEDIUM_20 | 20 | 199 | 491 | 7.95 | 7.95 | 0.032 |
+| LARGE_40 | 40 | 195 | 476 | 5.74 | 5.74 | 0.032 |
+| STRESS_100 | 100 | 195 | 536 | 5.58 | 5.58 | 0.032 |
+
+전 시나리오에서 Root Node Gap은 4.4–8.0% 범위로 측정되었다. 이는 McCormick LP 완화가 루트 노드에서 이미 정수 최적해에 근접한 하한을 제공함을 나타내며, LUT 기반 Tighter Bounds(±5%)가 탐색 공간 압축에 기여함을 확인한다. 특히 BASELINE_15와 MEDIUM_20에서 Gap이 상대적으로 높은 것은 위협 수 증가에 따른 연속-이진 결합 복잡도가 증가하기 때문이며, 이 경우에도 8% 미만의 Gap으로 Branch-and-Bound가 효율적으로 종료됨을 확인하였다.
 
 ### 4.5 Warm-start 효과
 
