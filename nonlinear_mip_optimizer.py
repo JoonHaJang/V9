@@ -273,11 +273,12 @@ class NonLinearMIPOptimizer:
         
         # x_iu: 상층 요격체계 u가 자산 i를 방어하는 미사일 위협에 할당 (0 or 1)
         self.variables['x_upper'] = {}
-        self.variables['k_upper'] = {}
-        
-        # 하층 시스템 변수들  
+
+        # 하층 시스템 변수들
         self.variables['x_lower'] = {}
-        self.variables['k_lower'] = {}
+
+        # K_ij 상수값 저장 (결과 보고용)
+        self.k_constants = {}
         
         # ⚡ 성능 최적화: getattr 호출 최소화
         # 상층 시스템 할당 변수 생성
@@ -324,14 +325,6 @@ class NonLinearMIPOptimizer:
                                 f"x_upper_{asset_id}_{threat_id}_{system_id}",
                                 cat='Binary'
                             )
-                            
-                            # 연속 k 변수 (교전 윈도우 품질)
-                            self.variables['k_upper'][key] = pulp.LpVariable(
-                                f"k_upper_{asset_id}_{threat_id}_{system_id}",
-                                lowBound=self.k_min,
-                                upBound=self.k_max,
-                                cat='Continuous'
-                            )
         
         # 하층 시스템 할당 변수 생성
         for asset in self.assets:
@@ -376,14 +369,6 @@ class NonLinearMIPOptimizer:
                             self.variables['x_lower'][key] = pulp.LpVariable(
                                 f"x_lower_{asset_id}_{threat_id}_{system_id}",
                                 cat='Binary'
-                            )
-                            
-                            # 연속 k 변수 (교전 윈도우 품질)
-                            self.variables['k_lower'][key] = pulp.LpVariable(
-                                f"k_lower_{asset_id}_{threat_id}_{system_id}",
-                                lowBound=self.k_min,
-                                upBound=self.k_max,
-                                cat='Continuous'
                             )
         
         # 🆕 최적화: Print I/O 제거 (20-40ms 절약)
@@ -474,242 +459,112 @@ class NonLinearMIPOptimizer:
         self._linearize_asset_survival_probability()
     
     def _linearize_xkp_products(self):
-        """x*k*P 곱 항들의 개선된 McCormick 선형화 (한 단계 방식)"""
-        
-        # 상층 시스템: w_u = x_u * k_u * P_u (개선된 한 단계 선형화)
+        """w_ij = K_ij * P_ij * x_ij 선형화.
+
+        K_ij는 LUT에서 사전 계산된 상수이므로 w_ij = (K_ij * P_ij) * x_ij 는
+        이진변수에 상수를 곱한 선형 항이다. McCormick 선형화는 필요하지 않다.
+        """
+        import numpy as np
+
+        def _get_k_constant(threat_id, system_id, threat_obj, system_obj):
+            """LUT에서 K 상수값 계산 (거리 기반 or fallback)."""
+            if self.k_factor_cache and hasattr(self.k_factor_cache, 'get_k_from_distance'):
+                threat_pos = getattr(threat_obj, 'current_position', None)
+                system_pos = getattr(system_obj, 'position', None)
+                if threat_pos and system_pos:
+                    distance = np.linalg.norm(
+                        np.array(threat_pos[:2]) - np.array(system_pos[:2])
+                    )
+                    max_range = getattr(system_obj, 'engagement_range', 1.0)
+                    k = self.k_factor_cache.get_k_from_distance(distance, max_range)
+                    if k is not None:
+                        return float(np.clip(k, self.k_min, self.k_max))
+            return (self.k_min + self.k_max) / 2.0  # fallback: 중앙값
+
+        def _get_p_total(threat_id, system_id, default_p_single):
+            if self.mccormick_cache:
+                coeffs = self.mccormick_cache.get_coeffs(threat_id, system_id)
+                if coeffs:
+                    return coeffs['P_total']
+            if threat_id in self.custom_intercept_probs:
+                p = self.custom_intercept_probs[threat_id]
+            else:
+                p = default_p_single
+            return 1 - (1 - p) ** self.missiles_per_engagement
+
+        # 상층 시스템
         self.mccormick_variables['w_upper'] = {}
-        # 중간 변수 xk_upper 제거 - 개선된 방식에서는 불필요
-        
-        for asset in self.assets:
-            for threat in self.threats:
-                if getattr(threat, 'target_asset_id', '') == getattr(asset, 'id', ''):
-                    for system in self.upper_systems:
-                        key = (getattr(asset, 'id', ''), getattr(threat, 'id', ''), getattr(system, 'id', ''))
-                        
-                        if key not in self.variables['x_upper']:
-                            continue
-                        
-                        x_var = self.variables['x_upper'][key]
-                        k_var = self.variables['k_upper'][key]
-                        
-                        # 기본 요격 확률 (상층 시스템 = LSAM)
-                        base_probability = getattr(system, 'intercept_probability', 0.85)
-                        
-                        # 🆕 McCormick 계수 캐시 사용 또는 직접 계산
-                        threat_id = getattr(threat, 'id', '')
-                        system_id = getattr(system, 'id', '')
-                        
-                        if self.mccormick_cache:
-                            coeffs = self.mccormick_cache.get_coeffs(threat_id, system_id)
-                            if coeffs:
-                                P_total = coeffs['P_total']
-                                kP_max = coeffs['kP_max']
-                                kP_min = coeffs['kP_min']
-                            else:
-                                # Fallback (LSAM)
-                                P_single = 0.85
-                                P_total = 1 - (1 - P_single) ** self.missiles_per_engagement
-                                kP_max = self.k_max * P_total
-                                kP_min = self.k_min * P_total
-                        else:
-                            # 기존 방식: 매번 계산
-                            if threat_id in self.custom_intercept_probs:
-                                P_single = self.custom_intercept_probs[threat_id]
-                            else:
-                                P_single = 0.85  # LSAM 기본값
-                            P_total = 1 - (1 - P_single) ** self.missiles_per_engagement
-                            kP_max = self.k_max * P_total
-                            kP_min = self.k_min * P_total
-                        
-                        # w 변수 생성
-                        w_var = pulp.LpVariable(f"w_u_{getattr(asset, 'id', '')}_{getattr(threat, 'id', '')}_{getattr(system, 'id', '')}", 
-                                              lowBound=0, upBound=P_total)
-                        self.mccormick_variables['w_upper'][key] = w_var
-        
-        # ⚡ 성능 최적화: McCormick 제약 일괄 추가 (10-20ms 절약)
         upper_constraints = []
-        for key, w_var in self.mccormick_variables['w_upper'].items():
-            x_var = self.variables['x_upper'][key]
-            k_var = self.variables['k_upper'][key]
-            
-            # 계수 재조회
-            asset_id, threat_id, system_id = key
-            if self.mccormick_cache:
-                coeffs = self.mccormick_cache.get_coeffs(threat_id, system_id)
-                if coeffs:
-                    P_total = coeffs['P_total']
-                    kP_max = coeffs['kP_max']
-                    kP_min = coeffs['kP_min']
-                else:
-                    P_total = 0.9996
-                    kP_max = self.k_max * P_total
-                    kP_min = self.k_min * P_total
-            else:
-                P_total = 0.9996
-                kP_max = self.k_max * P_total
-                kP_min = self.k_min * P_total
-            
-            # 🔧 OPTIMIZED: Tighter McCormick Bounds (실시간 거리 기반 K값)
-            # 위협의 현재 위치 기반으로 K값 동적 계산 (LUT 사용, 초경량)
-            k_actual = None
-            if self.k_factor_cache and hasattr(self.k_factor_cache, 'get_k_from_distance'):
-                # 위협과 시스템의 현재 거리 계산
-                threat_obj = next((t for t in self.threats if t.id == threat_id), None)
-                system_obj = next((s for s in self.interceptor_systems if s.id == system_id), None)
-                
-                if threat_obj and system_obj:
-                    # 위협 현재 위치 (이미 계산됨)
-                    threat_pos = getattr(threat_obj, 'current_position', None)
-                    system_pos = getattr(system_obj, 'position', None)
-                    
-                    if threat_pos and system_pos:
-                        # 거리 계산 (벡터 연산)
-                        import numpy as np
-                        distance = np.linalg.norm(
-                            np.array(threat_pos[:2]) - np.array(system_pos[:2])
-                        )
-                        max_range = system_obj.engagement_range
-                        
-                        # LUT 기반 K값 계산 (O(1), 초고속)
-                        k_actual = self.k_factor_cache.get_k_from_distance(distance, max_range)
-            
-            if k_actual is not None:
-                # 실시간 K값 사용 (±5% 여유)
-                k_tight_min = max(self.k_min, k_actual * 0.95)
-                k_tight_max = min(self.k_max, k_actual * 1.05)
-                kP_tight_max = k_tight_max * P_total
-                kP_tight_min = k_tight_min * P_total
-            else:
-                # Fallback: 기존 범위 사용
-                kP_tight_max = kP_max
-                kP_tight_min = kP_min
-            
-            # McCormick 제약 4개 (Tighter Bounds 적용) - 리스트에 추가
-            upper_constraints.append((f"mccormick_upper_{key}_1", w_var >= kP_tight_min * x_var))
-            upper_constraints.append((f"mccormick_upper_{key}_2", w_var >= k_var * P_total - kP_tight_max * (1 - x_var)))
-            upper_constraints.append((f"mccormick_upper_{key}_3", w_var <= kP_tight_max * x_var))
-            upper_constraints.append((f"mccormick_upper_{key}_4", w_var <= k_var * P_total))
-        
-        # ⚡ 일괄 추가 (성능 개선)
-        for name, constraint in upper_constraints:
-            self.model.constraints[name] = constraint
-        
-        # 하층 시스템: w_l = x_l * k_l * P_l (동일한 개선된 방식)
-        self.mccormick_variables['w_lower'] = {}
-        # 중간 변수 xk_lower 제거 - 개선된 방식에서는 불필요
-        
+
         for asset in self.assets:
+            asset_id = getattr(asset, 'id', '')
             for threat in self.threats:
-                if getattr(threat, 'target_asset_id', '') == getattr(asset, 'id', ''):
-                    for system in self.lower_systems:
-                        key = (getattr(asset, 'id', ''), getattr(threat, 'id', ''), getattr(system, 'id', ''))
-                        
-                        if key not in self.variables['x_lower']:
-                            continue
-                        
-                        x_var = self.variables['x_lower'][key]
-                        k_var = self.variables['k_lower'][key]
-                        
-                        # 기본 요격 확률 (하층 시스템 = MSAM)
-                        base_probability = getattr(system, 'intercept_probability', 0.78)
-                        
-                        # 🆕 McCormick 계수 캐시 사용 또는 직접 계산
-                        threat_id = getattr(threat, 'id', '')
-                        system_id = getattr(system, 'id', '')
-                        
-                        if self.mccormick_cache:
-                            coeffs = self.mccormick_cache.get_coeffs(threat_id, system_id)
-                            if coeffs:
-                                P_total = coeffs['P_total']
-                                kP_max = coeffs['kP_max']
-                                kP_min = coeffs['kP_min']
-                            else:
-                                # Fallback (MSAM)
-                                P_single = 0.78
-                                P_total = 1 - (1 - P_single) ** self.missiles_per_engagement
-                                kP_max = self.k_max * P_total
-                                kP_min = self.k_min * P_total
-                        else:
-                            # 기존 방식: 매번 계산
-                            if threat_id in self.custom_intercept_probs:
-                                P_single = self.custom_intercept_probs[threat_id]
-                            else:
-                                P_single = 0.78  # MSAM 기본값
-                            P_total = 1 - (1 - P_single) ** self.missiles_per_engagement
-                            kP_max = self.k_max * P_total
-                            kP_min = self.k_min * P_total
-                        
-                        # w 변수 생성
-                        w_var = pulp.LpVariable(f"w_l_{getattr(asset, 'id', '')}_{getattr(threat, 'id', '')}_{getattr(system, 'id', '')}", 
-                                              lowBound=0, upBound=P_total)
-                        self.mccormick_variables['w_lower'][key] = w_var
-        
-        # 🆕 최적화: McCormick 제약 일괄 추가 (하층)
+                if getattr(threat, 'target_asset_id', '') != asset_id:
+                    continue
+                threat_id = getattr(threat, 'id', '')
+                for system in self.upper_systems:
+                    system_id = getattr(system, 'id', '')
+                    key = (asset_id, threat_id, system_id)
+                    if key not in self.variables['x_upper']:
+                        continue
+
+                    x_var = self.variables['x_upper'][key]
+                    system_obj = next((s for s in self.interceptor_systems if s.id == system_id), None)
+                    K_ij = _get_k_constant(threat_id, system_id, threat, system_obj)
+                    P_total = _get_p_total(threat_id, system_id, 0.85)
+                    kP = K_ij * P_total
+
+                    # K_ij 상수 저장 (보고용)
+                    self.k_constants[key] = K_ij
+
+                    w_var = pulp.LpVariable(
+                        f"w_u_{asset_id}_{threat_id}_{system_id}",
+                        lowBound=0, upBound=kP
+                    )
+                    self.mccormick_variables['w_upper'][key] = w_var
+
+                    # w = K_ij * P * x  (선형 등식, 2개 부등식으로 표현)
+                    upper_constraints.append((f"w_upper_lb_{key}", w_var >= kP * x_var))
+                    upper_constraints.append((f"w_upper_ub_{key}", w_var <= kP * x_var))
+
+        for name, con in upper_constraints:
+            self.model.constraints[name] = con
+
+        # 하층 시스템
+        self.mccormick_variables['w_lower'] = {}
         lower_constraints = []
-        for key, w_var in self.mccormick_variables['w_lower'].items():
-            x_var = self.variables['x_lower'][key]
-            k_var = self.variables['k_lower'][key]
-            
-            # 계수 재조회
-            asset_id, threat_id, system_id = key
-            if self.mccormick_cache:
-                coeffs = self.mccormick_cache.get_coeffs(threat_id, system_id)
-                if coeffs:
-                    P_total = coeffs['P_total']
-                    kP_max = coeffs['kP_max']
-                    kP_min = coeffs['kP_min']
-                else:
-                    P_total = 0.9936
-                    kP_max = self.k_max * P_total
-                    kP_min = self.k_min * P_total
-            else:
-                P_total = 0.9936
-                kP_max = self.k_max * P_total
-                kP_min = self.k_min * P_total
-            
-            # 🔧 OPTIMIZED: Tighter McCormick Bounds (실시간 거리 기반 K값)
-            k_actual = None
-            if self.k_factor_cache and hasattr(self.k_factor_cache, 'get_k_from_distance'):
-                # 위협과 시스템의 현재 거리 계산
-                threat_obj = next((t for t in self.threats if t.id == threat_id), None)
-                system_obj = next((s for s in self.interceptor_systems if s.id == system_id), None)
-                
-                if threat_obj and system_obj:
-                    threat_pos = getattr(threat_obj, 'current_position', None)
-                    system_pos = getattr(system_obj, 'position', None)
-                    
-                    if threat_pos and system_pos:
-                        import numpy as np
-                        distance = np.linalg.norm(
-                            np.array(threat_pos[:2]) - np.array(system_pos[:2])
-                        )
-                        max_range = system_obj.engagement_range
-                        k_actual = self.k_factor_cache.get_k_from_distance(distance, max_range)
-            
-            if k_actual is not None:
-                # 실시간 K값 사용 (±5% 여유)
-                k_tight_min = max(self.k_min, k_actual * 0.95)
-                k_tight_max = min(self.k_max, k_actual * 1.05)
-                kP_tight_max = k_tight_max * P_total
-                kP_tight_min = k_tight_min * P_total
-            else:
-                # Fallback: 기존 범위 사용
-                kP_tight_max = kP_max
-                kP_tight_min = kP_min
-            
-            # McCormick 제약 4개 (Tighter Bounds 적용)
-            lower_constraints.append((f"mccormick_lower_{key}_1", w_var >= kP_tight_min * x_var))
-            lower_constraints.append((f"mccormick_lower_{key}_2", w_var >= k_var * P_total - kP_tight_max * (1 - x_var)))
-            lower_constraints.append((f"mccormick_lower_{key}_3", w_var <= kP_tight_max * x_var))
-            lower_constraints.append((f"mccormick_lower_{key}_4", w_var <= k_var * P_total))
-        
-        # 일괄 추가
-        for name, constraint in lower_constraints:
-            self.model.constraints[name] = constraint
-        
-        # 🆕 최적화: Print I/O 제거
-        # print(f"McCormick w_upper variables: {len(self.mccormick_variables['w_upper'])}")
-        # print(f"McCormick w_lower variables: {len(self.mccormick_variables['w_lower'])}")
+
+        for asset in self.assets:
+            asset_id = getattr(asset, 'id', '')
+            for threat in self.threats:
+                if getattr(threat, 'target_asset_id', '') != asset_id:
+                    continue
+                threat_id = getattr(threat, 'id', '')
+                for system in self.lower_systems:
+                    system_id = getattr(system, 'id', '')
+                    key = (asset_id, threat_id, system_id)
+                    if key not in self.variables['x_lower']:
+                        continue
+
+                    x_var = self.variables['x_lower'][key]
+                    system_obj = next((s for s in self.interceptor_systems if s.id == system_id), None)
+                    K_ij = _get_k_constant(threat_id, system_id, threat, system_obj)
+                    P_total = _get_p_total(threat_id, system_id, 0.78)
+                    kP = K_ij * P_total
+
+                    self.k_constants[key] = K_ij
+
+                    w_var = pulp.LpVariable(
+                        f"w_l_{asset_id}_{threat_id}_{system_id}",
+                        lowBound=0, upBound=kP
+                    )
+                    self.mccormick_variables['w_lower'][key] = w_var
+
+                    lower_constraints.append((f"w_lower_lb_{key}", w_var >= kP * x_var))
+                    lower_constraints.append((f"w_lower_ub_{key}", w_var <= kP * x_var))
+
+        for name, con in lower_constraints:
+            self.model.constraints[name] = con
     
     def _create_survival_probability_variables(self):
         """생존 확률 변수 생성: s_u = (1 - w_u), s_l = (1 - w_l)"""
@@ -1169,126 +1024,9 @@ class NonLinearMIPOptimizer:
         
         self._add_target_engagement_limits()
         self._add_battery_simultaneous_engagement_limits()
-        
-        # k 값 제약조건 추가
-        self._add_k_value_constraints()
-        
+
         print("Added all original and realistic operational constraints")
-    
-    def _add_k_value_constraints(self):
-        """k 값에 대한 추가 제약조건 - x와 k 사이의 논리적 관계 구현"""
-        
-        # 상층 시스템: x=0일 때 k=k_min, x=1일 때 k는 교전 윈도우 품질에 따라 결정
-        for key in self.variables['x_upper']:
-            if key in self.variables['k_upper']:
-                x_var = self.variables['x_upper'][key]
-                k_var = self.variables['k_upper'][key]
-                asset_id, threat_id, system_id = key
-                
-                # x=0일 때 k를 k_min으로 강제 설정
-                # k <= k_min + (k_max - k_min) * x
-                self.model += k_var <= self.k_min + (self.k_max - self.k_min) * x_var
-                
-                # x=1일 때 k의 하한값 설정 (최소 교전 효율 보장)
-                # k >= k_min * x + k_min * (1 - x) = k_min
-                self.model += k_var >= self.k_min
-                
-                # 실제 교전 윈도우 품질 기반 k 값 계산 및 적용
-                try:
-                    # 해당 포대와 위협에 대한 교전 윈도우 품질 계산
-                    battery_info = None
-                    threat_info = None
-                    
-                    # 포대 정보 찾기
-                    for battery in self.batteries:
-                        if battery["id"] == system_id:
-                            battery_info = battery
-                            break
-                    
-                    # 위협 정보 찾기
-                    for threat in self.threats:
-                        if getattr(threat, 'id', '') == threat_id:
-                            threat_info = {
-                                "id": getattr(threat, 'id', ''),
-                                "target_asset_id": getattr(threat, 'target_asset_id', ''),
-                                "launch_position": getattr(threat, 'launch_position', (0, 0)),
-                                "flight_time": getattr(threat, 'flight_time', 300),
-                                "specs": getattr(threat, 'specs', {})
-                            }
-                            break
-                    
-                    if battery_info and threat_info:
-                        # 교전 윈도우 품질 계산
-                        from config_mip import EngagementZoneConfig
-                        window_analysis = EngagementZoneConfig.calculate_engagement_time_window(
-                            battery_info, threat_info
-                        )
-                        
-                        if window_analysis.get("can_engage", False):
-                            window_quality = window_analysis.get("window_quality", 0.8)
-                            # 윈도우 품질에 따른 k 값 범위 제한
-                            optimal_k = self.k_min + (self.k_max - self.k_min) * window_quality
-                            
-                            # x=1일 때 k를 최적값 근처로 제한
-                            # k <= optimal_k + 0.1 * (1 - x) + optimal_k * x
-                            self.model += k_var <= optimal_k + 0.1 * (1 - x_var)
-                            
-                except Exception as e:
-                    # 계산 실패 시 기본 제약조건만 적용
-                    print(f"Warning: Failed to calculate window quality for {key}: {e}")
-        
-        # 하층 시스템: 동일한 로직 적용
-        for key in self.variables['x_lower']:
-            if key in self.variables['k_lower']:
-                x_var = self.variables['x_lower'][key]
-                k_var = self.variables['k_lower'][key]
-                asset_id, threat_id, system_id = key
-                
-                # x=0일 때 k를 k_min으로 강제 설정
-                self.model += k_var <= self.k_min + (self.k_max - self.k_min) * x_var
-                
-                # x=1일 때 k의 하한값 설정
-                self.model += k_var >= self.k_min
-                
-                # 실제 교전 윈도우 품질 기반 k 값 계산 및 적용
-                try:
-                    battery_info = None
-                    threat_info = None
-                    
-                    for battery in self.batteries:
-                        if battery["id"] == system_id:
-                            battery_info = battery
-                            break
-                    
-                    for threat in self.threats:
-                        if getattr(threat, 'id', '') == threat_id:
-                            threat_info = {
-                                "id": getattr(threat, 'id', ''),
-                                "target_asset_id": getattr(threat, 'target_asset_id', ''),
-                                "launch_position": getattr(threat, 'launch_position', (0, 0)),
-                                "flight_time": getattr(threat, 'flight_time', 300),
-                                "specs": getattr(threat, 'specs', {})
-                            }
-                            break
-                    
-                    if battery_info and threat_info:
-                        from config_mip import EngagementZoneConfig
-                        window_analysis = EngagementZoneConfig.calculate_engagement_time_window(
-                            battery_info, threat_info
-                        )
-                        
-                        if window_analysis.get("can_engage", False):
-                            window_quality = window_analysis.get("window_quality", 0.8)
-                            optimal_k = self.k_min + (self.k_max - self.k_min) * window_quality
-                            
-                            # x=1일 때 k를 최적값 근처로 제한
-                            self.model += k_var <= optimal_k + 0.1 * (1 - x_var)
-                            
-                except Exception as e:
-                    print(f"Warning: Failed to calculate window quality for {key}: {e}")
-        
-        print(f"Added k-value constraints: {len(self.variables['k_upper']) + len(self.variables['k_lower'])} k variables constrained")
-    
+
     def _add_original_constraints(self):
         """원래 제약조건들 + 현실적 운영 제약조건들 추가"""
         
@@ -1304,12 +1042,9 @@ class NonLinearMIPOptimizer:
         
         self._add_target_engagement_limits()
         self._add_battery_simultaneous_engagement_limits()
-        
-        # k 값 제약조건 추가
-        self._add_k_value_constraints()
-        
+
         print("Added all original and realistic operational constraints")
-    
+
     def _add_capacity_constraints(self):
         """용량 제약조건들 추가"""
         
@@ -1565,14 +1300,14 @@ class NonLinearMIPOptimizer:
         if feasible:
             # 할당 결과 추출
             result['upper_assignments'] = self._extract_assignments('x_upper')
-            result['lower_assignments'] = self._extract_assignments('x_lower') 
-            result['upper_k_values'] = self._extract_k_values('k_upper')
-            result['lower_k_values'] = self._extract_k_values('k_lower')
+            result['lower_assignments'] = self._extract_assignments('x_lower')
+            result['upper_k_values'] = self._extract_k_values('x_upper')
+            result['lower_k_values'] = self._extract_k_values('x_lower')
             result['asset_survival_probs'] = self._extract_survival_probabilities()
-            
+
             # Backward compatibility: 기존 코드 호환성을 위한 missiles 정보 제공
-            result['upper_missiles'] = self._extract_missiles('k_upper')
-            result['lower_missiles'] = self._extract_missiles('k_lower')
+            result['upper_missiles'] = self._extract_missiles('x_upper')
+            result['lower_missiles'] = self._extract_missiles('x_lower')
         
         # print(f"Model solved in {solve_time:.3f}s | Feasible: {feasible} | Objective: {objective_value:.6f}")
         
@@ -1624,28 +1359,21 @@ class NonLinearMIPOptimizer:
         return assignments
     
     def _extract_k_values(self, var_type: str) -> Dict:
-        """k 값 (확률 보정 계수) 추출"""
+        """K 상수값 추출 (k_constants dict 기반)."""
         k_values = {}
-        
-        for key, var in self.variables[var_type].items():
-            if var.value() and var.value() > 0:
+        for key in self.variables[var_type]:
+            if key in self.k_constants:
                 asset_id, threat_id, system_id = key
-                k_values[f"{asset_id}_{threat_id}_{system_id}"] = round(var.value(), 4)
-        
+                k_values[f"{asset_id}_{threat_id}_{system_id}"] = round(self.k_constants[key], 4)
         return k_values
-    
+
     def _extract_missiles(self, var_type: str) -> Dict:
         """Backward compatibility: 기존 코드 호환성을 위한 미사일 수 추출 (교전시 2발 고정)"""
         missiles = {}
-        
-        # x 변수에서 할당된 경우만 2발로 계산
-        x_variables = self.variables[var_type]
-        
-        for key, var in x_variables.items():
-            if var.value() and var.value() > 0.5:  # 할당된 경우
+        for key, var in self.variables[var_type].items():
+            if var.value() and var.value() > 0.5:
                 asset_id, threat_id, system_id = key
-                missiles[f"{asset_id}_{threat_id}_{system_id}"] = self.missiles_per_engagement  # 2발 고정
-        
+                missiles[f"{asset_id}_{threat_id}_{system_id}"] = self.missiles_per_engagement
         return missiles
     
     def _extract_survival_probabilities(self) -> Dict:
