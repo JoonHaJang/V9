@@ -142,7 +142,7 @@ WTA 문제는 $m$개의 무기를 $n$개의 표적에 배분하여 표적의 기
 | $C_u$ / $C_l$ | 상/하층 방어체계 $u$ / $l$의 동시교전 능력 (포대당 6) |
 | $T_j$ | 탄도미사일 $j$의 위험도 |
 | $P_u$ / $P_l$ | 탄도미사일에 대한 상/하층 방어체계 $u$ / $l$의 2발 살보 격추확률 (L-SAM: 0.9775, M-SAM: 0.96) |
-| $K_{uj}$ / $K_{lj}$ | 탄도미사일 $j$에 대한 상/하층 방어체계 $u$ / $l$의 교전창 품질 계수 ※ $K_{uj}$ / $K_{lj} \in [0.6, 1.0]$ |
+| $\hat{K}_{uj}$ / $\hat{K}_{lj}$ | 탄도미사일 $j$에 대한 상/하층 방어체계 $u$ / $l$의 교전창 품질 계수 **명목값** (시뮬레이션 전처리 단계에서 사전 계산되어 LUT에 저장; 최적화 모형 내 $K_{ij}$ 변수의 경계 설정에 활용) |
 
 #### ◦ K-factor 모형
 
@@ -164,13 +164,18 @@ K-factor는 최솟값 0.6(최악 조건), 최댓값 1.0(이상 조건)으로 클
 
 $$K_{ij} = \text{clip}(k_G \cdot k_T \cdot k_K,\; 0.6,\; 1.0) \tag{0'}$$
 
-실시간 운용에서는 K-factor LUT(Look-Up Table)에 시뮬레이션 전처리 단계에서 사전 계산된 명목값(nominal value) $\hat{K}_{ij}$를 저장하여 솔버 호출 시 $O(1)$로 참조한다. 단, 수리모형(식 (1)) 내에서 $K_{ij}$는 $[k_{\min},\,k_{\max}]$ 범위의 **연속 결정변수**로 유지되며, LUT 명목값은 McCormick 경계를 $[\hat{K}_{ij}-\epsilon,\;\hat{K}_{ij}+\epsilon]$ ($\epsilon = 0.05$) 범위로 타이트하게 조정(Tighter Bounds)하는 데 활용된다. 위협의 현재 위치가 갱신되면 $\hat{K}_{ij}$를 거리 기반으로 동적 보정한다.
+K-factor의 역할은 **두 단계로 분리**된다.
+
+- **사전 계산 단계 (전처리)**: 시뮬레이션 시작 전 모든 (방어체계, 위협) 쌍에 대해 위 공식으로 명목값 $\hat{K}_{ij}$를 계산하여 LUT에 저장한다. 솔버 호출 시 $O(1)$로 조회하여 연산 비용을 제거한다. 위협의 현재 위치가 갱신되면 $\hat{K}_{ij}$를 거리 기반으로 동적 보정한다.
+
+- **최적화 단계 (MILP 내)**: $K_{ij}$는 고정 상수로 대체되지 않고, $[\hat{K}_{ij}-\epsilon,\;\hat{K}_{ij}+\epsilon] \cap [0.6,\,1.0]$ ($\epsilon=0.05$)으로 경계가 조여진 **연속 결정변수**로 유지된다. LUT 명목값은 이 경계 설정(Tighter Bounds)에 활용되며, 좁은 경계가 McCormick LP 완화의 볼록 외피를 타이트하게 조여 Branch-and-Bound 탐색 효율을 높인다. 따라서 $K_{ij}$는 파라미터(사전 고정값)가 아니라 최적화 모형의 결정변수로, 결정변수 표에 별도 기재된다.
 
 #### ◦ 결정변수
 
 | 변수 | 정의 |
 |------|------|
-| $x_{uj}(t)$ / $x_{lj}(t)$ | 상/하층 방어체계 $u$ / $l$이 교전가능 시간창 $W_{uj}(t)$ / $W_{lj}(t)$를 현재 시점 $t$의 교전계획에 포함하면 1, 아니면 0 |
+| $x_{uj}(t)$ / $x_{lj}(t)$ | 상/하층 방어체계 $u$ / $l$이 교전가능 시간창 $W_{uj}(t)$ / $W_{lj}(t)$를 현재 시점 $t$의 교전계획에 포함하면 1, 아니면 0 (이진 변수) |
+| $K_{uj}(t)$ / $K_{lj}(t)$ | 탄도미사일 $j$에 대한 상/하층 방어체계 $u$ / $l$의 교전창 품질 계수 (연속 변수; $K_{ij} \in [\hat{K}_{ij}-\epsilon,\;\hat{K}_{ij}+\epsilon] \cap [0.6,\,1.0]$, $\epsilon=0.05$) |
 
 #### ◦ 수리모형
 
@@ -239,11 +244,23 @@ MissileDefenseEvaluationData
 
 #### 3.3.1 선형화의 필요성
 
-식 (1)의 목적함수는 이진 변수 $x_{ij} \in \{0,1\}$와 연속 변수 $K_{ij} \in [0.6, 1.0]$의 곱인 Bilinear Term $x_{ij} \cdot K_{ij}$를 포함한다. 여기서 $K_{ij}$는 3.1절에서 기술한 LUT 명목값 $\hat{K}_{ij}$를 기반으로 경계가 조여진 **연속 결정변수**이다. 즉, $K_{ij}$는 MILP 모형에서 $[\hat{K}_{ij}-0.05,\;\hat{K}_{ij}+0.05] \cap [0.6,\,1.0]$으로 bounds가 설정된 $pulp.LpVariable(\text{cat=`Continuous'})$로 구현되며, 고정 상수로 대체되지 않는다. 따라서 $x_{ij} \cdot K_{ij}$ 이중선형 항(binary × continuous)이 실제로 존재하며, 이것이 McCormick 선형화의 필요 근거이다. 이 항은 볼록(Convex)이지 않으므로, 표준 LP Relaxation 기반의 Branch-and-Bound는 선형 완화 하한이 매우 느슨해져 탐색 트리가 지수적으로 확장된다. IPOPT, BARON 등 비선형 솔버를 직접 적용하면 15개 위협 기준 30초 이상 소요[15]로 실시간 운용이 불가능하다. 또한 다층 방어의 곱구조($\prod_{u}(1-x_{uj}K_{uj}P_u) \cdot \prod_{l}(1-x_{lj}K_{lj}P_l)$)는 Multilinear Product로서 추가적인 선형화 처리가 필요하다.
+식 (1)의 목적함수에 비선형·비볼록 구조가 발생하는 원천은 두 가지이다.
+
+**① 1차 Bilinear Term: $x_{ij} \cdot K_{ij}$**
+
+본 모형에서 $K_{ij}$는 3.1절의 LUT 명목값 $\hat{K}_{ij}$를 기반으로 경계가 조여진 **연속 결정변수**로 정의된다 (결정변수 표 참조). 즉, $K_{ij}$는 MILP 내에서 $[\hat{K}_{ij}-\epsilon,\;\hat{K}_{ij}+\epsilon] \cap [0.6,\,1.0]$으로 bounds가 설정된 연속 변수로서 솔버가 최적화하며, 고정 상수로 대체되지 않는다. $K_{ij}$를 연속 결정변수로 유지하는 이유는, 사전 계산된 명목값을 bounds로 활용하면 McCormick LP 완화의 볼록 외피(Convex Hull)가 정확히 조여져(Tighter Bounds) Branch-and-Bound 탐색 트리가 대폭 축소되기 때문이다. 이 구조에서 $x_{ij}$ (이진) × $K_{ij}$ (연속)는 Bilinear Term을 형성하여 LP Relaxation으로 직접 풀 수 없는 비볼록 구조가 된다.
+
+**② 다항곱 Multilinear Term: $\prod_{u}(1-w_{uj}) \cdot \prod_{l}(1-w_{lj})$**
+
+보조 변수 $w_{ij} = x_{ij} \cdot K_{ij} \cdot P_j^{(m)}$를 도입하더라도, 다층 방어 생존 확률의 곱구조 $\prod_{u}(1-w_{uj}) \cdot \prod_{l}(1-w_{lj})$는 다항곱(Multilinear Product)으로서 추가 선형화가 필요하다. Binary Tree 분해(3.3.3절)로 이 곱을 순차 보조 변수 $z_k$로 전개하면, 각 단계에서 $z_{k-1}$(연속) × $(1-w_{(k+1)j})$(연속, $x$를 포함)의 Bilinear Term이 다시 발생한다. 이 Bilinear Term은 $K_{ij}$가 고정 상수라 하더라도 필연적으로 생성되므로, McCormick 선형화는 $K_{ij}$의 변수·파라미터 여부와 무관하게 요구된다.
+
+두 원천 모두 표준 LP Relaxation 기반 Branch-and-Bound에서 선형 완화 하한을 극도로 느슨하게 만들며, IPOPT·BARON 등 비선형 솔버를 직접 적용하면 15개 위협 기준 30초 이상 소요[15]로 실시간 운용이 불가능하다. McCormick 선형화는 이 두 수준의 Bilinear Term을 각각 4개의 선형 부등식으로 등가 변환하여 문제를 표준 MILP로 전환한다.
 
 #### 3.3.2 McCormick 선형화
 
-보조 변수 $w_{ij} = x_{ij} \cdot K_{ij} \cdot P_j^{(m)}$를 도입하면, Bilinear Term을 McCormick(1976)[11]이 제시한 다음 4개 선형 부등식으로 등가 변환할 수 있다:
+McCormick 선형화는 3.3.1절에서 제시한 두 수준의 Bilinear Term에 각각 적용된다.
+
+**[1수준] $w_{ij}$ 선형화**: 보조 변수 $w_{ij} = x_{ij} \cdot K_{ij} \cdot P_j^{(m)}$를 도입하여 $x_{ij}$(이진) × $K_{ij}$(연속 결정변수)의 Bilinear Term을 McCormick(1976)[11]이 제시한 다음 4개 선형 부등식으로 등가 변환한다:
 
 $$w_{ij} \geq k_{\min} \cdot P_j^{(m)} \cdot x_{ij} \tag{8}$$
 
@@ -259,11 +276,11 @@ $$w_{ij} \leq K_{ij} \cdot P_j^{(m)} \tag{11}$$
 
 #### 3.3.3 MIP 문제 구성
 
-다항곱 $\prod_{u}(1-w_{uj}) \cdot \prod_{l}(1-w_{lj})$는 이진 트리(Binary Tree) 구조로 분해하여 선형화한다. 위협 $j$에 대한 상층 시스템 생존 확률 $S_j^U = \prod_{u}(1-w_{uj})$를 Binary Tree 방식으로 순차적으로 보조 변수 $z_k$를 도입하여 처리한다:
+**[2수준] Binary Tree 분해**: 다항곱 $\prod_{u}(1-w_{uj}) \cdot \prod_{l}(1-w_{lj})$는 이진 트리(Binary Tree) 구조로 분해하여 선형화한다. 위협 $j$에 대한 상층 생존 확률 $S_j^U = \prod_{u}(1-w_{uj})$를 순차 보조 변수 $z_k$로 전개한다:
 
 $$z_1 = (1-w_{1j}),\quad z_{k+1} = z_k \cdot (1 - w_{(k+1)j}), \quad k = 1, \ldots, |U|-1$$
 
-각 단계의 Bilinear Term $z_k \cdot (1-w_{(k+1)j})$에 McCormick 선형화를 반복 적용하며, 하층도 동일하게 처리한다. 최종 MIP 모형은 이진 변수($x_{ij}$), 연속 변수($K_{ij}$, $w_{ij}$, $z_k$)와 선형 제약만으로 구성된 표준 MILP(Mixed Integer Linear Programming) 형태가 된다.
+각 단계의 $z_k$(연속) × $(1-w_{(k+1)j})$(연속, $x_{(k+1)j}$를 포함)는 **2수준 Bilinear Term**으로, McCormick 선형화를 반복 적용한다. 이 Bilinear Term은 $K_{ij}$가 고정 상수라 하더라도 $w_{ij} = c_{ij} \cdot x_{ij}$를 $z_k$에 곱하는 구조상 필연적으로 발생한다. 하층 생존 확률 $S_j^L$도 동일하게 처리한다. 최종 MIP 모형은 이진 변수($x_{ij}$), 연속 변수($K_{ij}$, $w_{ij}$, $z_k$)와 선형 제약만으로 구성된 표준 MILP 형태가 된다.
 
 #### 3.3.4 Branch-and-Bound 기반 최적화
 
