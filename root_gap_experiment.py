@@ -28,8 +28,8 @@ SCENARIOS = [
     ("STRESS100",  "STRESS_100"),
 ]
 
-N_RUNS        = 10   # 시나리오당 독립 반복 횟수
-N_SAMPLES     = 20   # 시나리오 전체 기간을 N등분하여 각 구간 중간에서 gap 측정
+N_RUNS        = 30   # 시나리오당 독립 반복 횟수
+N_SAMPLES     = 30   # 시나리오 전체 기간을 N등분하여 각 구간 중간에서 gap 측정
 MAX_DURATION  = 700  # 시뮬레이션 최대 지속 시간 (초)
 
 
