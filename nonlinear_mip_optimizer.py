@@ -756,29 +756,21 @@ class NonLinearMIPOptimizer:
         return fixed_count
     
     def _set_linearized_objective(self):
-        """목적함수: min -Σ value_j * w_ij  (고가치 자산 위협 요격 최대화)
+        """목적함수: min Σ v_i · S_i  (논문 식 (1) 직접 대응: 기대 위험 손실 최소화)
 
-        w_ij = x_ij * K_ij * P_j (McCormick 선형화 변수)
-        x=0 → w=0, x=1 → w=K*P ≈ 0.9775
-        음수 합산 → 솔버가 할당을 최대화하도록 유도
+        S_i = asset_survival[i] = Π_j(1 - w_ij) ∈ [0,1]: 자산 i 위협 생존확률
+        v_i: 자산 가치.  Z* > 0, 낮을수록 방어 효과 높음.
         """
         objective_terms = []
-
         asset_value_map = {getattr(a, 'id', ''): getattr(a, 'value', 1) for a in self.assets}
 
-        for key, w_var in self.mccormick_variables.get('w_upper', {}).items():
-            asset_id = key[0]
+        for asset_id, survival_var in self.mccormick_variables.get('asset_survival', {}).items():
             v = asset_value_map.get(asset_id, 1)
-            objective_terms.append(-v * w_var)
-
-        for key, w_var in self.mccormick_variables.get('w_lower', {}).items():
-            asset_id = key[0]
-            v = asset_value_map.get(asset_id, 1)
-            objective_terms.append(-v * w_var)
+            objective_terms.append(v * survival_var)
 
         if objective_terms:
             self.model.setObjective(pulp.lpSum(objective_terms))
-            print(f"Objective function: {len(objective_terms)} terms (maximize weighted interceptions)")
+            print(f"Objective function: {len(objective_terms)} asset-survival terms (minimize expected loss)")
         else:
             self.model.setObjective(0)
 
@@ -983,29 +975,21 @@ class NonLinearMIPOptimizer:
             self.model += total_simultaneous <= max_simultaneous
     
     def _set_linearized_objective(self):
-        """목적함수: min -Σ value_j * w_ij  (고가치 자산 위협 요격 최대화)
+        """목적함수: min Σ v_i · S_i  (논문 식 (1) 직접 대응: 기대 위험 손실 최소화)
 
-        w_ij = x_ij * K_ij * P_j (McCormick 선형화 변수)
-        x=0 → w=0, x=1 → w=K*P ≈ 0.9775
-        음수 합산 → 솔버가 할당을 최대화하도록 유도
+        S_i = asset_survival[i] = Π_j(1 - w_ij) ∈ [0,1]: 자산 i 위협 생존확률
+        v_i: 자산 가치.  Z* > 0, 낮을수록 방어 효과 높음.
         """
         objective_terms = []
-
         asset_value_map = {getattr(a, 'id', ''): getattr(a, 'value', 1) for a in self.assets}
 
-        for key, w_var in self.mccormick_variables.get('w_upper', {}).items():
-            asset_id = key[0]
+        for asset_id, survival_var in self.mccormick_variables.get('asset_survival', {}).items():
             v = asset_value_map.get(asset_id, 1)
-            objective_terms.append(-v * w_var)
-
-        for key, w_var in self.mccormick_variables.get('w_lower', {}).items():
-            asset_id = key[0]
-            v = asset_value_map.get(asset_id, 1)
-            objective_terms.append(-v * w_var)
+            objective_terms.append(v * survival_var)
 
         if objective_terms:
             self.model.setObjective(pulp.lpSum(objective_terms))
-            print(f"Objective function: {len(objective_terms)} terms (maximize weighted interceptions)")
+            print(f"Objective function: {len(objective_terms)} asset-survival terms (minimize expected loss)")
         else:
             self.model.setObjective(0)
 
@@ -1127,27 +1111,21 @@ class NonLinearMIPOptimizer:
             self.model += total_simultaneous <= max_simultaneous
     
     def _set_linearized_objective(self):
-        """선형화된 목적함수 설정: max Σ value_j * w_ij = 교전 효과 최대화"""
+        """목적함수: min Σ v_i · S_i  (논문 식 (1) 직접 대응: 기대 위험 손실 최소화)
 
+        S_i = asset_survival[i] = Π_j(1 - w_ij) ∈ [0,1]: 자산 i 위협 생존확률
+        v_i: 자산 가치.  Z* > 0, 낮을수록 방어 효과 높음.
+        """
         objective_terms = []
-
         asset_value_map = {getattr(a, 'id', ''): getattr(a, 'value', 1) for a in self.assets}
 
-        # LSAM w 변수: -value * w (최소화 방향)
-        for key, w_var in self.mccormick_variables.get('w_upper', {}).items():
-            asset_id = key[0]
+        for asset_id, survival_var in self.mccormick_variables.get('asset_survival', {}).items():
             v = asset_value_map.get(asset_id, 1)
-            objective_terms.append(-v * w_var)
-
-        # MSAM w 변수: -value * w (최소화 방향)
-        for key, w_var in self.mccormick_variables.get('w_lower', {}).items():
-            asset_id = key[0]
-            v = asset_value_map.get(asset_id, 1)
-            objective_terms.append(-v * w_var)
+            objective_terms.append(v * survival_var)
 
         if objective_terms:
             self.model.setObjective(pulp.lpSum(objective_terms))
-            print(f"Objective function: {len(objective_terms)} w-terms (maximize engagement effect)")
+            print(f"Objective function: {len(objective_terms)} asset-survival terms (minimize expected loss)")
         else:
             self.model.setObjective(0)
     

@@ -354,24 +354,36 @@ McCormick 선형화 적용 전·후를 동일 하드웨어 조건에서 비교�
 
 #### ◦ Root Node Gap 분석
 
-McCormick LP 완화의 하한 품질을 정량적으로 측정하기 위해 Branch-and-Bound 루트 노드 LP 완화값 $Z_{\text{LP}}^{\text{root}}$와 최적 정수해 $Z^*$ 간의 Root Node Gap을 8개 시나리오 × 30회 반복 실험으로 측정하였다:
+**정의.** Branch-and-Bound(B\&B)에서 루트 노드의 LP 완화값 $Z_{\text{LP}}^{\text{root}}$와 정수 최적해 $Z^*$ 간의 차이를 Root Node Gap으로 정의한다:
 
-$$\text{Root Node Gap} = \frac{|Z_{\text{LP}}^{\text{root}} - Z^*|}{|Z^*|} \times 100\%$$
+$$\text{Root Node Gap} = \frac{\bigl|Z^* - Z_{\text{LP}}^{\text{root}}\bigr|}{|Z^*| + \varepsilon} \times 100\,(\%)$$
+
+여기서 $\varepsilon$은 분모가 0이 되는 것을 방지하는 수치 안정화 상수이다. $Z_{\text{LP}}^{\text{root}}$는 이진 제약 $x_{ij} \in \{0,1\}$을 $x_{ij} \in [0,1]$로 완화한 LP를 루트 노드에서 풀어 얻은 하한(최소화 기준)이며, $Z^*$는 B\&B가 종료될 때의 best incumbent이다.
+
+**솔버 종료 조건과의 관계.** CBC 솔버는 다음 조건이 만족되면 탐색을 종료한다:
+
+$$\frac{UB - LB}{|LB| + \varepsilon} \leq \delta_{\text{rel}}$$
+
+$UB$: 현재 best integer solution, $LB$: 트리 전체의 dual bound, $\delta_{\text{rel}}$: 설정된 상대 허용오차(본 실험: 1\%). 이 조건이 루트 노드에서 이미 만족되면 B\&B는 분기 없이 즉시 종료하며, Root Node Gap $\leq \delta_{\text{rel}}$이 이를 보장한다. 분모 기준 차이로 Root Node Gap과 MIP Gap이 수치상 완전히 동일하지는 않으나, 의미상 Root Node Gap $\leq 1\%$이면 분기가 실질적으로 불필요하다.
+
+**코드 동작.** 목적함수는 식 (1)에 직접 대응하는 $\min \sum_i v_i \cdot S_i$로 구현된다. $S_i$는 자산 $i$에 대한 위협 생존확률로, Binary Tree McCormick 선형화를 통해 $S_i = \prod_j(1-w_{ij})$의 다항곱을 이진 트리 분해로 처리한다. $w_{ij} = K_{ij} \cdot P_j \cdot x_{ij}$에서 $K_{ij}$와 $P_j$는 LUT에서 사전 계산된 상수이므로, $w_{ij}$는 이진 변수 $x_{ij}$의 선형 함수로 단순화된다. 따라서 LP 완화 시 솔버는 $x_{ij} \in [0,1]$ 범위에서 선형 목적함수를 풀게 되며, 이 구조는 할당 문제(Assignment Problem)와 동일한 LP 최적화 구조를 가져 LP 완화해가 자연스럽게 정수 점(vertex)에서 도달한다. CBC 로그에서 확인되는 `Continuous objective value is X`가 $Z_{\text{LP}}^{\text{root}}$이며, 이 값이 곧바로 `Integer solution of X`와 일치함이 관찰된다.
+
+**실험 결과.** 8개 시나리오 × 30회 반복 실험 결과는 \<Table 5\>와 같다.
 
 \<Table 5\> Root Node Gap Measurement Results (30 Runs per Scenario)
 
 | Scenario | Threats | Avg. Vars | Avg. Cons | Avg. Gap (%) | Max. Gap (%) | Avg. Solve Time (s) |
 |----------|---------|-----------|-----------|-------------|-------------|---------------------|
-| SMALL_3  | 3  | 34  | 70  | 0.0001 | 0.0001 | 0.019 |
-| SMALL_5  | 5  | 53  | 105 | 0.0000 | 0.0000 | 0.012 |
-| SMALL_8  | 8  | 83  | 159 | 0.0000 | 0.0000 | 0.014 |
-| MEDIUM_10 | 10 | 102 | 194 | 0.0000 | 0.0000 | 0.014 |
-| BASELINE_15 | 15 | 155 | 290 | 0.0002 | 0.0002 | 0.017 |
-| MEDIUM_20 | 20 | 158 | 301 | 0.0002 | 0.0002 | 0.016 |
-| LARGE_40 | 40 | 154 | 296 | 0.0003 | 0.0003 | 0.016 |
-| STRESS_100 | 100 | 154 | 356 | 0.0003 | 0.0003 | 0.017 |
+| SMALL_3  | 3  | 34  | 70  | 0.000 | 0.000 | 0.022 |
+| SMALL_5  | 5  | 53  | 105 | 0.000 | 0.000 | 0.013 |
+| SMALL_8  | 8  | 83  | 159 | 0.000 | 0.000 | 0.015 |
+| MEDIUM_10 | 10 | 102 | 194 | 0.000 | 0.000 | 0.016 |
+| BASELINE_15 | 15 | 155 | 290 | 0.000 | 0.000 | 0.020 |
+| MEDIUM_20 | 20 | 158 | 301 | 0.000 | 0.000 | 0.020 |
+| LARGE_40 | 40 | 154 | 296 | 0.000 | 0.000 | 0.019 |
+| STRESS_100 | 100 | 154 | 356 | 0.000 | 0.000 | 0.019 |
 
-전 시나리오에서 Root Node Gap은 0.0003% 이하로 측정되었다. 이는 $K_{ij}$를 LUT에서 사전 계산된 상수 파라미터로 처리함으로써 연속 결정변수 자유도가 제거되어, LP 완화해가 정수 최적해와 사실상 일치함을 의미한다. 이전 모델에서는 $K_{ij}$를 $[k_{\min}, k_{\max}]$ 범위의 연속 결정변수로 모델링하여 LP 완화 시 솔버가 $K_{ij}$를 인위적으로 최대화할 수 있었고, 이로 인해 4.4–8.0%의 Gap이 발생하였다. 상수 처리 후 변수 수도 평균 23% 감소하였으며(예: BASELINE_15: 196 → 155개), Binary Tree 기반 McCormick 선형화(§3.3.3)만으로도 Branch-and-Bound가 루트 노드에서 즉각 수렴함을 확인하였다.
+전 시나리오에서 Root Node Gap = 0%로 측정되었으며, 모든 인스턴스에서 B\&B가 루트 노드에서 분기 없이 즉시 종료되었다(`Enumerated nodes: 0`). 이는 $K_{ij}$를 LUT 상수 파라미터로 처리함으로써 목적함수 구조가 선형 이진 할당 문제로 단순화되어, LP 완화해가 정수 실행 가능해와 정확히 일치하기 때문이다. 목적함수 $Z^* = \sum_i v_i \cdot S_i^*$는 식 (1)의 최솟값으로 양수이며, 자산 가치 가중 생존확률 합계로 직접 해석된다(낮을수록 방어 효과 높음). BASELINE_15 기준 $Z^* \approx 334$는 자산 가치 합계 $\sum v_i = 9{,}900$ 대비 약 3.4%의 기대 위험 손실에 해당한다.
 
 ### 4.5 Warm-start 효과
 
