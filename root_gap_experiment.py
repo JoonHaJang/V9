@@ -28,7 +28,7 @@ SCENARIOS = [
     ("STRESS100",  "STRESS_100"),
 ]
 
-N_RUNS        = 30   # 시나리오당 독립 반복 횟수
+N_RUNS        = 35   # 시나리오당 독립 반복 횟수 (30구간 × 35회 ≈ 1,000 샘플, MC 1,000회와 통일)
 N_SAMPLES     = 30   # 시나리오 전체 기간을 N등분하여 각 구간 중간에서 gap 측정
 MAX_DURATION  = 700  # 시뮬레이션 최대 지속 시간 (초)
 
@@ -113,16 +113,26 @@ def run_one_rolling(scenario_data):
     sd['batteries'] = batteries
 
     threats_raw = sd.get('threats', [])
+    assets_raw  = sd.get('assets', [])
     intercepted = set()
     max_flight  = max((t.get('launch_time', 0) + t.get('flight_time', 300)
                        for t in threats_raw), default=MAX_DURATION)
     end_time    = min(max_flight, MAX_DURATION)
 
-    # engagement matrix 한 번만 생성하여 재사용
+    # 시나리오 실제 위협·포대 정보로 engagement matrix 생성 (시나리오별 1회)
     import io, contextlib as _ctx
     from config_mip import EngagementZoneConfig
+    shared_matrix = {}
     with _ctx.redirect_stdout(io.StringIO()):
-        shared_matrix = EngagementZoneConfig.create_engagement_matrix()
+        for bat in batteries:
+            for thr in threats_raw:
+                key = (bat['id'], thr.get('id', ''))
+                try:
+                    result_eng = EngagementZoneConfig.can_engage_trajectory(
+                        bat, thr, assets_raw)
+                    shared_matrix[key] = result_eng.get('can_engage', False)
+                except Exception:
+                    shared_matrix[key] = False
 
     # 시나리오 기간을 N_SAMPLES 등분하여 샘플 시점 선택
     first_launch = min((t.get('launch_time', 0) for t in threats_raw), default=0)
