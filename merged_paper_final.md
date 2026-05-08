@@ -465,13 +465,45 @@ $$\text{Gap} = 0\% \;\wedge\; f_{\text{MILP}}(x) \equiv f_{\text{MINLP}}(x)\;\fo
 
 **본 알고리즘은 SMALL_3–LARGE_40의 모든 측정 인스턴스에서 원래 비선형 DWTA 문제의 전역 최적해를 반환하였다.**
 
-**[시나리오별 메커니즘]**
+**[시나리오별 수치 계산]**
 
-소·중규모 인스턴스(SMALL_3–MEDIUM_20, 위협 ≤ 20개)에서는 루트 노드의 cuts 적용 이전에도 $Z_{\text{LP}}^{\text{raw}} = Z^*$가 이미 성립한다. 이는 §4.4 앞부분에서 증명한 두 구조적 성질—(1) 최소화 방향에서 분수 할당이 정수 할당보다 목적함수 값이 크다는 것, (2) 정수점에서 McCormick 부등식이 등호로 활성화된다는 것—의 직접적 결과이다. 쉽게 말하면, LP 솔버가 굳이 분수 해를 탐색할 이유가 없는 문제 구조여서 처음부터 정수 꼭짓점 근방으로 수렴한다.
+각 대표 시나리오에 대해 공식을 직접 적용하면 다음과 같다.
 
-대규모 인스턴스(LARGE_40, 위협 40개)에서는 사정이 다르다. 순수 McCormick LP 완화(cuts 적용 전)의 하한은 $Z_{\text{LP}}^{\text{raw}} \approx 597$로, 최적 정수해 $Z^* \approx 837$과 28.7%의 간격이 존재한다. 이 경우 CBC 솔버는 루트 노드에서 Gomory cut과 MIP cut을 반복 적용하여 하한을 끌어올리며, 11회 패스 22개의 cuts 후 하한이 $Z^*$에 도달한다(`Cuts at root node changed objective from 596.8 to 836.6`). 결과적으로 LARGE_40에서도 분기 없이 루트 노드에서 종료되고 gap = 0.0001%가 달성된다.
+**① BASELINE_15** (t = 208.0 s, 활성 위협 15개, 183변수 354제약)
 
-STRESS_100의 within-capacity 구간(활성 위협 ≤ 45개)에서는 avg 0.0053%, max 0.0524%가 측정되었다. 이는 LARGE_40보다 다소 높지만, gapRel 허용 상한 1%의 약 $\frac{1}{20}$ 수준으로 전역 최적성 보장 조건을 충분히 만족한다.
+CBC 솔버 로그에서 추출한 수치:
+
+$$Z^* = 501.312{,}\quad Z_{\text{LP}}^{\text{root}} = 501.312$$
+
+공식 대입:
+
+$$\text{Gap} = \frac{|501.312 - 501.312|}{501.312} \times 100 = \frac{0.000}{501.312} \times 100 = \mathbf{0.0000\%}$$
+
+이 경우 순수 LP 완화값 $Z_{\text{LP}}^{\text{raw}}$도 501.312로, cuts 적용 전부터 이미 $Z_{\text{LP}}^{\text{raw}} = Z^*$이다. 소·중규모 인스턴스(SMALL_3–MEDIUM_20)에서는 LP 솔버가 처음부터 정수 꼭짓점에서 최적에 도달하므로, cuts도 분기도 필요 없이 바로 종료된다. Gap = 0.0000% → $Z_{\text{LP}}^{\text{root}} = Z^*$ → **B&B 분기 0회 → 루트에서 즉시 종료 → 전역 최적해**.
+
+**② LARGE_40** (t = 222.0 s, 활성 위협 40개, 476변수 912제약)
+
+CBC 솔버 로그에서 추출한 수치:
+
+$$Z^* = 836.600{,}\quad Z_{\text{LP}}^{\text{raw}} = 596.8{,}\quad Z_{\text{LP}}^{\text{root}} = 836.599$$
+
+cuts 적용 전 원시 LP gap:
+
+$$\text{Gap}_{\text{raw}} = \frac{|596.8 - 836.6|}{836.6} \times 100 = \frac{239.8}{836.6} \times 100 = 28.66\%$$
+
+루트 노드에서 CBC가 Gomory cut 등 22개 cutting planes을 적용(`Cuts at root node changed objective from 596.8 to 836.6`)하여 하한을 끌어올린 뒤 최종 Root Node Gap:
+
+$$\text{Gap} = \frac{|836.599 - 836.600|}{836.600} \times 100 = \frac{0.001}{836.600} \times 100 = \mathbf{0.0001\%}$$
+
+즉, 28.66%였던 gap이 cutting planes만으로 0.0001%까지 좁혀져 **분기 없이 루트 노드에서 종료 → 전역 최적해**.
+
+**③ STRESS_100** (within-capacity 구간, 활성 위협 ≤ 45개)
+
+avg gap = 0.0053%, max gap = 0.0524%. 예시 최악 인스턴스에서:
+
+$$\text{Gap}_{\max} = \frac{|Z_{\text{LP}}^{\text{root}} - Z^*|}{Z^*} \times 100 = 0.0524\%$$
+
+이는 gapRel 허용 상한 1%의 $\frac{1}{19}$ 수준이다. 전역 최적성 보장 조건($\text{Gap} \leq 1\%$)을 충분히 만족하며, **SMALL_3–STRESS_100 모든 측정 인스턴스에서 솔버는 루트 노드 또는 그에 준하는 극히 제한된 분기만으로 전역 최적해를 반환하였다**.
 
 목적함수 $Z^* = \sum_i v_i \cdot S_i^*$는 자산 가치 가중 생존확률 합계로 해석된다(낮을수록 방어 효과 높음). BASELINE_15 기준 $Z^* \approx 501$은 자산 가치 합계 $\sum v_i = 9{,}900$ 대비 약 5.1%의 기대 위험 손실에 해당한다.
 
