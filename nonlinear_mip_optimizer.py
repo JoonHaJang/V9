@@ -266,10 +266,11 @@ class NonLinearMIPOptimizer:
         
         # 🆕 교전 매트릭스 처리 (캐시 사용 또는 기존 방식)
         if not self.engagement_matrix_cache:
-            # 기존 방식: 매번 생성 (느림)
-            from config_mip import EngagementZoneConfig
-            self.engagement_matrix = EngagementZoneConfig.create_engagement_matrix()
-            print(f"Engagement matrix created with {len(self.engagement_matrix)} battery-threat pairs")
+            # 이미 dict로 설정된 경우 재생성 생략
+            if not self.engagement_matrix:
+                from config_mip import EngagementZoneConfig
+                self.engagement_matrix = EngagementZoneConfig.create_engagement_matrix()
+                print(f"Engagement matrix created with {len(self.engagement_matrix)} battery-threat pairs")
         
         # x_iu: 상층 요격체계 u가 자산 i를 방어하는 미사일 위협에 할당 (0 or 1)
         self.variables['x_upper'] = {}

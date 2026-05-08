@@ -228,12 +228,12 @@ class HeadlessTracker:
             # 시스템 스펙 추출
             if battery['system_type'] == 'LSAM':
                 specs = battery['specs']['ballistic_missile_specs']
-                Pk = specs['intercept_probability']
+                Pk = specs.get('intercept_probability') or specs.get('intercept_probability_single', 0.85)
                 Range = specs['engagement_range_km']['max']
                 max_missiles = battery['specs']['battery_config'].get('simultaneous_engagements', 2)
             elif battery['system_type'] == 'MSAM':
                 specs = battery['specs']['ballistic_missile_specs']
-                Pk = specs['intercept_probability']
+                Pk = specs.get('intercept_probability') or specs.get('intercept_probability_single', 0.85)
                 Range = specs['engagement_range_km']['max']
                 max_missiles = battery['specs']['battery_config'].get('simultaneous_engagements', 2)
             else:
