@@ -366,7 +366,19 @@ $$\frac{UB - LB}{|LB| + \varepsilon} \leq \delta_{\text{rel}}$$
 
 $UB$: 현재 best integer solution, $LB$: 트리 전체의 dual bound, $\delta_{\text{rel}}$: 설정된 상대 허용오차(본 실험: 1\%). 이 조건이 루트 노드에서 이미 만족되면 B\&B는 분기 없이 즉시 종료하며, Root Node Gap $\leq \delta_{\text{rel}}$이 이를 보장한다. 분모 기준 차이로 Root Node Gap과 MIP Gap이 수치상 완전히 동일하지는 않으나, 의미상 Root Node Gap $\leq 1\%$이면 분기가 실질적으로 불필요하다.
 
-**코드 동작 및 0% Gap의 인과관계.** 목적함수는 식 (1)에 직접 대응하는 $\min \sum_i v_i \cdot S_i$로 구현된다. $S_i = \prod_j(1-w_{ij})$는 Binary Tree McCormick 선형화를 통해 처리되며, $w_{ij} = K_{ij} \cdot P_j \cdot x_{ij}$ ($K_{ij}$, $P_j$는 상수)이다. 각 (자산, 위협, 시스템) 조합에 대해 시스템 $k$들의 s 변수가 생성되고, 이진 트리 분해로 다항곱이 선형화된다. Root Node Gap이 0%인 원인은 $K_{ij}$의 상수화 자체가 아니라, **최소화 목적과 단일 할당 제약의 수학적 조합**에 있다. 각 위협 $j$에 대해 교전 제약 $\sum_k x_{jk} \leq 1$이 적용될 때, LP 완화에서 분수해는 정수해보다 $S_i$를 오히려 크게(불리하게) 만든다. 예를 들어 두 시스템 $a > b$에 대해 $x_1=0.5, x_2=0.5$이면 $(1-0.5a)(1-0.5b) = 1-0.5a-0.5b+0.25ab > 1-a$ 이므로, 최소화 방향에서 분수해는 정수해에 비해 열등하다. 결과적으로 LP 완화가 자연스럽게 정수 꼭짓점에서 최적해를 달성하며, Binary Tree McCormick 선형화의 LP 완화 envelope이 정수해에서 정확히 tight하게 된다. CBC 로그에서 `Continuous objective value is X`($Z_{\text{LP}}^{\text{root}}$)와 `Integer solution of X`($Z^*$)가 동일한 값으로 출력된다.
+**코드 동작 및 0% Gap의 인과관계.** 목적함수는 식 (1)에 직접 대응하는 $\min \sum_i v_i \cdot S_i$로 구현된다. $S_i = \prod_j(1-w_{ij})$는 Binary Tree McCormick 선형화를 통해 처리되며, $w_{ij} = K_{ij} \cdot P_j \cdot x_{ij}$ ($K_{ij}$, $P_j$는 상수)이다. Binary Tree의 각 단계 $z_k = z_{k-1} \cdot (1 - c_{kj} \cdot x_{kj})$는 이진-연속 Bilinear Term으로, McCormick 선형화가 적용된다.
+
+McCormick 선형화는 relaxation method이므로 $Z_{\text{LP}}^{\text{root}} \leq Z^*$ (최소화 기준 하한)를 항상 보장하며, 원칙적으로 양의 Gap이 발생할 수 있다. 그러나 본 문제에서 $Z_{\text{LP}}^{\text{root}} = Z^*$, 즉 Gap = 0%가 되는 이유는 **LP 최적해 자체가 정수 꼭짓점(integer vertex)에서 달성되기 때문**이다. 이는 두 가지 구조적 성질이 결합된 결과이다.
+
+**(1) 최소화 + 단일 교전 제약의 수학적 구조.** 위협 $j$에 대해 교전 제약 $\sum_k x_{kj} \leq 1$이 적용될 때, LP 완화에서의 분수해는 정수해보다 생존확률 $S_i$가 오히려 크다. 요격 성능 $c_1 > c_2 \geq 0$인 두 무기체계에 대해 분수 할당 $x_1 = \alpha,\; x_2 = 1-\alpha$ ($\alpha \in (0,1)$)와 최적 정수 할당 $x_1=1, x_2=0$을 비교하면:
+
+$$S(\alpha) - S(1,0) = (1-\alpha)\bigl[c_1 - c_2 + \alpha c_1 c_2\bigr] \geq 0$$
+
+$c_1 > c_2$이므로 괄호 안이 항상 양수, 따라서 $S(\alpha) \geq S(1,0)$이 성립한다. 최소화 방향에서 분수해는 반드시 정수해보다 열등하므로, LP 솔버는 자연스럽게 정수 꼭짓점을 선택한다.
+
+**(2) 정수 꼭짓점에서의 McCormick Tightness.** 모든 $x_{kj} \in \{0,1\}$인 정수점에서 Binary Tree의 각 단계 보조 변수 $z_k$의 값이 정확히 결정되고, 이 점에서 McCormick 4개 부등식이 등호로 만족된다(tight). 따라서 McCormick LP 완화의 최적값은 정수 최적값과 동일하게 된다.
+
+이 두 성질의 결합으로 LP 솔버는 정수 꼭짓점에서 멈추며, CBC 로그에서 `Continuous objective value is X`($Z_{\text{LP}}^{\text{root}}$)와 `Integer solution of X`($Z^*$)가 동일한 값으로 출력된다. 경험적 검증으로 모든 정수 제약을 제거한 순수 LP를 BASELINE_15에 적용한 결과 $Z_{\text{LP}}^{\text{pure}} = 334.208 = Z^*$이며, 모든 $x_{ij}$ 변수가 자연스럽게 0 또는 1의 값을 취함이 확인되었다.
 
 **실험 결과.** 8개 시나리오 × 30회 반복 실험 결과는 \<Table 5\>와 같다.
 
@@ -383,7 +395,7 @@ $UB$: 현재 best integer solution, $LB$: 트리 전체의 dual bound, $\delta_{
 | LARGE_40 | 40 | 154 | 296 | 0.000 | 0.000 | 0.019 |
 | STRESS_100 | 100 | 154 | 356 | 0.000 | 0.000 | 0.019 |
 
-전 시나리오에서 Root Node Gap = 0%로 측정되었으며, 모든 인스턴스에서 B\&B가 루트 노드에서 분기 없이 즉시 종료되었다(`Enumerated nodes: 0`). 이는 $K_{ij}$를 LUT 상수 파라미터로 처리함으로써 목적함수 구조가 선형 이진 할당 문제로 단순화되어, LP 완화해가 정수 실행 가능해와 정확히 일치하기 때문이다. 목적함수 $Z^* = \sum_i v_i \cdot S_i^*$는 식 (1)의 최솟값으로 양수이며, 자산 가치 가중 생존확률 합계로 직접 해석된다(낮을수록 방어 효과 높음). BASELINE_15 기준 $Z^* \approx 334$는 자산 가치 합계 $\sum v_i = 9{,}900$ 대비 약 3.4%의 기대 위험 손실에 해당한다.
+전 시나리오에서 Root Node Gap = 0%로 측정되었으며, 모든 인스턴스에서 B\&B가 루트 노드에서 분기 없이 즉시 종료되었다(`Enumerated nodes: 0`). 이는 위에서 증명한 바와 같이 단일 교전 제약 하 생존확률 최소화 구조에서 LP 완화해가 자연스럽게 정수 꼭짓점에 도달하기 때문이며, $\delta_{\text{rel}} = 1\%$의 gapRel 설정은 gap의 허용 상한을 의미할 뿐(gap = 0%는 이 조건을 당연히 만족) 최솟값을 제한하지 않는다. 목적함수 $Z^* = \sum_i v_i \cdot S_i^*$는 식 (1)의 최솟값으로 양수이며, 자산 가치 가중 생존확률 합계로 직접 해석된다(낮을수록 방어 효과 높음). BASELINE_15 기준 $Z^* \approx 334$는 자산 가치 합계 $\sum v_i = 9{,}900$ 대비 약 3.4%의 기대 위험 손실에 해당한다.
 
 ### 4.5 Warm-start 효과
 
