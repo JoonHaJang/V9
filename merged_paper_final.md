@@ -380,9 +380,11 @@ $c_1 > c_2$이므로 괄호 안이 항상 양수, 따라서 $S(\alpha) \geq S(1,
 
 이 두 성질의 결합으로 LP 솔버는 정수 꼭짓점 근방에서 수렴하며, CBC 로그의 `Continuous objective value`($Z_{\text{LP}}^{\text{root}}$)와 `Integer solution`($Z^*$)이 거의 동일한 값을 보인다. 경험적 검증으로 모든 정수 제약을 제거한 순수 LP를 BASELINE_15에 적용한 결과 $Z_{\text{LP}}^{\text{pure}} = 334.208 \approx Z^* = 334.210$이며, 모든 $x_{ij}$ 변수가 0 또는 1에 수렴함이 확인되었다. 잔류하는 0.0002%의 Gap은 Binary Tree 보조 변수($z_k$)에 대한 McCormick envelope의 불가피한 이완(relaxation) 잔차로, 수치 정밀도(부동소수점) 수준이다.
 
+**실험 설계.** Root Node Gap 측정 실험은 §4.1–4.3의 Monte Carlo 시뮬레이션(Rolling Horizon, 1,000회)과 달리, **단일 시점(t=0)의 DWTA MILP 1회 풀이**를 측정 단위로 한다. 즉, "위협 $N$개, 포대 6개(L-SAM 3 + M-SAM 3)가 동시에 존재하는 단일 순간의 최적 할당 문제"를 한 번 풀어 그 LP 완화 품질을 측정한다. 각 시나리오 유형에 대해 `ScenarioManager`가 위협의 위치·비행시간 등을 매번 독립적으로 무작위 생성한 30개 인스턴스를 반복 풀이함으로써, 시나리오 유형 내 변동성을 포함한 통계를 얻는다. Warm-start는 재현성 확보를 위해 비활성화하였다(`use_warm_start=False`). 따라서 본 실험의 30회는 §4.1의 1,000회 Monte Carlo 반복과 목적이 다르며—전자는 LP 완화 품질(Root Node Gap)을 측정하고, 후자는 Rolling Horizon 전체 시뮬레이션의 평균 성능을 추정한다.
+
 **실험 결과.** 8개 시나리오 × 30회 반복 실험 결과는 \<Table 5\>와 같다.
 
-\<Table 5\> Root Node Gap Measurement Results (30 Runs per Scenario)
+\<Table 5\> Root Node Gap Measurement Results (Single-Step MILP, 30 Instances per Scenario)
 
 | Scenario | Threats | Avg. Vars | Avg. Cons | Avg. Gap (%) | Max. Gap (%) | Avg. Solve Time (s) |
 |----------|---------|-----------|-----------|-------------|-------------|---------------------|
