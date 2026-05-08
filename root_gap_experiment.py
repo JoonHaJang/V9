@@ -164,6 +164,10 @@ def run_one_rolling(scenario_data):
         if not result or not result.get('feasible'):
             continue
 
+        # 타임아웃된 timestep 제외 — 용량 초과로 풀 수 없는 문제는 gap 측정 대상 아님
+        if result.get('diagnosis', {}).get('time_limit_reached', False):
+            continue
+
         gap = result.get('root_node_gap_pct')
         if gap is not None:
             step_gaps.append({
