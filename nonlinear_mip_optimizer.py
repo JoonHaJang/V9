@@ -1248,10 +1248,11 @@ class NonLinearMIPOptimizer:
             warmstart_applied = self.warmstart_stats.get('applied', False)
             warmstart_count = self.warmstart_stats.get('count', 0)
         
-        # Root Node Gap 계산
+        # Root Node Gap 계산 (공식: |Z* - Z_LP_root| / (|Z*| + ε))
+        _EPS = 1e-10
         _root_gap_pct = None
         if _z_lp_root is not None and objective_value not in (float('inf'), None) and abs(objective_value) > 1e-9:
-            _root_gap_pct = abs(_z_lp_root - objective_value) / abs(objective_value) * 100.0
+            _root_gap_pct = abs(_z_lp_root - objective_value) / (abs(objective_value) + _EPS) * 100.0
 
         result = {
             'feasible': feasible,
