@@ -1189,17 +1189,27 @@ class NonLinearMIPOptimizer:
         self.model.solve(solver)
         solve_time = time.time() - start_time
 
-        # Root Node Gap 파싱 (CBC 로그: "Continuous objective value is X")
+        # Root Node Gap 파싱 (CBC 로그)
+        # "Cuts at root node changed objective from X to Y" → Y (cuts 후 LP 하한)
+        # cuts 정보 없으면 "Continuous objective value is X" 사용
         _z_lp_root = None
+        _z_lp_raw   = None   # cuts 전 LP 완화값 (진단용)
         if _log_path and _os.path.exists(_log_path):
             try:
                 with open(_log_path) as _f:
                     for _line in _f:
-                        # CBC 형식: "Continuous objective value is X - ..."
-                        _m = _re.search(r'Continuous objective value is\s*([-\d.eE+]+)', _line)
-                        if _m:
-                            _z_lp_root = float(_m.group(1))
-                            break
+                        # cuts 전 LP 완화값
+                        if _z_lp_raw is None:
+                            _m0 = _re.search(r'Continuous objective value is\s*([-\d.eE+]+)', _line)
+                            if _m0:
+                                _z_lp_raw = float(_m0.group(1))
+                        # cuts 후 LP 하한 (더 타이트 — root gap 측정에 사용)
+                        _m1 = _re.search(r'Cuts at root node changed objective from.*?to\s*([-\d.eE+]+)', _line)
+                        if _m1:
+                            _z_lp_root = float(_m1.group(1))
+                # cuts 정보가 없으면 raw LP 값 사용
+                if _z_lp_root is None:
+                    _z_lp_root = _z_lp_raw
             except Exception:
                 pass
             finally:
@@ -1263,7 +1273,8 @@ class NonLinearMIPOptimizer:
             'warmstart_applied': warmstart_applied,
             'warmstart_count': warmstart_count,
             'root_node_gap_pct': _root_gap_pct,   # Root Node Gap (%) — None이면 미측정
-            'z_lp_root': _z_lp_root,               # LP 완화 목적함수값
+            'z_lp_root': _z_lp_root,               # LP 완화값 (cuts 후; 더 타이트한 하한)
+            'z_lp_raw': _z_lp_raw,                 # LP 완화값 (cuts 전; raw McCormick 완화)
             'diagnosis': {
                 'solver_status': pulp.LpStatus[self.model.status],
                 'num_variables': len(self.model.variables()),
