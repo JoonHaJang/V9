@@ -28,11 +28,12 @@ import config_mip
 
 # ── 실험 설계 ─────────────────────────────────────────────────────────────
 CONDITIONS = [
-    # (이름,         cT,    cG,    cM,    cE  )
-    ("Baseline",     0.25,  0.30,  0.25,  0.20),
-    ("Geo-heavy",    0.20,  0.40,  0.25,  0.15),
-    ("Motion-heavy", 0.20,  0.25,  0.40,  0.15),
-    ("Equal",        0.25,  0.25,  0.25,  0.25),
+    # (이름,           cT,    cG,    cM,    cE  )
+    ("Base",           0.30,  0.25,  0.25,  0.20),
+    ("Time-heavy",     0.45,  0.20,  0.20,  0.15),
+    ("Geo-heavy",      0.20,  0.40,  0.25,  0.15),
+    ("Motion-heavy",   0.20,  0.25,  0.40,  0.15),
+    ("Equal",          0.25,  0.25,  0.25,  0.25),
 ]
 
 SCENARIOS    = ["SMALL_3", "MEDIUM_10", "MEDIUM_20"]
@@ -161,7 +162,7 @@ def main():
               f"{sum(r['change_rate']    for r in rs)/len(rs):>14.1f}")
     print("=" * 72)
 
-    config_mip.K_FACTOR_WEIGHTS = (0.25, 0.30, 0.25, 0.20)  # 원복
+    config_mip.K_FACTOR_WEIGHTS = (0.30, 0.25, 0.25, 0.20)  # 원복
 
 
 if __name__ == '__main__':

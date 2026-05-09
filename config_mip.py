@@ -1695,7 +1695,7 @@ class EnhancedEngagementMatrix:
 
 # K-factor 가중치 전역 설정 (민감도 실험 시 외부에서 덮어쓰기 가능)
 # K_ij = T^c1 * G^c2 * K^c3 * E^c4
-K_FACTOR_WEIGHTS: tuple = (0.25, 0.30, 0.25, 0.20)  # c1, c2, c3, c4
+K_FACTOR_WEIGHTS: tuple = (0.30, 0.25, 0.25, 0.20)  # cT, cG, cM, cE
 
 
 class KFactorCache:
