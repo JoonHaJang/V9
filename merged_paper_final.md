@@ -194,11 +194,13 @@ $$\sum_{j:\,\theta \in W_{lj}(t)} x_{lj}(t) \leq C_l, \quad \forall l \in L,\; \
 
 $$K_{ij} = \text{clip}(k_G \cdot k_T \cdot k_K \cdot k_E,\; 0.6,\; 1.0)$$
 
-기하학적 요소 $k_G$는 배터리-위협 간 거리 $d$를 최적 교전 거리 $d_\text{opt}$ 대비 비율로 평가하며, 최적 구간($0.5\,d_\text{opt} \leq d \leq 0.7\,d_\text{opt}$)에서 $k_G = 1.0$이고 이를 벗어날수록 선형 감소하여 $k_G \in [0.6,\,1.0]$의 범위를 가진다. 시간적 요소 $k_T = k_{\text{window}} \cdot k_{\text{timing}}$는 두 하위 요소의 곱으로 구성된다. $k_{\text{window}}$는 교전창 길이 $\Delta t$에 따라 구간별로 정의된다:
+기하학적 요소 $k_G$는 배터리-위협 간 거리 $d$를 최적 교전 거리 $d_\text{opt}$ 대비 비율로 평가하며, 최적 구간($0.5\,d_\text{opt} \leq d \leq 0.7\,d_\text{opt}$)에서 $k_G = 1.0$이고 이를 벗어날수록 선형 감소하여 $k_G \in [0.6,\,1.0]$이다. 시간적 요소 $k_T = k_{\text{window}} \cdot k_{\text{timing}}$는 창 길이와 할당 시점 두 하위 요소의 곱이며, $k_{\text{window}}$는 교전창 길이 $\Delta t$에 따라 아래와 같이 구간 정의된다:
 
-$$Q_w = \begin{cases} 0.2 \times (\Delta t / t_{\min}) & 0 \leq \Delta t < t_{\min} \\ (\Delta t - t_{\min}) / (t_{\text{opt}} - t_{\min}) & t_{\min} \leq \Delta t < t_{\text{opt}} \\ 1.0 & \Delta t \geq t_{\text{opt}} \end{cases}$$
+$$k_{\text{window}} = \begin{cases} 0.2 \times (\Delta t / t_{\min}) & 0 \leq \Delta t < t_{\min} \\ (\Delta t - t_{\min}) / (t_{\text{opt}} - t_{\min}) & t_{\min} \leq \Delta t < t_{\text{opt}} \\ 1.0 & \Delta t \geq t_{\text{opt}} \end{cases}$$
 
-체계별 파라미터는 L-SAM이 $t_{\min}=12\,\text{s}$, $t_\text{opt}=35\,\text{s}$이며, M-SAM은 $t_{\min}=8\,\text{s}$, $t_\text{opt}=20\,\text{s}$이다. $k_{\text{timing}}$은 창 내 잔여 시간 비율에 따라 선형 감소하며 $k_{\text{timing}} \in [0.7,\,1.0]$이다. 운동학적 요소 $k_K$는 목표의 통과 고도 $h$와 종말 속도 $v$를 최적값 대비 편차로 평가하며, 고도 인자 $k_h = \max(0.8,\; 1.0 - 0.2 \cdot |h-30|/30)$($h < 5\,\text{km}$이면 0.8, $h > 80\,\text{km}$이면 0.9)와 속도 인자 $k_v = \max(0.8,\; 1.0 - 0.2 \cdot \max(0,\, v/2.0-1))$의 곱으로 $k_K = \min(k_h \cdot k_v,\; 1.0)$이다. 환경적 요소 $k_E$는 이상 기상·전자전 조건을 가정하여 $k_E = 1.0$으로 고정한다.
+체계별 파라미터는 L-SAM이 $t_{\min}=12\,\text{s}$, $t_\text{opt}=35\,\text{s}$이며, M-SAM은 $t_{\min}=8\,\text{s}$, $t_\text{opt}=20\,\text{s}$이다. $k_{\text{timing}}$은 창 내 잔여 시간 비율에 따라 선형 감소하며 $k_{\text{timing}} \in [0.7,\,1.0]$이다.
+
+운동학적 요소 $k_K$는 목표의 통과 고도 $h$와 종말 속도 $v$를 최적값 대비 편차로 평가한다. 고도 인자 $k_h = \max(0.8,\; 1.0 - 0.2 \cdot |h-30|/30)$이며($h < 5\,\text{km}$이면 0.8, $h > 80\,\text{km}$이면 0.9), 속도 인자 $k_v = \max(0.8,\; 1.0 - 0.2 \cdot \max(0,\, v/2.0-1))$로, $k_K = \min(k_h \cdot k_v,\; 1.0)$이다. 환경적 요소 $k_E$는 이상 기상·전자전 조건을 가정하여 $k_E = 1.0$으로 고정한다.
 
 산출된 $K_{ij}$는 시뮬레이션 시작 전 LUT에 사전 계산되어 저장되며, 매 최적화 시점(1초)마다 위협의 현재 위치·속도 변화에 따라 재계산·갱신된다. MILP 내에서는 고정 파라미터로 사용하며, $p_{ij} = K_{ij} \cdot P_i^{(m)}$을 상수로 계산하여 목적함수에 대입한다.
 
