@@ -1893,19 +1893,11 @@ class KFactorCache:
             idx = min(idx, self.LUT_SIZE)  # 범위 체크
             k_distance = self.k_distance_lut[idx]
 
-        # 🔥 3단계: k_window - LUT 인덱싱 (분기문 제거)
-        duration_idx = int(min(window_duration, 120))  # 0~120초
-        k_window = self.k_window_lut[duration_idx]
+        # 🔥 3단계: T (시간적 요소) - 논문 수식 T = k_min + (1-k_min)*sqrt(min(Δt/t_opt, 1))
+        t_optimal = 60.0  # 최적 교전창 길이 (초)
+        T = self.k_min + (1.0 - self.k_min) * np.sqrt(min(window_duration / t_optimal, 1.0))
 
-        # 🔥 4단계: k_timing - 단순 선형 계산 (분기문 최소화)
-        if current_time < window_start:
-            k_timing = 1.0
-        else:
-            elapsed_ratio = (current_time - window_start) / window_duration
-            k_timing = max(0.7, 1.0 - 0.3 * elapsed_ratio)
-
-        # 🔥 5단계: k_kinematic - 표적 고도·속도 기반 운동학적 요소
-        # phase_events에서 추출 (dict/dataclass 양쪽 지원)
+        # 🔥 4단계: K (운동학적 요소) - 표적 고도·속도 기반
         phase_events = {}
         if hasattr(threat, 'get'):
             phase_events = threat.get('phase_events', {})
@@ -1918,11 +1910,9 @@ class KFactorCache:
         if not specs and hasattr(threat, 'specs'):
             specs = threat.specs or {}
 
-        # 고도: phase_events 우선, fallback → specs['max_altitude_km']
         critical_alt_km = (phase_events.get('critical_altitude_km')
                            or specs.get('max_altitude_km', 30.0))
 
-        # 속도: phase_events terminal_velocity_ms 우선, fallback → Mach * 343 m/s
         if phase_events.get('terminal_velocity_ms'):
             terminal_vel_ms = phase_events['terminal_velocity_ms']
         else:
@@ -1930,7 +1920,6 @@ class KFactorCache:
             terminal_vel_ms = mach * 343.0
         missile_speed_kms = terminal_vel_ms / 1000.0
 
-        # 고도 인자: 최적 30km, 범위 [0.8, 1.0]
         optimal_alt = 30.0
         if critical_alt_km < 5.0:
             altitude_factor = 0.8
@@ -1940,7 +1929,6 @@ class KFactorCache:
             dev = abs(critical_alt_km - optimal_alt)
             altitude_factor = max(0.8, 1.0 - 0.2 * (dev / optimal_alt))
 
-        # 속도 인자: 최적 2.0 km/s, 범위 [0.8, 1.0]
         optimal_speed = 2.0
         max_speed     = 5.0
         if missile_speed_kms > max_speed:
@@ -1949,10 +1937,14 @@ class KFactorCache:
             ratio = missile_speed_kms / optimal_speed
             speed_factor = max(0.8, 1.0 - 0.2 * max(0.0, ratio - 1.0))
 
-        k_kinematic = min(altitude_factor * speed_factor, 1.0)
+        K_factor = min(altitude_factor * speed_factor, 1.0)
 
-        # 🔥 6단계: 최종 k-factor (4요소 곱)
-        k_ij = k_distance * k_window * k_timing * k_kinematic
+        # 🔥 5단계: 최종 K-factor - 논문 수식 K_ij = T^c1 * G^c2 * K^c3 * E^c4
+        # G = k_distance (기하학적), E = 1.0 (이상 환경 조건 가정)
+        c1, c2, c3, c4 = 0.25, 0.30, 0.25, 0.20
+        G = k_distance
+        E = 1.0
+        k_ij = (T ** c1) * (G ** c2) * (K_factor ** c3) * (E ** c4)
 
         return np.clip(k_ij, self.k_min, self.k_max)
 

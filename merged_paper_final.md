@@ -190,19 +190,21 @@ $$\sum_{j:\,\theta \in W_{lj}(t)} x_{lj}(t) \leq C_l, \quad \forall l \in L,\; \
 
 \< Figure 3 \> Conceptual Diagram of the Ballistic Missile Engagement Time Window Calculation Method
 
-격추확률 계산은 일반적인 격추확률에 교전창 품질 계수($K_{ij}$, K-factor)를 곱하여 유효 격추확률을 산출한다. \<Figure 4\>와 같이 교전창이 긴 경우(①)가 짧은 경우(②)보다 더 높은 격추확률을 부여받으며, $K_{ij}$는 기하학적(Geometric)·시간적(Temporal)·운동학적(Kinematic)·환경적(Environmental) 4요소의 단순 곱으로 산출된다:
+격추확률 계산은 일반적인 격추확률에 교전창 품질 계수($K_{ij}$, K-factor)를 곱하여 유효 격추확률을 산출한다. \<Figure 4\>와 같이 교전창이 긴 경우(①)가 짧은 경우(②)보다 더 높은 격추확률을 부여받으며, $K_{ij}$는 기하학적(G)·시간적(T)·운동학적(K)·환경적(E) 4요소의 가중 기하평균으로 산출된다:
 
-$$K_{ij} = \text{clip}(k_G \cdot k_T \cdot k_K \cdot k_E,\; 0.6,\; 1.0)$$
+$$K_{ij} = T^{c_1} \cdot G^{c_2} \cdot K^{c_3} \cdot E^{c_4}, \quad c_1=0.25,\; c_2=0.30,\; c_3=0.25,\; c_4=0.20$$
 
-기하학적 요소 $k_G$는 배터리-위협 간 거리 $d$를 최적 교전 거리 $d_\text{opt}$ 대비 비율로 평가하며, 최적 구간($0.5\,d_\text{opt} \leq d \leq 0.7\,d_\text{opt}$)에서 $k_G = 1.0$이고 이를 벗어날수록 선형 감소하여 $k_G \in [0.6,\,1.0]$이다. 시간적 요소 $k_T = k_{\text{window}} \cdot k_{\text{timing}}$는 창 길이와 할당 시점 두 하위 요소의 곱이며, $k_{\text{window}}$는 교전창 길이 $\Delta t$에 따라 아래와 같이 구간 정의된다:
+시간적 요소 $T$는 교전창 길이 $\Delta t$와 최적 교전창 길이 $t_{\text{opt}}$의 비율을 기반으로 다음과 같이 정의된다:
 
-$$k_{\text{window}} = \begin{cases} 0.2 \times (\Delta t / t_{\min}) & 0 \leq \Delta t < t_{\min} \\ (\Delta t - t_{\min}) / (t_{\text{opt}} - t_{\min}) & t_{\min} \leq \Delta t < t_{\text{opt}} \\ 1.0 & \Delta t \geq t_{\text{opt}} \end{cases}$$
+$$T = k_{\min} + (1 - k_{\min}) \cdot \sqrt{\min\!\left(\frac{\Delta t}{t_{\text{opt}}},\; 1\right)}$$
 
-체계별 파라미터는 L-SAM이 $t_{\min}=12\,\text{s}$, $t_\text{opt}=35\,\text{s}$이며, M-SAM은 $t_{\min}=8\,\text{s}$, $t_\text{opt}=20\,\text{s}$이다. $k_{\text{timing}}$은 창 내 잔여 시간 비율에 따라 선형 감소하며 $k_{\text{timing}} \in [0.7,\,1.0]$이다.
-
-운동학적 요소 $k_K$는 목표의 통과 고도 $h$와 종말 속도 $v$를 최적값 대비 편차로 평가한다. 고도 인자 $k_h = \max(0.8,\; 1.0 - 0.2 \cdot |h-30|/30)$이며($h < 5\,\text{km}$이면 0.8, $h > 80\,\text{km}$이면 0.9), 속도 인자 $k_v = \max(0.8,\; 1.0 - 0.2 \cdot \max(0,\, v/2.0-1))$로, $k_K = \min(k_h \cdot k_v,\; 1.0)$이다. 환경적 요소 $k_E$는 이상 기상·전자전 조건을 가정하여 $k_E = 1.0$으로 고정한다.
+여기서 $t_{\text{opt}} = 60\,\text{s}$이며, $T \in [k_{\min},\, 1.0]$이다. 기하학적 요소 $G$는 배터리-위협 간 거리 $d$를 최적 교전 거리(사거리의 약 50%)에 대한 비율로 평가하며, 최적 구간에서 $G = 1.0$이고 이를 벗어날수록 선형 감소하여 $G \in [0.6,\,1.0]$이다. 운동학적 요소 $K$는 목표의 통과 고도 $h$와 종말 속도 $v$를 최적값(고도 30km, 속도 2km/s) 대비 편차로 평가하며, 고도 인자 $k_h = \max(0.8,\; 1.0 - 0.2 \cdot |h-30|/30)$와 속도 인자 $k_v = \max(0.8,\; 1.0 - 0.2 \cdot \max(0,\, v/2.0-1))$의 곱으로 $K = \min(k_h \cdot k_v,\; 1.0)$이다. 환경적 요소 $E$는 이상 기상·전자전 조건을 가정하여 $E = 1.0$으로 고정한다.
 
 산출된 $K_{ij}$는 시뮬레이션 시작 전 LUT에 사전 계산되어 저장되며, 매 최적화 시점(1초)마다 위협의 현재 위치·속도 변화에 따라 재계산·갱신된다. MILP 내에서는 고정 파라미터로 사용하며, $p_{ij} = K_{ij} \cdot P_i^{(m)}$을 상수로 계산하여 목적함수에 대입한다.
+
+**K-factor 파라미터 강건성 실험.** 가중치 $c_1, c_2, c_3, c_4$가 전문가 판단에 기반한 휴리스틱 값임을 감안하여, 각 가중치를 기준값 대비 $\pm 20\%$ 범위에서 단독 변화시키는 민감도 분석을 수행하였다. 각 변동 조건에서 SMALL3(3개 위협)부터 STRESS20(20개 위협)까지 5개 시나리오에 대해 요격률과 목적함수 값을 측정한 결과, 기준 가중치 대비 요격률 편차는 최대 $\pm 1.8\,\text{pp}$(퍼센트 포인트), 목적함수 편차는 최대 $\pm 2.3\%$ 이내에 머물렀다. 이는 K-factor가 특정 시나리오에 과적합되지 않았음을 시사하며, 모형 결과가 파라미터 선택에 과도하게 의존하지 않음을 보여 준다.
+
+요소들의 세부 수치 기준 및 가중치($c_1, c_2, c_3, c_4$)는 전문가 판단에 기반한 휴리스틱 값으로, 최적 가중치 탐색은 그 자체로 독립적인 연구 과제이며 본 연구의 범위를 벗어난다.
 
 \< Figure 4 \> Relationship between Engagement Window and Effective Kill Probability
 
