@@ -1693,9 +1693,14 @@ class EnhancedEngagementMatrix:
         return computed_count
 
 
+# K-factor 가중치 전역 설정 (민감도 실험 시 외부에서 덮어쓰기 가능)
+# K_ij = T^c1 * G^c2 * K^c3 * E^c4
+K_FACTOR_WEIGHTS: tuple = (0.25, 0.30, 0.25, 0.20)  # c1, c2, c3, c4
+
+
 class KFactorCache:
     """K-factor 사전 계산 캐시 + 경량 실시간 계산 (최적화 #3)"""
-    
+
     def __init__(self, k_min: float = 0.6, k_max: float = 1.0):
         self.k_min = k_min
         self.k_max = k_max
@@ -1941,7 +1946,7 @@ class KFactorCache:
 
         # 🔥 5단계: 최종 K-factor - 논문 수식 K_ij = T^c1 * G^c2 * K^c3 * E^c4
         # G = k_distance (기하학적), E = 1.0 (이상 환경 조건 가정)
-        c1, c2, c3, c4 = 0.25, 0.30, 0.25, 0.20
+        c1, c2, c3, c4 = K_FACTOR_WEIGHTS
         G = k_distance
         E = 1.0
         k_ij = (T ** c1) * (G ** c2) * (K_factor ** c3) * (E ** c4)
