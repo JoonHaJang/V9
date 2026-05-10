@@ -261,29 +261,29 @@ McCormick 선형화는 3.4.1절에서 제시한 Binary Tree의 각 단계 Biline
 
 $K_{ij}$가 고정 파라미터이므로 $p_{ij} = K_{ij} \cdot P_i^{(m)}$은 상수이며($P_i^{(m)} = 1-(1-P_i)^2$, L-SAM: 0.9775, M-SAM: 0.96), 생존 기여 인자 $q_{ij}(t) = 1 - p_{ij}(t)\,x_{ij}(t)$는 $x_{ij}$의 선형 표현식이다. 위협 $j$의 상층 생존확률은 Binary Tree 보조 변수로 분해된다:
 
-$$z_1 = q_{1j},\quad z_{k+1} = z_k \cdot q_{(k+1)j}, \quad k = 1, \ldots, |U|-1$$
+$$z_1 = q_{1j},\quad z_{k+1} = z_k \cdot q_{(k+1)j}, \quad k = 1, \ldots, |U|-1 \tag{8}$$
 
 각 단계 $z_{k+1} = z_k \cdot q_{(k+1)j}$는 두 연속 변수의 곱(Bilinear Term)이다. LP 완화 $x_{ij}\in[0,1]$에서 $q_{ij} \in [1-p_{ij},\,1]$이 연속 구간이 되므로, McCormick 선형화[11]를 경계값 $z_k \in [z_k^L,\, z_k^U]$와 $q_{(k+1)j} \in [1-p_{(k+1)j},\, 1]$에 적용하여 4개 선형 부등식으로 대체한다:
 
-$$\zeta_{k+1} \geq z_k^L \cdot q_{(k+1)j} + (1-p_{(k+1)j})\cdot z_k - z_k^L(1-p_{(k+1)j}) \tag{8}$$
+$$\zeta_{k+1} \geq z_k^L \cdot q_{(k+1)j} + (1-p_{(k+1)j})\cdot z_k - z_k^L(1-p_{(k+1)j}) \tag{9}$$
 
-$$\zeta_{k+1} \geq z_k^U \cdot q_{(k+1)j} + z_k - z_k^U \tag{9}$$
+$$\zeta_{k+1} \geq z_k^U \cdot q_{(k+1)j} + z_k - z_k^U \tag{10}$$
 
-$$\zeta_{k+1} \leq z_k^U \cdot q_{(k+1)j} + (1-p_{(k+1)j})\cdot z_k - z_k^U(1-p_{(k+1)j}) \tag{10}$$
+$$\zeta_{k+1} \leq z_k^U \cdot q_{(k+1)j} + (1-p_{(k+1)j})\cdot z_k - z_k^U(1-p_{(k+1)j}) \tag{11}$$
 
-$$\zeta_{k+1} \leq z_k^L \cdot q_{(k+1)j} + z_k - z_k^L \tag{11}$$
+$$\zeta_{k+1} \leq z_k^L \cdot q_{(k+1)j} + z_k - z_k^L \tag{12}$$
 
 경계값은 귀납적으로 $z_1^L = 1-p_{1j}$, $z_1^U = 1$; $z_k^L = z_{k-1}^L\cdot(1-p_{kj})$, $z_k^U = z_{k-1}^U$로 계산된다. 하층 $L$도 동일하게 처리한다.
 
-등가성은 다음과 같이 확인된다. $x_{ij}\in\{0,1\}$이면 $q_{ij}$의 값이 정확히 결정되고, 각 단계의 McCormick 부등식 (8)–(11)이 등호로 활성화(tight)되어 $\zeta_{k+1} = z_k \cdot q_{(k+1)j}$가 성립한다. $q_{ij} \in [1-p_{ij},\,1]$의 유계 조건에서 4개 부등식이 이중선형 항의 볼록 다각형(Convex Hull)을 정확히 표현하므로, LP 완화 하한이 강화되어 분기한정법 탐색 트리 크기가 대폭 감소하고 전역 최적해를 보장하면서도 비선형 솔버 대비 처리 속도를 최대치로 향상시킨다. 엄밀한 귀납 증명은 §3.4.3 정리 1에서 제시한다.
+등가성은 다음과 같이 확인된다. $x_{ij}\in\{0,1\}$이면 $q_{ij}$의 값이 정확히 결정되고, 각 단계의 McCormick 부등식 (9)–(12)이 등호로 활성화(tight)되어 $\zeta_{k+1} = z_k \cdot q_{(k+1)j}$가 성립한다. $q_{ij} \in [1-p_{ij},\,1]$의 유계 조건에서 4개 부등식이 이중선형 항의 볼록 다각형(Convex Hull)을 정확히 표현하므로, LP 완화 하한이 강화되어 분기한정법 탐색 트리 크기가 대폭 감소하고 전역 최적해를 보장하면서도 비선형 솔버 대비 처리 속도를 최대치로 향상시킨다. 엄밀한 귀납 증명은 §3.4.3 정리 1에서 제시한다.
 
-최종 MILP는 이진 변수 $x_{ij}$, 연속 보조 변수 $q_{ij}$, $z_k$와 선형 제약 (8)–(11)만으로 구성된 표준 형태가 된다.
+최종 MILP는 이진 변수 $x_{ij}$, 연속 보조 변수 $q_{ij}$, $z_k$와 선형 제약 (9)–(12)만으로 구성된 표준 형태가 된다.
 
 #### 3.4.3 MIP 문제 구성
 
 다항곱 $\prod_u q_{uj} \cdot \prod_l q_{lj}$는 이진 트리구조로 분해하여 선형화한다. 위협 $j$에 대한 상층 생존확률 $S_j^U = \prod_u q_{uj}$을 순차적으로 보조 변수 $z_k$를 도입하여 처리하며(식 (6)–(7)), 각 단계의 이중선형 항 $z_k \cdot q_{(k+1)j}$에 McCormick 선형화를 반복 적용한다. 하층도 동일하게 처리한다.
 
-3.4.2절의 Binary Tree McCormick 선형화(식 (8)–(11))를 통해 원래 비선형 목적함수(식 (1))는 이진 변수 $x_{ij}$, 연속 보조 변수 $q_{ij}$, $z_k$와 선형 제약만으로 구성된 표준 MILP로 변환된다. $K_{ij}$는 고정 파라미터이므로 결정변수에 포함되지 않는다.
+3.4.2절의 Binary Tree McCormick 선형화(식 (9)–(12))를 통해 원래 비선형 목적함수(식 (1))는 이진 변수 $x_{ij}$, 연속 보조 변수 $q_{ij}$, $z_k$와 선형 제약만으로 구성된 표준 MILP로 변환된다. $K_{ij}$는 고정 파라미터이므로 결정변수에 포함되지 않는다.
 
 **문제 규모 (Big-O).** 교전 가능 쌍 수 $E$(배터리–위협 쌍 중 실제 교전 가능한 것), 배터리 수 $B$, 위협 수 $J$, 계층 수 $\ell$을 기준으로 각 타임스텝의 MILP 규모는 다음과 같다.
 
@@ -291,14 +291,14 @@ $$\zeta_{k+1} \leq z_k^L \cdot q_{(k+1)j} + z_k - z_k^L \tag{11}$$
 |----------|------|------|
 | 이진 변수 $x_{ij}$ | $O(E)$ | 희소 변수 생성으로 교전 불가 쌍 제외 |
 | 보조 변수 $q_{ij}$, $z_k$ | $O(E \cdot \ell)$ | 계층별 Binary Tree 단계 수 비례 |
-| McCormick 제약 (8)–(11) | $O(E \cdot \ell)$ | 각 단계 4개 부등식 |
+| McCormick 제약 (9)–(12) | $O(E \cdot \ell)$ | 각 단계 4개 부등식 |
 | 용량·재고 제약 (4)–(7) | $O(B + J)$ | 포대·위협당 1개 |
 | 단일 배정 제약 (2)–(3) | $O(J)$ | 위협당 1개 |
 | **합계** | $O(E \cdot \ell + B + J)$ | 희소성으로 준선형 유지 |
 
 실측값은 §4.2 \<Table 5\>에 제시한다. 희소 변수 생성으로 STRESS_100(100위협, 15포대)에서도 평균 972변수, 2,287제약으로 준선형(quasi-linear) 규모를 유지하였다.
 
-**정리 1 (McCormick MILP 등가성).** 식 (8)–(11) 및 Binary Tree 분해로 구성된 MILP의 최적해는 원래 MINLP(식 (1))의 전역 최적해와 동일하다.
+**정리 1 (McCormick MILP 등가성).** 식 (9)–(12) 및 Binary Tree 분해로 구성된 MILP의 최적해는 원래 MINLP(식 (1))의 전역 최적해와 동일하다.
 
 이 정리가 왜 중요한지부터 짚고 가자. 식 (1)의 목적함수는 $q_{ij}$들의 다항곱으로 이루어진 **비선형·비볼록** 구조이다. 비선형 솔버(IPOPT, BARON)는 이를 그대로 다루지만 실시간 요건을 충족하지 못한다. McCormick 선형화는 비선형 구조를 **선형 제약으로 대체**하되, 그 대체가 원래 문제와 **수학적으로 동치**임을 아래에서 증명한다.
 
@@ -318,7 +318,7 @@ $$x_{ij} \in \{0,1\} \Rightarrow q_{ij} = \begin{cases} 1 & x_{ij}=0 \\ 1-p_{ij}
 
 *초기값 ($k=1$):* $z_1 = q_{1j}$는 단계 1의 결과에 의해 $z_1 = 1 - p_{1j}\,x_{1j}$로 정확히 표현된다.
 
-*귀납 단계 ($k \to k+1$):* $z_k$가 $\prod_{m=1}^k q_{mj}$와 일치한다고 가정하면, $z_{k+1} = z_k \cdot q_{(k+1)j}$는 연속 변수 $z_k$와 연속 변수 $q_{(k+1)j}$의 곱이다. $x_{(k+1)j} \in \{0,1\}$이면 $q_{(k+1)j}$의 값이 단계 1에 의해 정확히 결정되고, $z_k$의 값도 귀납 가정에 의해 정확히 결정되므로 McCormick 부등식 (8)–(11)이 등호로 활성화(tight)되어:
+*귀납 단계 ($k \to k+1$):* $z_k$가 $\prod_{m=1}^k q_{mj}$와 일치한다고 가정하면, $z_{k+1} = z_k \cdot q_{(k+1)j}$는 연속 변수 $z_k$와 연속 변수 $q_{(k+1)j}$의 곱이다. $x_{(k+1)j} \in \{0,1\}$이면 $q_{(k+1)j}$의 값이 단계 1에 의해 정확히 결정되고, $z_k$의 값도 귀납 가정에 의해 정확히 결정되므로 McCormick 부등식 (9)–(12)이 등호로 활성화(tight)되어:
 
 $$z_{k+1} = z_k \cdot q_{(k+1)j} = \prod_{m=1}^{k+1} q_{mj} \tag{P2}$$
 
@@ -457,7 +457,7 @@ $$\frac{UB - LB}{|LB| + \varepsilon} \leq \delta_{\text{rel}}$$
 
 $UB$: 현재 best integer solution, $LB$: 트리 전체의 dual bound, $\delta_{\text{rel}}$: 설정된 상대 허용오차(본 실험: 1\%). 이 조건이 루트 노드에서 이미 만족되면 B\&B는 분기 없이 즉시 종료하며, Root Node Gap $\leq \delta_{\text{rel}}$이 이를 보장한다. 분모 기준 차이로 Root Node Gap과 MIP Gap이 수치상 완전히 동일하지는 않으나, 의미상 Root Node Gap $\leq 1\%$이면 분기가 실질적으로 불필요하다.
 
-**코드 동작 및 0% Gap의 인과관계.** 목적함수는 식 (1)에 직접 대응하는 $\min \sum_i v_i \cdot S_i$로 구현된다. $S_j = \prod_u q_{uj} \cdot \prod_l q_{lj}$는 Binary Tree McCormick 선형화(식 (8)–(11))를 통해 처리되며, $q_{ij}(t) = 1 - p_{ij}(t)\,x_{ij}(t)$($p_{ij} = K_{ij} \cdot P_i^{(m)}$, 상수)이다. Binary Tree의 각 단계 $z_k = z_{k-1} \cdot q_{kj}$는 두 연속 변수의 Bilinear Term으로, McCormick 선형화가 적용된다.
+**코드 동작 및 0% Gap의 인과관계.** 목적함수는 식 (1)에 직접 대응하는 $\min \sum_i v_i \cdot S_i$로 구현된다. $S_j = \prod_u q_{uj} \cdot \prod_l q_{lj}$는 Binary Tree McCormick 선형화(식 (9)–(12))를 통해 처리되며, $q_{ij}(t) = 1 - p_{ij}(t)\,x_{ij}(t)$($p_{ij} = K_{ij} \cdot P_i^{(m)}$, 상수)이다. Binary Tree의 각 단계 $z_k = z_{k-1} \cdot q_{kj}$는 두 연속 변수의 Bilinear Term으로, McCormick 선형화가 적용된다.
 
 McCormick 선형화는 relaxation method이므로 $Z_{\text{LP}}^{\text{root}} \leq Z^*$ (최소화 기준 하한)를 항상 보장하며, 원칙적으로 양의 Gap이 발생한다. 실험에서도 0.0000–0.0003%의 미세한 비제로 Gap이 관측되었다(아래 Table 8). 이 Gap이 극도로 작은 이유는 **LP 최적해가 정수 꼭짓점(integer vertex) 근방에서 달성되기 때문**이며, 이는 두 가지 구조적 성질이 결합된 결과이다.
 
@@ -498,7 +498,7 @@ Root Node Gap은 루트 노드의 LP 완화 하한 $Z_{\text{LP}}^{\text{root}}$
 
 **[관찰 → 의미 연결 2: MILP 최적해 = 원래 MINLP 최적해]**
 
-그러나 B&B가 최적 정수해를 찾았다는 것만으로는 부족하다. 여기서 풀린 정수 문제(MILP)가 원래의 비선형 문제(MINLP)와 동일한 문제인지를 확인해야 한다. 이는 앞서 정리 1(§3.4.3)에서 수학적으로 증명하였다: 모든 이진 실현 가능해 $x \in \{0,1\}^n$에서 $q_{ij} = 1-p_{ij}x_{ij}$가 선형으로 정확히 결정되고(단계 P1), Binary Tree McCormick 부등식 (8)–(11)이 등호로 활성화되어 $z_k = \prod_{m=1}^k q_{mj}$ 등호 성립(단계 P2). 따라서 MILP와 MINLP의 목적함수 값은 $\{0,1\}^n$ 전체에서 동일하다. 따라서:
+그러나 B&B가 최적 정수해를 찾았다는 것만으로는 부족하다. 여기서 풀린 정수 문제(MILP)가 원래의 비선형 문제(MINLP)와 동일한 문제인지를 확인해야 한다. 이는 앞서 정리 1(§3.4.3)에서 수학적으로 증명하였다: 모든 이진 실현 가능해 $x \in \{0,1\}^n$에서 $q_{ij} = 1-p_{ij}x_{ij}$가 선형으로 정확히 결정되고(단계 P1), Binary Tree McCormick 부등식 (9)–(12)이 등호로 활성화되어 $z_k = \prod_{m=1}^k q_{mj}$ 등호 성립(단계 P2). 따라서 MILP와 MINLP의 목적함수 값은 $\{0,1\}^n$ 전체에서 동일하다. 따라서:
 
 $$\text{Gap} = 0\% \;\wedge\; f_{\text{MILP}}(x) \equiv f_{\text{MINLP}}(x)\;\forall x \in \{0,1\}^n \;\Rightarrow\; x^*_{\text{MILP}} = x^*_{\text{MINLP}}$$
 
