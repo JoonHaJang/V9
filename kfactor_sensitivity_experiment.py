@@ -36,7 +36,7 @@ CONDITIONS = [
     ("Equal",          0.25,  0.25,  0.25,  0.25),
 ]
 
-SCENARIOS    = ["SMALL_3", "MEDIUM_10", "MEDIUM_20"]
+SCENARIOS    = ["SMALL_3", "MEDIUM_10", "MEDIUM_20", "STRESS_100"]
 ITERATIONS   = 3
 MAX_DURATION = 1600
 
